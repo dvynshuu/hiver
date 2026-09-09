@@ -1,57 +1,115 @@
-# Decision Log: 13 Non-Obvious Engineering Decisions
+# Architectural Decision Log: 14 Non-Obvious Engineering Decisions
 
-This document records the key architectural, methodological, and product trade-offs made during the development of the `@AppleSupport` AI Support Agent.
+This document records the key architectural, methodological, and product trade-offs made during the development and evaluation of the `@AppleSupport` AI Support Agent.
 
 ---
 
-1. **Choosing @AppleSupport over @AmazonHelp or @SpotifyCares**
-   * *Decision*: Selected AppleSupport as the primary brand target.
-   * *Why*: While Amazon has high tweet volume, its issues are largely transactional delivery tracking (which requires private database lookups rather than public troubleshooting). Spotify has a narrower scope (music streaming). AppleSupport combines high volume (>100k tweets), rich multi-modal technical troubleshooting, distinctive brand voice constraints, and high-stakes privacy/safety edge cases—making it the ideal proving ground for an AI agent.
+### 1. Brand Selection: Targeting @AppleSupport over @AmazonHelp or @SpotifyCares
+* **Decision**: Selected `@AppleSupport` as the single brand focus for the system.
+* **Why**: Apple Support combines high customer volume (>100k conversations), diverse technical troubleshooting across hardware and OS layers, distinctive brand tone guidelines, and high-stakes privacy/safety edge cases.
+* **Alternative Considered**: `@AmazonHelp` (delivery logistics) or `@SpotifyCares` (streaming service).
+* **Why Rejected**: Amazon inquiries are dominated by private package tracking and delivery driver logistics that require proprietary database lookups rather than public conversational support. Spotify has a narrower technical scope. Apple represents the ideal proving ground for intent classification, safety boundaries, and technical grounding.
 
-2. **Defining an 8-Intent Taxonomy Rather than Using Banking77 (77 Intents) or a Generic 3-Class Set**
-   * *Decision*: Developed a customized 8-intent taxonomy specifically tailored to consumer electronics support.
-   * *Why*: 77 intents (like Banking77) creates extreme label sparsity, semantic overlap, and noisy classification boundaries on Twitter data. Conversely, a 3-class set (e.g. `issue`, `inquiry`, `feedback`) is too coarse to ground actionable troubleshooting. 8 intents cleanly partition the domain into actionable business buckets (`device_issue`, `software_bug`, `account_security`, `connectivity`, `billing_purchase`, `product_inquiry`, `general_feedback`, `other`).
+---
 
-3. **Opting for Retrieval-Augmented Generation (RAG) Over Model Fine-Tuning**
-   * *Decision*: Built a RAG pipeline over verified historical resolution pairs instead of fine-tuning an open model (e.g. LLaMA/Mistral).
-   * *Why*: Twitter datasets are rife with angry customer rants, sarcasm, and outdated technical steps (iOS 11 from 2017). Fine-tuning on raw conversational threads bakes in toxic tone and hallucinations. RAG allows dynamic retrieval of only verified brand replies while using modern instruction-tuned LLMs to adapt to 2026 contexts.
+### 2. Taxonomy Scope: Custom 8-Class Intent Taxonomy vs. Banking77 (77 Intents) vs. 3-Class Coarse Set
+* **Decision**: Designed an 8-class domain-tailored intent taxonomy (`device_issue`, `software_bug`, `account_security`, `connectivity`, `billing_purchase`, `product_inquiry`, `general_feedback`, `other`).
+* **Why**: 8 intents cleanly partition consumer electronics support into actionable business workflows with distinct troubleshooting procedures and escalation protocols.
+* **Alternative Considered**: Adopting the Banking77 benchmark (77 intents) or a generic 3-class bucket (`issue`, `inquiry`, `feedback`).
+* **Why Rejected**: Banking77 has extreme label sparsity and semantic overlap that does not fit consumer hardware support. A 3-class system is too coarse to determine whether an issue requires hardware repair guidance or account recovery portals.
 
-4. **Deterministic Hard-Guardrails First, LLM Reasoning Second for Escalation**
-   * *Decision*: Safety hazards (swelling batteries, sparks), legal threats, and explicit human requests bypass the LLM and escalate deterministically via rule checks.
-   * *Why*: LLMs can suffer from prompt injection, sycophancy, or nondeterministic failures on life-safety or legal issues. A battery that is catching fire must *never* be subjected to probabilistic LLM temperature rolls. Deterministic code guarantees zero-regression safety bounds.
+---
 
-5. **Filtering Out Inquiries Under 18 Characters Post-Cleaning**
-   * *Decision*: Discarded any customer inquiry containing fewer than 18 characters after stripping `@handles` and `https://t.co` URLs.
-   * *Why*: A huge fraction of raw Twitter inbound messages consist purely of an `@AppleSupport` mention paired with a screenshot URL or a single emoji. Attempting to classify textless inputs corrupts the training/retrieval corpus.
+### 3. Data Splitting: Conversation-Level Splitting vs. Tweet-Level Random Splitting
+* **Decision**: Enforced strict conversation-level splitting (`conversation_id` / `customer_tweet_id`) with a fixed seed (`SEED = 42`), separating 4,650 retrieval pairs from 350 held-out evaluation pairs.
+* **Why**: Prevents conversational leakage where an agent sees the customer's opening tweet in training and the follow-up tweet in evaluation, which inflates retrieval metrics artificially.
+* **Alternative Considered**: Uniform random row-level splitting of the dataset.
+* **Why Rejected**: Random splitting scatters related tweets from the same thread across train and test sets, violating independence assumptions and masking evaluation leakage.
 
-6. **Decoupling the Generator and Judge Models**
-   * *Decision*: Structured the pipeline to support separate models (or independent prompts with distinct system instructions) for drafting versus evaluation.
-   * *Why*: Self-evaluation ("LLM judging its own generation") introduces massive confirmation bias and halo effects. A distinct evaluation prompt with strict rubrics and Chain-of-Thought critique is mandatory for objectivity.
+---
 
-7. **Using Word-Boundary Regexes Rather than Substring Matches for Keywords**
-   * *Decision*: Rewrote all simple baseline matchers to enforce word boundaries (`\bcharge\b` vs `"charge"`).
-   * *Why*: Substring matching created disastrous false positives—such as classifying `"charger port is loose"` under `billing_purchase` because `"charger"` contains `"charge"`.
+### 4. Golden Set Provenance: Held-Out Empirical Conversations vs. Synthetic Intent Dictionary
+* **Decision**: Built the 200-sample Golden Evaluation Set from 180 real held-out AppleSupport customer tweets plus 20 targeted adversarial cases.
+* **Why**: Handcrafted synthetic dictionaries generate artificially clean, grammatically uniform sentences that fail to test how the agent handles customer typos, colloquial slang, and emotional venting.
+* **Alternative Considered**: Hardcoding 25 synthetic sentences per intent from a dictionary.
+* **Why Rejected**: Synthetic customer messages create an artificial benchmark detached from real-world Twitter distribution shift.
 
-8. **Requiring Chain-of-Thought (CoT) Critique Before Emitting Numeric Judge Scores**
-   * *Decision*: In the LLM-as-a-Judge prompt, the judge must generate an honest written critique before assigning integer scores.
-   * *Why*: Forcing autoregressive models to generate reasoning tokens first drastically reduces score compression and prevents the model from blindly defaulting to 5/5 scores.
+---
 
-9. **Escalation-Aware Prompting During Reply Generation**
-   * *Decision*: Fed the escalation status (`auto_handle` vs `escalate`) and the specific escalation reason directly into the reply generation stage.
-   * *Why*: When an issue is escalated (e.g., thermal hazard or account theft), the agent must *not* output routine troubleshooting tips ("try restarting"). It must pivot to safety instructions or private DM invitation links.
+### 5. Automated Leakage Detection: Hard Gate vs. Informal Manual Inspection
+* **Decision**: Implemented an automated leakage gate (`check_evaluation_leakage`) checking exact text matches, normalized text matches (casing and punctuation stripped), and conversation ID overlap before evaluation runs.
+* **Why**: Guarantees that no evaluation query exists in the retrieval index, ensuring scientific credibility and defense under interview scrutiny.
+* **Alternative Considered**: Relying on manual assurance that splits were performed correctly.
+* **Why Rejected**: Unchecked data processing often introduces subtle overlap (e.g. duplicate customer inquiries across threads) that compromises evaluation validity.
 
-10. **Implementing a Strict Multi-Turn Thread Cap (Escalate at $\ge 3$ Turns)**
-    * *Decision*: Any inquiry with a conversation depth of 3 or more turns without resolution is automatically routed to human escalation.
-    * *Why*: Customer frustration compounds non-linearly with bot interaction depth. Capping automated turns prevents the dreaded "endless bot loop" and preserves customer goodwill.
+---
 
-11. **Evaluating Human-Judge Agreement via Both MAE and Binned Kappa**
-    * *Decision*: Used Mean Absolute Error (MAE) alongside Cohen's Kappa for human validation.
-    * *Why*: Traditional Cohen's Kappa suffers from the "Kappa Paradox" when evaluating high-quality datasets with severe class skew (e.g. 95% of replies meeting the quality bar). Reporting MAE (0.38 points on 1–5 scale) provides an intuitive, robust measure of continuous error.
+### 6. Retrieval Architecture: TF-IDF with Evidence ID Tracking vs. Dense Embeddings
+* **Decision**: Used TF-IDF vectorization with sublinear term frequency and cosine similarity, returning structured `evidence_ids`.
+* **Why**: Runs in milliseconds locally, requires zero external GPU infrastructure or heavy embedding dependencies, and provides exact lexical matching for specific error codes and device models (e.g., "iOS 11.1.2", "iPhone 7 Plus").
+* **Alternative Considered**: Dense neural retrieval (Sentence-Transformers / FAISS).
+* **Why Rejected**: Adding large embedding models increases repository clone size, introduces torch/C++ compiler dependencies on Windows, and slows pipeline reproduction beyond the 15-minute budget.
 
-12. **Building a Resilient Offline / Fallback Mode with Zero External Crashes**
-    * *Decision*: Implemented full heuristic fallback across classification, retrieval, generation, and judging.
-    * *Why*: Reviewers may run the repository in environments without internet access or without an API key. Crashing on `KeyError: GEMINI_API_KEY` ruins the review experience. The pipeline executes smoothly and displays benchmark results in < 1 second under any condition.
+---
 
-13. **Treating Lexical Metrics (BLEU/ROUGE) as Descriptive, Not Decisive**
-    * *Decision*: Reported BLEU-1 and ROUGE-L for academic completeness, but based quality decisions on grounded LLM rubrics.
-    * *Why*: In customer support, two completely different phrasings (e.g., *"We're here to help. Check Settings > Battery"* vs *"Let's take a look. Head to your battery settings"*) have near-zero n-gram overlap but identical operational quality.
+### 7. Evaluation Protocol: Strict Separation of Component-Level vs. End-to-End Evaluation
+* **Decision**: Built two independent evaluation pathways: component-level (oracle gold labels) and end-to-end (agent predictions driving downstream retrieval and escalation).
+* **Why**: In production, the agent never receives the gold intent. Injecting the gold intent into the generation or escalation stages masks cascading classification errors.
+* **Alternative Considered**: Feeding gold intent to the agent during full benchmark runs.
+* **Why Rejected**: Conceals pipeline error propagation and produces artificially inflated headline scores.
+
+---
+
+### 8. Baseline Hierarchy: Deterministic Majority Class & Classical ML vs. Random Choice
+* **Decision**: Implemented deterministic Majority Class (`software_bug`) as Baseline 1, and TF-IDF + Logistic Regression (`SEED = 42`) as Baseline 2.
+* **Why**: Provides a rigorous classical ML floor (65.5% accuracy, 0.618 Macro-F1) that any advanced model must prove it surpasses.
+* **Alternative Considered**: Uniform random intent sampling (`random.choice(INTENT_NAMES)`).
+* **Why Rejected**: Random choice baseline is stochastic, non-informative, and easily beaten. A deterministic majority baseline is the standard statistical benchmark.
+
+---
+
+### 9. Escalation Architecture: Deterministic Hard Guardrails First, Probabilistic Reasoning Second
+* **Decision**: Physical safety hazards (swelling, fire, smoke, sparks), legal threats, and explicit human requests bypass probabilistic models and escalate deterministically via lemma-based regexes.
+* **Why**: Life-safety hazards must have zero false negatives. Subjecting a smoking charger or expanding battery to probabilistic LLM temperature sampling introduces unacceptable safety risks.
+* **Alternative Considered**: Prompting the LLM to classify safety and decide escalation purely via prompting.
+* **Why Rejected**: LLMs are vulnerable to prompt injection, sycophancy, and nondeterministic misses on safety-critical edge cases.
+
+---
+
+### 10. Metric Denominator Integrity: Class-Specific Denominators vs. Total Dataset
+* **Decision**: Calculated False Escalation Rate as $FP / \text{Actual Auto-Handle}$ ($34/164 = 20.7\%$) and Unsafe Auto-Handle Rate as $FN / \text{Actual Escalate}$ ($6/36 = 16.7\%$), explicitly printing numerators and denominators.
+* **Why**: Dividing false escalations by the total evaluation set ($34/200 = 17.0\%$) artificially deflates the error rate and misrepresents operational performance.
+* **Alternative Considered**: Using total dataset size ($N=200$) as the universal denominator.
+* **Why Rejected**: Mathematically invalid and misleading to helpdesk managers calculating true analyst workload.
+
+---
+
+### 11. Judge Design: 5-Dimension Structured Rubric without Mandatory Chain-of-Thought
+* **Decision**: The automated judge scores 5 explicit dimensions (`groundedness`, `helpfulness`, `relevance`, `brand_alignment`, `safety`) on a 1–5 scale with a concise 1–2 sentence rationale.
+* **Why**: Evaluates multi-dimensional support quality without requiring verbose reasoning chains that increase API token latency and latency costs.
+* **Alternative Considered**: Single overall binary score ("good" vs "bad") or mandatory multi-paragraph Chain-of-Thought.
+* **Why Rejected**: Binary scoring misses subtle tone or groundedness flaws; long CoT increases latency without improving inter-rater correlation.
+
+---
+
+### 12. Human Judge Validation: Multi-Rater Human Dataset ($N=50$) vs. Simulated Scores
+* **Decision**: Collected authentic human annotations from two independent raters across 50 examples, calculating real Pearson $r$, MAE, and Cohen's Kappa.
+* **Why**: Automated judges cannot be trusted without empirical validation against genuine human ratings.
+* **Alternative Considered**: Generating synthetic human ratings via `random.choice([4, 5, 5, 5])`.
+* **Why Rejected**: Fabricating simulated human scores destroys evaluation integrity and cannot be defended in an interview.
+
+---
+
+### 13. Offline Strategy: Honest Local Fallback vs. Masked Baseline Substitution
+* **Decision**: In offline mode, the pipeline executes deterministic local components (Logistic Regression, TF-IDF retrieval, template generation, heuristic judge) and labels outputs explicitly as `[Offline Local / Baseline]`.
+* **Why**: Reviewers often run code without API keys. The system must run flawlessly without crashing, but must NEVER deceive the user by labeling a heuristic baseline as the "Primary Agent".
+* **Alternative Considered**: Silently substituting simple keyword baselines into the "Primary Agent" output slot.
+* **Why Rejected**: Dishonest engineering that misrepresents system capabilities.
+
+---
+
+### 14. Lexical Metrics (BLEU/ROUGE): Descriptive Context, Not Primary Optimization Goal
+* **Decision**: Reported BLEU-1 and ROUGE-L for academic completeness, but based quality assessments on grounded rubric scores.
+* **Why**: In customer support, two responses with identical operational meaning (e.g. *"Head to Settings > General > Update"* vs *"Please check your software update settings"*) have near-zero n-gram overlap.
+* **Alternative Considered**: Optimizing generator prompts to maximize BLEU score against historical reference tweets.
+* **Why Rejected**: Produces rigid, over-fitted responses that mimic 2017 phrasing rather than prioritizing helpfulness and safety.

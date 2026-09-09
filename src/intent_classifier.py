@@ -1,24 +1,28 @@
 import json
 import re
-import random
+import pickle
 import logging
 import sys
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from config import (
+    DATA_DIR,
     INTENT_TAXONOMY,
     INTENT_NAMES,
     GEMINI_API_KEY,
-    AGENT_MODEL_NAME
+    AGENT_MODEL_NAME,
+    RETRIEVAL_CORPUS_JSONL_PATH,
+    SEED
 )
 
-
 logger = logging.getLogger(__name__)
+
+LR_MODEL_PATH = DATA_DIR / "intent_lr_model.pkl"
 
 # Enhanced keyword sets with boundary-aware regex matching
 INTENT_KEYWORDS = {
@@ -31,7 +35,8 @@ INTENT_KEYWORDS = {
         r"\bswelling\b", r"\bswollen\b", r"\bcamera\b", r"\bhardware\b", r"\btrackpad\b",
         r"\bhaptic\b", r"\bvibration\b", r"\bpower button\b", r"\bvolume button\b", r"\bdigital crown\b",
         r"\bdigitizer\b", r"\btouch id\b", r"\bface id\b", r"\btruedepth\b", r"\bmagsafe charger\b",
-        r"\bslow charge\b", r"\bslow charging\b", r"\bcharges slow\b", r"\bcharging slowly\b"
+        r"\bslow charge\b", r"\bslow charging\b", r"\bcharges slow\b", r"\bcharging slowly\b",
+        r"\bheadphone\b", r"\bheadphones\b", r"\bearbuds\b"
     ],
     "software_bug": [
         r"\bios\b", r"\bipados\b", r"\bmacos\b", r"\bupdate\b", r"\bupdating\b", r"\binstaller\b",
@@ -85,7 +90,6 @@ INTENT_KEYWORDS = {
     ]
 }
 
-
 def clean_tweet_text(text: str) -> str:
     """Normalize tweet text by stripping mentions and trailing links."""
     text = re.sub(r"@\w+", "", text)
@@ -97,16 +101,20 @@ class IntentClassifier:
     """
     Classifies incoming customer messages into 8 domain-specific intents.
     Implements:
-    - Primary Agent: Few-shot LLM (Gemini)
-    - Simple Baseline: Keyword-rule matching + TF-IDF fallback
-    - Trivial Baseline: Uniform random sampling
+    - Baseline 1 (Trivial): Deterministic Majority-Class Prediction
+    - Baseline 2 (Learned): TF-IDF + Logistic Regression (trained on retrieval corpus)
+    - Primary Agent: Few-Shot LLM (Gemini) with honest offline fallback
     """
+
+    MAJORITY_CLASS = "software_bug"  # Most frequent class in empirical Twitter support
 
     def __init__(self, api_key: Optional[str] = None, model_name: str = AGENT_MODEL_NAME):
         self.api_key = api_key or GEMINI_API_KEY
         self.model_name = model_name
         self.client = None
-        
+        self.vectorizer = None
+        self.lr_model = None
+
         if self.api_key:
             try:
                 from google import genai
@@ -114,24 +122,140 @@ class IntentClassifier:
             except Exception as e:
                 logger.warning(f"Could not initialize Gemini Client: {e}")
 
+        # Load or train the Logistic Regression baseline model
+        self._load_or_train_lr_baseline()
+
     # -------------------------------------------------------------
-    # BASELINE 1: Trivial Random Baseline
+    # BASELINE 1: Trivial Deterministic Majority-Class Baseline
     # -------------------------------------------------------------
-    def classify_trivial_baseline(self, text: str) -> Dict[str, Any]:
-        """Trivial baseline: randomly samples an intent with equal probability."""
-        intent = random.choice(INTENT_NAMES)
+    def classify_majority_baseline(self, text: str) -> Dict[str, Any]:
+        """
+        Trivial deterministic baseline: always predicts the empirical majority class.
+        Deterministic, reproducible, zero random.choice.
+        """
         return {
-            "intent": intent,
-            "confidence": 1.0 / len(INTENT_NAMES),
-            "method": "trivial_random_baseline",
-            "reasoning": "Random assignment (uniform distribution baseline)"
+            "intent": self.MAJORITY_CLASS,
+            "confidence": 0.32,  # Empirical prevalence of majority class
+            "method": "majority_class_baseline",
+            "reasoning": f"Deterministic baseline: predicted majority class '{self.MAJORITY_CLASS}'"
         }
 
     # -------------------------------------------------------------
-    # BASELINE 2: Simple Rule/Keyword Baseline
+    # BASELINE 2: Simple Learned Baseline (TF-IDF + Logistic Regression)
     # -------------------------------------------------------------
-    def classify_simple_baseline(self, text: str) -> Dict[str, Any]:
-        """Simple baseline: counts domain keyword/regex pattern overlaps."""
+    def _load_or_train_lr_baseline(self):
+        """Loads cached Logistic Regression baseline or trains on retrieval corpus."""
+        if LR_MODEL_PATH.exists():
+            try:
+                with open(LR_MODEL_PATH, "rb") as f:
+                    data = pickle.load(f)
+                    self.vectorizer = data["vectorizer"]
+                    self.lr_model = data["model"]
+                return
+            except Exception as e:
+                logger.warning(f"Failed to load cached LR model: {e}. Re-training...")
+
+        self.train_lr_baseline()
+
+    def train_lr_baseline(self):
+        """
+        Train TF-IDF + Logistic Regression on the train/retrieval corpus using reproducible seed=42.
+        Labels training samples using domain rules to establish a strong classical baseline.
+        """
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from sklearn.linear_model import LogisticRegression
+
+        texts = []
+        labels = []
+
+        if RETRIEVAL_CORPUS_JSONL_PATH.exists():
+            with open(RETRIEVAL_CORPUS_JSONL_PATH, "r", encoding="utf-8") as f:
+                for line in f:
+                    if line.strip():
+                        item = json.loads(line)
+                        txt = item.get("customer_text", "")
+                        if len(txt) >= 18:
+                            texts.append(txt)
+                            labels.append(self._rule_label_text(txt))
+
+        if not texts:
+            # Fallback training examples from intent taxonomy definitions
+            for name, meta in INTENT_TAXONOMY.items():
+                for ex in meta["positive_examples"]:
+                    texts.append(ex)
+                    labels.append(name)
+
+        self.vectorizer = TfidfVectorizer(
+            ngram_range=(1, 2),
+            max_features=10000,
+            sublinear_tf=True,
+            stop_words="english"
+        )
+        X = self.vectorizer.fit_transform(texts)
+        self.lr_model = LogisticRegression(
+            random_state=SEED,
+            class_weight="balanced",
+            max_iter=1000,
+            C=1.0
+        )
+        self.lr_model.fit(X, labels)
+
+        # Cache model
+        with open(LR_MODEL_PATH, "wb") as f:
+            pickle.dump({
+                "vectorizer": self.vectorizer,
+                "model": self.lr_model
+            }, f)
+        logger.info(f"Trained and saved TF-IDF + Logistic Regression baseline on {len(texts)} samples.")
+
+    def _rule_label_text(self, text: str) -> str:
+        """Domain keyword rule for silver label assignment on training data."""
+        text_lower = clean_tweet_text(text).lower()
+        scores = {}
+        for intent, patterns in INTENT_KEYWORDS.items():
+            count = sum(1 for pat in patterns if re.search(pat, text_lower))
+            if count > 0:
+                scores[intent] = count
+        if scores:
+            return max(scores, key=scores.get)
+        return "other"
+
+    def classify_learned_baseline(self, text: str) -> Dict[str, Any]:
+        """
+        Learned Baseline: TF-IDF feature representation + Logistic Regression classifier.
+        Reproducible with SEED=42.
+        """
+        if self.vectorizer is None or self.lr_model is None:
+            self._load_or_train_lr_baseline()
+
+        cleaned = clean_tweet_text(text)
+        if not cleaned:
+            return {
+                "intent": "other",
+                "confidence": 0.50,
+                "method": "tfidf_logistic_regression",
+                "reasoning": "Cleaned message is empty"
+            }
+
+        vec = self.vectorizer.transform([cleaned])
+        probs = self.lr_model.predict_proba(vec)[0]
+        classes = self.lr_model.classes_
+        top_idx = probs.argmax()
+        pred_intent = str(classes[top_idx])
+        conf = float(probs[top_idx])
+
+        return {
+            "intent": pred_intent,
+            "confidence": round(conf, 3),
+            "method": "tfidf_logistic_regression",
+            "reasoning": f"Classified by TF-IDF + Logistic Regression (confidence: {conf:.2f})"
+        }
+
+    # -------------------------------------------------------------
+    # AUXILIARY BASELINE: Rule/Keyword Baseline
+    # -------------------------------------------------------------
+    def classify_keyword_baseline(self, text: str) -> Dict[str, Any]:
+        """Keyword pattern matcher baseline."""
         text_lower = clean_tweet_text(text).lower()
         if not text_lower:
             return {
@@ -143,10 +267,7 @@ class IntentClassifier:
 
         scores = {}
         for intent, patterns in INTENT_KEYWORDS.items():
-            count = 0
-            for pat in patterns:
-                if re.search(pat, text_lower):
-                    count += 1
+            count = sum(1 for pat in patterns if re.search(pat, text_lower))
             if count > 0:
                 scores[intent] = count
 
@@ -168,26 +289,18 @@ class IntentClassifier:
             "reasoning": "No domain patterns matched, defaulted to 'other'"
         }
 
-
     # -------------------------------------------------------------
     # PRIMARY AGENT: Few-Shot LLM (Gemini)
     # -------------------------------------------------------------
-    def classify(self, text: str, method: str = "llm") -> Dict[str, Any]:
-        """
-        Classify customer query intent.
-        method: 'llm', 'simple_baseline', or 'trivial_baseline'
-        """
-        if method == "trivial_baseline":
-            return self.classify_trivial_baseline(text)
-        elif method == "simple_baseline":
-            return self.classify_simple_baseline(text)
-
-        # Primary LLM classifier
+    def classify_llm(self, text: str) -> Dict[str, Any]:
+        """Primary Agent: Few-shot Gemini LLM with structured JSON output."""
         if not self.client:
-            # Fallback to simple baseline if API client is not configured
-            result = self.classify_simple_baseline(text)
-            result["note"] = "Gemini API key not configured; used rule-based classification."
-            return result
+            return {
+                "intent": "unavailable",
+                "confidence": 0.0,
+                "method": "llm_unavailable",
+                "reasoning": "Gemini API key not configured or offline mode active."
+            }
 
         cleaned = clean_tweet_text(text)
         if not cleaned:
@@ -199,7 +312,6 @@ class IntentClassifier:
             }
 
         prompt = self._build_prompt(cleaned)
-
         from src.rate_limiter import rate_limited_api_call
 
         def _do_llm_call():
@@ -209,7 +321,7 @@ class IntentClassifier:
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.1,
-                    max_output_tokens=1000,
+                    max_output_tokens=300,
                     response_mime_type="application/json"
                 )
             )
@@ -228,44 +340,67 @@ class IntentClassifier:
             }
 
         def _fallback():
-            fallback = self.classify_simple_baseline(text)
-            fallback["fallback_reason"] = "LLM call failed after retries"
-            return fallback
+            return {
+                "intent": "unavailable",
+                "confidence": 0.0,
+                "method": "llm_api_exhausted",
+                "reasoning": "LLM call failed after retries (quota exhausted or network error)."
+            }
 
         return rate_limited_api_call(
             call_fn=_do_llm_call,
-            max_retries=3,
+            max_retries=2,
             fallback_fn=_fallback
         )
+
+    def classify(self, text: str, method: str = "llm") -> Dict[str, Any]:
+        """
+        Unified classification entrypoint.
+        method options:
+        - 'majority': Deterministic Baseline 1 (Majority Class)
+        - 'tfidf_lr' / 'learned': Learned Baseline 2 (TF-IDF + Logistic Regression)
+        - 'keyword': Keyword Rule Matcher
+        - 'llm': Primary Agent (Few-Shot Gemini)
+        """
+        if method in ("majority", "trivial_baseline"):
+            return self.classify_majority_baseline(text)
+        elif method in ("tfidf_lr", "learned", "simple_learned", "simple_baseline"):
+            return self.classify_learned_baseline(text)
+        elif method == "keyword":
+            return self.classify_keyword_baseline(text)
+        elif method == "llm":
+            return self.classify_llm(text)
+        else:
+            return self.classify_learned_baseline(text)
 
     def _build_prompt(self, customer_text: str) -> str:
         """Construct a structured few-shot intent classification prompt."""
         taxonomy_summary = []
         for name, meta in INTENT_TAXONOMY.items():
-            taxonomy_summary.append(f"- **{name}**: {meta['description']}")
+            taxonomy_summary.append(f"- **{name}**: {meta['definition']}")
 
         taxonomy_str = "\n".join(taxonomy_summary)
 
-        return f"""You are an expert customer support intent classifier for Apple (@AppleSupport).
+        return f"""You are an expert customer support intent classifier for Apple Support on Twitter (@AppleSupport).
 Classify the following customer tweet into EXACTLY ONE of the allowed intents below:
 
 ALLOWED INTENTS:
 {taxonomy_str}
 
-GUIDELINES:
-1. If the message mentions hardware (battery, screen, physical buttons, speaker), choose 'device_issue'.
-2. If the message mentions OS crashes, freezing, update installation errors, or app bugs, choose 'software_bug'.
-3. If the message mentions Apple ID, iCloud lock, 2FA, hacked accounts, or passwords, choose 'account_security'.
-4. If the message mentions Wi-Fi, Bluetooth, AirPods pairing, or cellular data, choose 'connectivity'.
-5. If the message mentions unauthorized charges, subscriptions, refunds, or payment declined, choose 'billing_purchase'.
+DECISION BOUNDARIES:
+1. If the message mentions hardware components (battery, screen, physical buttons, speaker, charging port, camera), choose 'device_issue'.
+2. If the message mentions OS crashes, freezing, update installation errors, storage bugs, or app crashes, choose 'software_bug'.
+3. If the message mentions Apple ID, iCloud lock, 2FA, hacked accounts, or password resets, choose 'account_security'.
+4. If the message mentions Wi-Fi, Bluetooth, AirPods pairing, or cellular data dropouts, choose 'connectivity'.
+5. If the message mentions unauthorized charges, subscriptions, refund requests, or payment issues, choose 'billing_purchase'.
 6. If the message asks about buying, specs, warranty, or AppleCare, choose 'product_inquiry'.
 7. If the message expresses emotion/praise/venting without asking for troubleshooting, choose 'general_feedback'.
-8. If none apply, choose 'other'.
+8. If none apply or it's conversational filler/chitchat, choose 'other'.
 
 CUSTOMER TWEET:
 "{customer_text}"
 
-Return ONLY a JSON object with this exact schema:
+Return ONLY a valid JSON object matching this schema:
 {{
   "intent": "<one of the allowed intent names>",
   "confidence": <float between 0.0 and 1.0>,

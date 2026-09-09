@@ -8,24 +8,23 @@ This guide details the methodology, intent definitions, escalation criteria, and
 
 The goal of this evaluation set is to provide a reliable, leak-free benchmark for:
 1. **Intent Classification**: 8-class classification (`device_issue`, `software_bug`, `account_security`, `connectivity`, `billing_purchase`, `product_inquiry`, `general_feedback`, `other`).
-2. **Reply Quality**: Evaluating generated replies against real customer support standards on a 5-dimension rubric (Relevance, Helpfulness, Tone, Groundedness, Completeness).
+2. **Reply Quality**: Evaluating generated replies against real customer support standards on a 5-dimension rubric (Groundedness, Helpfulness, Relevance, Brand Alignment, Safety).
 3. **Escalation Decision**: Testing whether the agent correctly auto-handles resolvable issues and escalates sensitive, high-risk, or high-frustration issues.
-4. **LLM-as-Judge Validation**: Ground truth human ratings across 50 calibration examples to measure human-judge inter-rater agreement (Cohen's Kappa and Pearson correlation).
+4. **LLM-as-Judge Validation**: Ground truth human ratings across 50 calibration examples evaluated by two independent raters (`rater_1`, `rater_2`) to measure human-human and human-judge inter-rater agreement.
 
 ---
 
-## 2. Sampling Strategy
+## 2. Sampling Strategy & Partitioning
 
-To prevent skew and ensure rigorous testing across the problem space, we used **Stratified Sampling**:
+To ensure scientific validity and real-world relevance:
 - **Dataset Source**: `thoughtvector/customer-support-on-twitter` (AppleSupport conversations).
-- **Stratification**: 25 examples per intent class ($8 \times 25 = 200$ examples total).
-- **Difficulty Partition**:
-  - **Easy (40%)**: Explicit keywords, single clear intent, standard troubleshooting scenario.
-  - **Medium (40%)**: Conversational phrasing, compound questions, informal slang, subtle symptoms.
-  - **Hard (20%)**: Sarcasm, conflicting signals, emotional venting masking a technical issue, edge-case safety/fraud risks.
+- **Partitioning**: Conversation-level split (`SEED = 42`) separating 4,650 retrieval conversations from 350 held-out conversations.
+- **Composition**:
+  - **180 Real Held-Out Conversations**: Drawn from the held-out conversation pool with real context, timestamps, and customer tweet IDs.
+  - **20 Targeted Adversarial Cases**: Covering battery swelling variants (swelling, puffy, lifting, smoking), account takeovers (SIM swap, phishing), billing fraud, legal threats, and supervisor demands.
 - **Escalation Split**:
-  - **Auto-Handle**: 128 examples (64%)
-  - **Escalate**: 72 examples (36%)
+  - **Auto-Handle**: 164 examples (82.0%)
+  - **Escalate**: 36 examples (18.0%)
 
 ---
 
@@ -33,10 +32,10 @@ To prevent skew and ensure rigorous testing across the problem space, we used **
 
 | Intent Code | Category | Definition | Boundary Rules |
 | :--- | :--- | :--- | :--- |
-| `device_issue` | Hardware & Physical | Battery degradation, display flicker, cracked glass, speaker distortion, physical buttons, charging ports, overheating. | If hardware is impaired due to a software update (e.g. "update made battery drain"), label `device_issue` if the primary complaint is battery life, or `software_bug` if update installation failed. |
-| `software_bug` | OS & Applications | System crashes, boot loops, freeze on Apple logo, app crash, iCloud sync errors, update install errors. | If the issue is exclusively about an App Store purchase/subscription, use `billing_purchase`. |
-| `account_security` | Apple ID & Auth | Apple ID locked, 2FA code delivery failures, suspected unauthorized sign-ins, forgotten passcodes. | Always escalated unless it is a general FAQ on how to create an Apple ID. |
-| `connectivity` | Wireless & Radio | Wi-Fi disconnects, Bluetooth pairing, AirPods dropout, AirDrop, cellular "No Service", hotspot errors. | If the device won't connect physically via cable, use `device_issue`. |
+| `device_issue` | Hardware & Physical | Battery degradation, display flicker, cracked glass, speaker distortion, physical buttons, charging ports, overheating, camera. | If hardware is impaired due to a software update (e.g. "update made battery drain"), label `device_issue` if complaint is battery life. If phone is in boot loop or frozen screen, classify as `software_bug`. |
+| `software_bug` | OS & Applications | System crashes, boot loops, freeze on Apple logo, app crash, iCloud sync errors, update install errors, storage glitches. | If defect is rooted in software code or iOS update, use `software_bug`. If issue is exclusively about an App Store purchase/subscription, use `billing_purchase`. |
+| `account_security` | Apple ID & Auth | Apple ID locked, 2FA code delivery failures, suspected unauthorized sign-ins, forgotten passcodes, SIM swap takeover. | Always escalated or guided to `iforgot.apple.com`. |
+| `connectivity` | Wireless & Radio | Wi-Fi disconnects, Bluetooth pairing, AirPods dropout, AirDrop, cellular "No Service", hotspot errors. | Applies to wireless RF protocols. If lightning cable or wired headphones fail physically, use `device_issue`. |
 | `billing_purchase` | Commerce & Subscriptions | Unauthorized credit card charges, refund requests, duplicate charges, in-app purchases, payment methods. | Any dispute involving unauthorized charges is flagged for escalation. |
 | `product_inquiry` | Pre-Purchase & Specs | Compatibility (e.g. Apple Pencil models), trade-in values, warranty coverage, AppleCare policy, release dates. | Purely informational inquiries; virtually all should be auto-handled. |
 | `general_feedback` | Sentiment & Opinions | Expressing frustration with policies, store staff experiences, praise for helpful staff, general brand sentiment. | If a customer vents angrily without asking for troubleshooting, classify as `general_feedback`. |
@@ -47,8 +46,8 @@ To prevent skew and ensure rigorous testing across the problem space, we used **
 ## 4. Escalation Policy
 
 An example is marked `escalate` if ANY of the following criteria are met:
-1. **Safety & Hazard**: Any mention of device smoking, burning, swelling battery, or physical injury.
-2. **Legal / Regulatory Risk**: Threats of litigation, lawyer consultation, or formal complaints to regulators.
+1. **Safety & Hazard**: Any mention of device smoking, burning, swelling battery, puffy back, screen lifting, or physical injury.
+2. **Legal / Regulatory Risk**: Threats of litigation, lawyer consultation, or formal complaints to regulators (FTC, BBB).
 3. **Explicit Agent Request**: Customer explicitly demands a manager, human representative, or supervisor.
 4. **PII / Authentication Boundary**: Issues requiring handling of credentials, bank cards, or 2FA overrides.
 5. **High-Value Financial Disputes**: Accusations of fraud, recurring unauthorized charges, or refusal of automatic refund.
@@ -58,9 +57,10 @@ All other routine troubleshooting (reboots, network resets, setting adjustments,
 
 ---
 
-## 5. Human Calibration for LLM-as-Judge
+## 5. Human Validation for LLM-as-Judge
 
 To assess judge reliability:
-- 50 items were rated manually by an expert human annotator across the 5 dimensions on a 1–5 Likert scale.
-- The LLM judge (`gemini-2.5-pro` or `gemini-2.0-flash`) is scored against these same 50 cases without seeing the human labels.
-- Inter-annotator agreement is computed via **Cohen's Kappa ($\kappa$)** (for binned acceptability) and **Spearman/Pearson correlation** for numeric fidelity.
+- 50 items were rated independently by two human raters (`rater_1`, `rater_2`) across the 5 dimensions on a 1–5 Likert scale.
+- Scores are stored in `data/human_eval_ratings.json`.
+- Inter-annotator agreement is computed via **Pearson correlation ($r$)**, **Spearman rank correlation ($\rho$)**, **Mean Absolute Error (MAE)**, **agreement within $\pm 1$ point**, and **Cohen's Kappa ($\kappa$)**.
+- Both human-to-human agreement and human-to-judge agreement are reported transparently in the evaluation pipeline.

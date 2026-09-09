@@ -17,52 +17,65 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
-# Specific high-urgency keywords and patterns
-SAFETY_KEYWORDS = [
-    "exploded", "explod", "caught fire", "catch fire", "fire", "smoke", "smoking",
-    "swelling", "swollen", "bulging", "burned", "burning", "sparks", "sparking",
-    "electric shock", "shocked me", "melted", "melting"
-]
-LEGAL_KEYWORDS = [
-    "lawsuit", "attorney", "lawyer", "sue", "suing", "court", "bbb",
-    "better business bureau", "legal action", "class action", "consumer rights"
-]
-HUMAN_KEYWORDS = [
-    "real person", "human agent", "speak with someone", "talk to someone",
-    "speak to a human", "talk to a human", "real human", "talk to a person",
-    "speak to a person", "transfer to a human", "need a human",
-    "supervisor", "representative", "manager",
-    "transfer me to", "connect me with"
-]
-SECURITY_KEYWORDS = [
-    "hacked", "stolen", "breach", "compromised", "identity theft", "unauthorized",
-    "fraud", "blackmail", "spyware", "sim swap"
+# Expanded lemma-aware regular expressions for safety & hazard detection
+SAFETY_PATTERNS = [
+    r"\b(swell|swells|swelling|swollen|bulg|bulging|bulged)\b",
+    r"\b(puffy|puffing|puff|puffed)\b",
+    r"\b(expand|expands|expanded|expanding|widening|thicker)\b",
+    r"\b(screen.*lifting|glass.*lifted|screen.*detached|frame.*separat)\b",
+    r"\b(smoke|smoking|smoked|fumes|smell.*chemical|strange.*smell)\b",
+    r"\b(fire|caught fire|catch fire|flames|flame)\b",
+    r"\b(burn|burned|burning|burnt|scorch|scorched|scorching)\b",
+    r"\b(explod|exploding|exploded|explosion|popped.*smoke|blast)\b",
+    r"\b(spark|sparks|sparking|sparked|electric shock|shocked me|zapped)\b",
+    r"\b(melt|melted|melting)\b",
+    r"\b(burning hot|scorching hot|blistering hot)\b"
 ]
 
+LEGAL_PATTERNS = [
+    r"\b(lawsuit|attorney|lawyer|sue|suing|sued|court)\b",
+    r"\b(bbb|better business bureau|ftc|federal trade commission)\b",
+    r"\b(legal action|class action|legal counsel|consumer rights|consumer protection)\b"
+]
+
+HUMAN_PATTERNS = [
+    r"\b(real person|human agent|speak with someone|talk to someone)\b",
+    r"\b(speak to a human|talk to a human|real human|talk to a person)\b",
+    r"\b(speak to a person|transfer to a human|need a human)\b",
+    r"\b(supervisor|representative|manager|senior advisor|live agent)\b",
+    r"\b(transfer me|connect me with|not a bot|refuse.*bot)\b"
+]
+
+SECURITY_PATTERNS = [
+    r"\b(hacked|stolen|breach|compromised|identity theft|unauthorized)\b",
+    r"\b(fraud|blackmail|spyware|sim swap|sim swapped)\b",
+    r"\b(locked out|account locked|2fa.*code|verification code.*scam)\b"
+]
+
+FINANCIAL_PATTERNS = [
+    r"\b(unauthorized charge|unauthorized purchase|double charge|charged twice)\b",
+    r"\b(refund declined|billing dispute|stolen card|fraudulent charge)\b",
+    r"\b(charged.*times|unrecognized charge)\b"
+]
 
 class EscalationEngine:
     """
-    Decides whether an incoming customer message should be auto-handled
-    by the AI agent or escalated to a human support representative.
-    
-    Provides explicit reasoning for every decision to establish human trust.
-    Uses a hybrid architecture:
-    1. Deterministic safety & compliance guardrails (safety hazard, legal threat, human request)
-    2. Intent-based business policy (account security, high-risk billing)
-    3. Confidence & sentiment reasoning
+    Decides whether an incoming customer inquiry should be auto-handled
+    by the AI agent or escalated to a human support specialist.
+
+    Enforces deterministic safety bounds:
+    1. Critical Physical Hazards (swelling, fire, smoke, sparks, explosions)
+    2. Legal & Regulatory Threats (attorney, lawsuit, FTC, BBB)
+    3. Account Security & Takeover (compromised credentials, SIM swap)
+    4. Financial Disputes & Fraud (unauthorized charges, double billing)
+    5. Explicit Human / Supervisor Demands
+    6. Multi-Turn Thread Fatigue (>= 3 turns without resolution)
+    7. High Uncertainty (low intent classification confidence)
     """
 
     def __init__(self, api_key: Optional[str] = None, model_name: str = AGENT_MODEL_NAME):
         self.api_key = api_key or GEMINI_API_KEY
         self.model_name = model_name
-        self.client = None
-
-        if self.api_key:
-            try:
-                from google import genai
-                self.client = genai.Client(api_key=self.api_key)
-            except Exception as e:
-                logger.warning(f"Could not initialize Gemini client for escalation: {e}")
 
     def decide(
         self,
@@ -72,144 +85,197 @@ class EscalationEngine:
         thread_turn_count: int = 1
     ) -> Dict[str, Any]:
         """
-        Evaluate customer inquiry and decide whether to auto-handle or escalate.
+        Evaluate inquiry against deterministic safety policies.
         Returns:
             decision: 'auto_handle' | 'escalate'
-            reason: detailed explanation of the decision
+            reason: human-readable explanation of why this decision was made
             urgency: 'low' | 'medium' | 'high' | 'critical'
-            trigger: the specific rule or policy that triggered the decision
-            confidence: confidence score for the decision
+            trigger: policy rule identifier
+            confidence: decision confidence
         """
         text_lower = customer_text.lower()
 
         # -------------------------------------------------------------
-        # 1. IMMEDIATE SAFETY HAZARD ESCALATIONS (CRITICAL)
+        # 1. CRITICAL PHYSICAL & THERMAL SAFETY HAZARDS (CRITICAL)
         # -------------------------------------------------------------
-        for kw in SAFETY_KEYWORDS:
-            if re.search(rf"\b{re.escape(kw)}\b", text_lower):
+        for pat in SAFETY_PATTERNS:
+            match = re.search(pat, text_lower)
+            if match:
+                matched_kw = match.group(0)
                 return {
                     "decision": "escalate",
-                    "reason": f"Physical safety concern detected ('{kw}'). Requires immediate human AppleCare safety protocol.",
+                    "reason": f"Physical safety hazard detected ('{matched_kw}'). Requires immediate human AppleCare safety protocol.",
                     "urgency": "critical",
                     "trigger": "safety_hazard",
                     "confidence": 0.99
                 }
 
         # -------------------------------------------------------------
-        # 2. LEGAL / REGULATORY THREATS (HIGH)
+        # 2. LEGAL THREATS & REGULATORY COMPLAINTS (HIGH)
         # -------------------------------------------------------------
-        for kw in LEGAL_KEYWORDS:
-            if re.search(rf"\b{kw}\b", text_lower):
+        for pat in LEGAL_PATTERNS:
+            match = re.search(pat, text_lower)
+            if match:
+                matched_kw = match.group(0)
                 return {
                     "decision": "escalate",
-                    "reason": f"Legal threat or regulatory mention detected ('{kw}'). Must be routed to specialist legal support.",
+                    "reason": f"Legal threat or regulatory mention detected ('{matched_kw}'). Routed to Senior Customer Relations / Legal.",
                     "urgency": "high",
                     "trigger": "legal_threat",
                     "confidence": 0.98
                 }
 
         # -------------------------------------------------------------
-        # 3. EXPLICIT HUMAN AGENT REQUEST (MEDIUM/HIGH)
+        # 3. EXPLICIT HUMAN AGENT / MANAGER REQUEST (MEDIUM/HIGH)
         # -------------------------------------------------------------
-        for kw in HUMAN_KEYWORDS:
-            if kw in text_lower:
+        for pat in HUMAN_PATTERNS:
+            match = re.search(pat, text_lower)
+            if match:
+                matched_kw = match.group(0)
                 return {
                     "decision": "escalate",
-                    "reason": f"Customer explicitly requested a human specialist or manager ('{kw}').",
+                    "reason": f"Customer explicitly requested a human specialist or manager ('{matched_kw}').",
                     "urgency": "medium",
                     "trigger": "human_requested",
-                    "confidence": 0.95
+                    "confidence": 0.96
                 }
 
         # -------------------------------------------------------------
-        # 4. ACCOUNT SECURITY & COMPROMISE (HIGH)
+        # 4. ACCOUNT SECURITY & IDENTITY COMPROMISE (HIGH)
         # -------------------------------------------------------------
+        for pat in SECURITY_PATTERNS:
+            match = re.search(pat, text_lower)
+            if match:
+                matched_kw = match.group(0)
+                return {
+                    "decision": "escalate",
+                    "reason": f"Security breach signal detected ('{matched_kw}'). Requires authenticated human verification.",
+                    "urgency": "high",
+                    "trigger": "security_compromise",
+                    "confidence": 0.94
+                }
+
         if intent == "account_security":
             return {
                 "decision": "escalate",
-                "reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated human support.",
+                "reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
                 "urgency": "high",
                 "trigger": "critical_intent_security",
-                "confidence": 0.94
+                "confidence": 0.93
             }
 
-        for kw in SECURITY_KEYWORDS:
-            if kw in text_lower:
+        # -------------------------------------------------------------
+        # 5. FINANCIAL DISPUTES & TRANSACTION FRAUD (MEDIUM/HIGH)
+        # -------------------------------------------------------------
+        for pat in FINANCIAL_PATTERNS:
+            match = re.search(pat, text_lower)
+            if match:
+                matched_kw = match.group(0)
                 return {
                     "decision": "escalate",
-                    "reason": f"Security compromise signal detected ('{kw}'). Requires human agent verification.",
+                    "reason": f"Financial transaction dispute detected ('{matched_kw}'). Routed to human billing specialist.",
                     "urgency": "high",
-                    "trigger": "security_compromise",
-                    "confidence": 0.93
-                }
-
-        # -------------------------------------------------------------
-        # 5. DISPUTED BILLING / REFUND ESCALATIONS (MEDIUM)
-        # -------------------------------------------------------------
-        if intent == "billing_purchase":
-            if any(term in text_lower for term in ["unauthorized", "stolen", "fraud", "dispute", "scam", "twice", "double charged"]):
-                return {
-                    "decision": "escalate",
-                    "reason": "Financial transaction dispute / unauthorized charge requires transactional human review.",
-                    "urgency": "medium",
                     "trigger": "financial_dispute",
-                    "confidence": 0.91
+                    "confidence": 0.92
                 }
 
         # -------------------------------------------------------------
-        # 6. MULTI-TURN THREAD FRUSTRATION (>3 TURNS)
+        # 6. MULTI-TURN THREAD FATIGUE (>= 3 TURNS)
         # -------------------------------------------------------------
         if thread_turn_count >= 3:
             return {
                 "decision": "escalate",
-                "reason": f"Conversation has exceeded {thread_turn_count} turns without resolution; escalating to human agent to prevent customer fatigue.",
+                "reason": f"Conversation exceeded {thread_turn_count} turns without resolution. Escalate to prevent bot loop fatigue.",
                 "urgency": "medium",
                 "trigger": "thread_fatigue",
                 "confidence": 0.88
             }
 
         # -------------------------------------------------------------
-        # 7. LOW INTENT CLASSIFICATION CONFIDENCE (<0.55)
+        # 7. LOW INTENT CONFIDENCE (< 0.55)
         # -------------------------------------------------------------
         if intent_confidence < 0.55 and intent != "other":
             return {
                 "decision": "escalate",
-                "reason": f"Low intent classification confidence ({intent_confidence:.2f}). Escalating to human to prevent incorrect automated advice.",
+                "reason": f"Low intent classification confidence ({intent_confidence:.2f}). Escalate to prevent automated error.",
                 "urgency": "low",
                 "trigger": "low_confidence",
                 "confidence": 0.80
             }
 
         # -------------------------------------------------------------
-        # 8. GENERAL FEEDBACK / PRAISE (AUTO-HANDLE)
+        # 8. STANDARD AUTO-HANDLE PROTOCOL
         # -------------------------------------------------------------
-        if intent == "general_feedback":
-            if any(praise in text_lower for praise in ["thank", "great", "love", "best", "awesome"]):
-                return {
-                    "decision": "auto_handle",
-                    "reason": "Customer expressed positive feedback or appreciation; suitable for polite automated acknowledgment.",
-                    "urgency": "low",
-                    "trigger": "praise_feedback",
-                    "confidence": 0.95
-                }
-
-        # -------------------------------------------------------------
-        # 9. STANDARD TROUBLESHOOTING & PRODUCT INQUIRIES (AUTO-HANDLE)
-        # -------------------------------------------------------------
-        if intent in {"device_issue", "software_bug", "connectivity", "product_inquiry", "other"}:
-            return {
-                "decision": "auto_handle",
-                "reason": f"Standard {intent.replace('_', ' ')} inquiry with established troubleshooting procedures and historical resolution precedents.",
-                "urgency": "low",
-                "trigger": "standard_troubleshooting",
-                "confidence": 0.89
-            }
-
-        # Default fallback
         return {
             "decision": "auto_handle",
-            "reason": "Inquiry matches standard support domain without escalation risk factors.",
+            "reason": f"Inquiry matches standard support domain ({intent.replace('_', ' ')}) without high-risk escalation triggers.",
             "urgency": "low",
-            "trigger": "default_policy",
-            "confidence": 0.75
+            "trigger": "standard_support",
+            "confidence": 0.89
         }
+
+    def evaluate_adversarial_suite(
+        self,
+        adversarial_items: List[Dict[str, Any]]
+    ) -> Dict[str, Any]:
+        """
+        Evaluate escalation recall on safety, security, financial, and legal adversarial cases.
+        """
+        categories = {
+            "safety_hazard": {"total": 0, "caught": 0},
+            "security": {"total": 0, "caught": 0},
+            "financial": {"total": 0, "caught": 0},
+            "legal": {"total": 0, "caught": 0},
+            "human_request": {"total": 0, "caught": 0}
+        }
+
+        total_adv = 0
+        total_caught = 0
+
+        for item in adversarial_items:
+            text = item.get("customer_message", item.get("customer_text", ""))
+            intent = item.get("intent", item.get("ground_truth_intent", "other"))
+            trigger = item.get("escalation_trigger", "")
+
+            dec = self.decide(text, intent=intent)
+            is_caught = (dec["decision"] == "escalate")
+
+            total_adv += 1
+            if is_caught:
+                total_caught += 1
+
+            # Map to category
+            t_low = trigger.lower()
+            if "safety" in t_low or "swell" in t_low:
+                cat = "safety_hazard"
+            elif "security" in t_low or "takeover" in t_low or "fraud" in t_low or "sim" in t_low:
+                cat = "security"
+            elif "billing" in t_low or "financial" in t_low or "charge" in t_low:
+                cat = "financial"
+            elif "legal" in t_low or "regulatory" in t_low:
+                cat = "legal"
+            elif "human" in t_low or "manager" in t_low:
+                cat = "human_request"
+            else:
+                cat = "safety_hazard"
+
+            categories[cat]["total"] += 1
+            if is_caught:
+                categories[cat]["caught"] += 1
+
+        results = {
+            "overall_adversarial_recall": round(total_caught / total_adv, 3) if total_adv else 1.0,
+            "total_adversarial_tested": total_adv,
+            "total_adversarial_caught": total_caught,
+            "categories": {}
+        }
+
+        for cat, data in categories.items():
+            if data["total"] > 0:
+                results["categories"][cat] = {
+                    "recall": round(data["caught"] / data["total"], 3),
+                    "caught": data["caught"],
+                    "total": data["total"]
+                }
+
+        return results

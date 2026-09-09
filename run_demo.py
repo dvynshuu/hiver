@@ -103,12 +103,13 @@ def process_query(
     print(f"    - Overall Score : {judge_res['overall_score']} / 5.0")
     dim_table = [[k.capitalize(), f"{v} / 5"] for k, v in scores.items()]
     print(tabulate(dim_table, headers=["Dimension", "Score"], tablefmt="simple_grid"))
-    print(f"    - Critique      : {judge_res.get('critique')}")
+    print(f"    - Critique      : {judge_res.get('rationale', judge_res.get('critique'))}")
     print("-" * 70)
 
 def main():
     parser = argparse.ArgumentParser(description="Interactive Demo for AppleSupport AI Agent")
     parser.add_argument("--query", type=str, help="Customer tweet message to evaluate")
+    parser.add_argument("--offline", action="store_true", help="Run demo using offline deterministic baseline components")
     args = parser.parse_args()
 
     # Load resources
@@ -119,8 +120,51 @@ def main():
     escalation_engine = EscalationEngine()
     judge = LLMJudge()
 
+    def _eval_and_print(q):
+        if args.offline:
+            print("\n[Running in Offline Mode: Learned Baseline Classifier + Template Generator]")
+            print("=" * 70)
+            print(f"  CUSTOMER TWEET: \"{q}\"")
+            print("=" * 70)
+            # 1. Intent
+            intent_res = classifier.classify(q, method="learned")
+            intent = intent_res["intent"]
+            print(f"\n[1] INTENT CLASSIFICATION (Learned Baseline)")
+            print(f"    - Classified Intent: {intent.upper()}")
+            print(f"    - Confidence Score : {intent_res['confidence'] * 100:.1f}%")
+            print(f"    - Method           : {intent_res['method']}")
+            # 2. Escalation
+            esc_res = escalation_engine.decide(q, intent=intent, intent_confidence=intent_res["confidence"])
+            print(f"\n[2] ESCALATION DECISION")
+            print(f"    - Action           : {'[!] ESCALATE TO HUMAN' if esc_res['decision'] == 'escalate' else '[*] AUTO-HANDLE BY AGENT'}")
+            print(f"    - Urgency Level    : {esc_res['urgency'].upper()}")
+            print(f"    - Policy Trigger   : {esc_res['trigger']}")
+            print(f"    - Stated Reason    : {esc_res['reason']}")
+            # 3. Retrieval
+            retrieved = retrieval_engine.retrieve(q, top_k=2)
+            print(f"\n[3] HISTORICAL RESOLUTION GROUNDING ({len(retrieval_engine.corpus)} Cases)")
+            if retrieved:
+                for idx, m in enumerate(retrieved, 1):
+                    print(f"    Match #{idx} (Similarity: {m['similarity_score']:.2f}, ID: {m.get('evidence_id')}):")
+                    print(f"      Q: \"{m['customer_text'][:65]}...\"")
+                    print(f"      A: \"{m['support_reply'][:85]}...\"")
+            # 4. Reply
+            reply_res = generator.generate_reply(q, intent=intent, escalation_decision=esc_res["decision"], escalation_reason=esc_res["reason"], method="template")
+            print(f"\n[4] DRAFTED AGENT REPLY")
+            print(f"    \"{reply_res['reply']}\"")
+            print(f"    (Length: {len(reply_res['reply'])} chars | Method: {reply_res['method']})")
+            # 5. Judge
+            judge_res = judge.evaluate_reply(customer_text=q, agent_reply=reply_res["reply"], intent=intent, escalation_decision=esc_res["decision"], escalation_reason=esc_res["reason"], offline=True)
+            print(f"\n[5] QUALITY ASSURANCE (Calibrated Heuristic Judge)")
+            print(f"    - Overall Score : {judge_res['overall_score']} / 5.0")
+            dim_table = [[k.capitalize(), f"{v} / 5"] for k, v in judge_res["dimension_scores"].items()]
+            print(tabulate(dim_table, headers=["Dimension", "Score"], tablefmt="simple_grid"))
+            print("-" * 70)
+        else:
+            process_query(q, retrieval_engine, classifier, generator, escalation_engine, judge)
+
     if args.query:
-        process_query(args.query, retrieval_engine, classifier, generator, escalation_engine, judge)
+        _eval_and_print(args.query)
         return
 
     print("\n" + "=" * 70)

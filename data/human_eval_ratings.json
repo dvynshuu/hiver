@@ -1,0 +1,1052 @@
+[
+  {
+    "example_id": "gold_001",
+    "customer_text": "please helpmeni can't sign in icloud account",
+    "reference_reply": "Having access to your account is important and we're happy to help determine the best options to gain access to your account. Are you receiving an error message when you attempt to log in? DM us and we'll work with you there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_002",
+    "customer_text": "I am so fed up w/your \u201cupdates\u201d making my iPhone 6s operate like 1990\u2019s dial up! Ur geniuses s:b able to figure out new v. Old Tech.",
+    "reference_reply": "We'd like to help with your issue. DM us and tell us more about what's happening with your iPhone 6s.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_003",
+    "customer_text": "It doesn\u2019t adjust the volume. I have to change it in sounds.",
+    "reference_reply": "Do you notice this while on a call or while using a particular app? Also, what is the exact iOS version you're using?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.8
+    }
+  },
+  {
+    "example_id": "gold_004",
+    "customer_text": "This , I used to have the iPhone 6s so I want to know why it\u2019s like this now , should I change something?",
+    "reference_reply": "We see what the original photo looks like there. Was the second photo a paper print of the image? DM us and let us know.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_005",
+    "customer_text": "can you please explain to me why after deleting one playlist I suddenly have three of the same?",
+    "reference_reply": "We can certainly take a look at this with you. Are these Apple Music playlists, or ones you made on your own?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.8
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_006",
+    "customer_text": "could you please make it simple like what is the first important two steps i have to do first and thank you so much",
+    "reference_reply": "The following article can guide you on this:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_007",
+    "customer_text": "It\u2019s working again thx\ud83d\udc4d",
+    "reference_reply": "Excellent! We're glad to hear that. You're most welcome! Enjoy the rest of your day.",
+    "rater_1": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 3,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.0
+    }
+  },
+  {
+    "example_id": "gold_008",
+    "customer_text": "Who\u2019s stupid idea was that? My phone randomly connects to which ever car switches on in the driveway, how do I roll back the iOS",
+    "reference_reply": "If you'd like to provide feedback or request a feature change on an Apple product you can do so here:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_009",
+    "customer_text": "The guy that \"helped\" me today was hostile, and didn't help.",
+    "reference_reply": "That's certainly not the experience that we want you to have. Please send us a DM and tell us more about what happened. Be sure to include where you were speaking with him. If it was in a store, please include the location and time you were there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_010",
+    "customer_text": "why does my lock screen when playing music freeze and not let me skip or go back or anything?",
+    "reference_reply": "We can help! Which version of iOS are you currently running? You can check in Settings > General > About > Version",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_011",
+    "customer_text": "tf is going on with my keyboard... fix it",
+    "reference_reply": "What issues are you experiencing with your keyboard? We'd like to see how we can be helpful.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_012",
+    "customer_text": "this happens when my phone types the letter \u201ceye\u201d by itself annoying i\u2019m trying to talk abt myself",
+    "reference_reply": "Thanks for reaching out! Let us help with your iPhone. DM us your exact iOS version to proceed.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_013",
+    "customer_text": "Can I use my iPad 2 as Domestic Hub for Homekit?",
+    "reference_reply": "The Home app will allow you to control your Homekit accessories. You can learn more about it here:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_014",
+    "customer_text": "Unfortunately that gave the same result / screen... I'm now restoring from time capsule, hope that works!",
+    "reference_reply": "That's a good step to try. Please keep us posted on how it goes.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_015",
+    "customer_text": "iOS 11.0.1 I haven\u2019t updated iOS 11.0.2 yet. I want to get this sorted first.",
+    "reference_reply": "Let\u2019s look into this further. Use the link below to DM us, and we\u2019ll go from there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_016",
+    "customer_text": "2nd and 3rd notifications getting overlapped in the Notification Center.",
+    "reference_reply": "We can help with that. To get started, let us know which iOS version you have installed on your iPhone. Also, do these issues persist after restarting your iPhone?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_017",
+    "customer_text": "two times they send me this fake email to steal my account",
+    "reference_reply": "We understand the concerns with emails like this and we thank you for letting us know. Messages like these are a phishing attempt to gather your information. Check out for details and there are steps there to forward the email to us.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_018",
+    "customer_text": "Omg yesss thank you !!!!",
+    "reference_reply": "You're very welcome. Please let us know if you have any additional questions. We're happy to help. Have a great evening!",
+    "rater_1": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_019",
+    "customer_text": "October challenge was fine. November challenge went weird after update",
+    "reference_reply": "Which iPhone model do you have and what's the exact iOS version installed? Any steps tried so far?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_020",
+    "customer_text": "Ya I was asking about it",
+    "reference_reply": "Be sure you don't have Reduce Motion turned on: Send us a DM if you still can't find it.",
+    "rater_1": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    },
+    "rater_2": {
+      "relevance": 3,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.0
+    }
+  },
+  {
+    "example_id": "gold_021",
+    "customer_text": "Just got the X, everything is as up to date as possible.",
+    "reference_reply": "Got it, thanks. Going forward, we'd like to have you reach out to us in DM using the link below and we'll continue from there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_022",
+    "customer_text": "It is updated that\u2019s the worst part!",
+    "reference_reply": "If the iPhone is still restarting on you, send us a DM and let us know. Include the country you're in.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.8
+    }
+  },
+  {
+    "example_id": "gold_023",
+    "customer_text": "I need to have a word with you about your garbage alarm..",
+    "reference_reply": "What trouble are you having with the alarm? We'll help out however we can.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_024",
+    "customer_text": "So I update my phone yesterday and the touch screen isn\u2019t working properly, I\u2019ve restarted it numerous times and it\u2019s still not ok \u2639\ufe0f",
+    "reference_reply": "Thanks for reaching out. Let's look into this issue together. DM us with which iPhone you are using and we'll go from there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_025",
+    "customer_text": "Funny how my phone is ghosting an messaging people on a night yet during the day it\u2019s fine help",
+    "reference_reply": "That's certainly not what we'd expect you to see. We'll be happy to see what's going on. DM full details on what you've been experiencing and we'll continue from there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 5,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 5,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_026",
+    "customer_text": "Yes, it's on. No, I'm signed in.",
+    "reference_reply": "Let's move over to DM to work on resolving the issue further.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_027",
+    "customer_text": "New iPhoneX - no voice memo recoding, hangs every 3 days, no display for incoming calls and loads of other issues your solution... go to iRepair. Been there done it, twice over. No solution. Get ur act together",
+    "reference_reply": "We'd like to look into this with you. Send us a DM with more information, and we'll continue from there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_028",
+    "customer_text": "I have updated my WatchOS but cannot stream the radio on LTE () . Wi Fi (both tethered and direct from watch) works",
+    "reference_reply": "You're in the right place for help. Let us know in a DM if the issue started randomly or since you first setup the Watch.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_029",
+    "customer_text": "i tried to search a contact, contacts greyed out but keypad dint come up...what have you done in ios11...worst ios",
+    "reference_reply": "Do you know what version of the iOS is on the device? If not, you can check under Settings > General > About > Version. Let us know, and we'll help with Searching in contacts.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 5,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_030",
+    "customer_text": "To earn the Thanksgiving achievement did the 3.1 miles need to be in one workout or throughout the whole day? Took my MIL on a walk to get us to 3.1 miles for the day and we didn\u2019t get the achievement. Thx",
+    "reference_reply": "Great question! To earn the Turkey Badge Achievement you would need to complete one workout of at least 3.1miles. You can pause a workout, so long as the distance is completed in one workout. Here's information on how to pause a workout:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_031",
+    "customer_text": "Sent to same group of contacts (one is non iPhone user) worked with photo didn\u2019t work with pano",
+    "reference_reply": "We'd love to continue working with you. Let's move the conversation to DM.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_032",
+    "customer_text": "Got it! Thanks for your concern and reply.",
+    "reference_reply": "You're very welcome. We're happy to do everything we can to make sure you enjoy every feature on your iPhone. Have a great night!",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_033",
+    "customer_text": "the new IOS software has completely screwed my phone up - slow, crashes, calls don't get recognised...",
+    "reference_reply": "We'd like to look into this with you. Did you already complete the update that was just released, iOS 11.1?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_034",
+    "customer_text": "let my ft fail one mo time \ud83e\udd2c",
+    "reference_reply": "You're in the right place, we'll get to the bottom of what's happening with FaceTime. Is the call failing while talking, when making a call or when receiving a call? What type of device are we working with? Please DM us.",
+    "rater_1": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    },
+    "rater_2": {
+      "relevance": 3,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.0
+    }
+  },
+  {
+    "example_id": "gold_035",
+    "customer_text": "can you please fix the full screen mode, so that the keyboard shortcut for switching between application windows works? This is really annoying!",
+    "reference_reply": "We'd be happy to see how we can help with switching apps. To start, can you tell us which device and OS version you're experiencing this on?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.8
+    }
+  },
+  {
+    "example_id": "gold_036",
+    "customer_text": "i.t really sucks that every time i go to type the word i.t, i.t autocorrects so there\u2019s a stupid ass period in the middle of i.t. what is going on",
+    "reference_reply": "We'd be happy to look into this with you more in detail. Please reach out to us via DM and we'll get started.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_037",
+    "customer_text": "Hi I have some problems with my iPhone X order and shipping Can u help me?",
+    "reference_reply": "Hello. We look forward to you enjoying your new iPhone X. Our Apple Online Store team can check into this for you. Please reach out to them directly here:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_038",
+    "customer_text": "iOS 11 may be the worst phone update in history. Freezing, not loading, battery draining 50% in less than hour. Awful.",
+    "reference_reply": "We want to work with to resolve these issue. To get us started, may we have the exact iOS version that's on the iPhone?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_039",
+    "customer_text": "can you tell me when when I type the letter \u201cI\u201d some damn symbols pop up like I\u2019m out here coding and doing a MySpace edit \ud83e\udd28",
+    "reference_reply": "We can definitely look into this with you. Which device are you using? DM us and let us know.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_040",
+    "customer_text": "My thanksgiving badge will show up eventually, right?",
+    "reference_reply": "If you are in a qualifying country you will earn the award within 9 days of completing the Activity Challenge.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 5,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.8
+    }
+  },
+  {
+    "example_id": "gold_041",
+    "customer_text": "whenever I save an image with a transparent background it doesn\u2019t stay transparent? It makes a white background itself.",
+    "reference_reply": "We're here for you. What device are you using?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_042",
+    "customer_text": "Allez vous faire enculer avec vos mise \u00e0 jours de merde la, plus y\u2019a de maj plus le t\u00e9l\u00e9phone bug ptn",
+    "reference_reply": "We offer support via Twitter in English. Contact an Advisor for help in your preferred language here:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_043",
+    "customer_text": "Seriously , when is that auto spell I\ufe0f instead of I will be fixed on our phone??",
+    "reference_reply": "We'd like to help out. Our iOS 11.1.1 update resolved this issue. If you experience this issue after version 11.1.1, send us a DM.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_044",
+    "customer_text": "I\u2019m still seeing those square boxes even after the update and it\u2019s annoying",
+    "reference_reply": "Thanks for reaching out. Are you seeing the boxes when you type, or when viewing posts from other people? If you don't have iOS 11.1.1 installed, let's make sure you're up to date with this version:",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_045",
+    "customer_text": "my phone has turned itself off and when I put it on charge the logo comes on for a few seconds then goes off then back on again?",
+    "reference_reply": "We can help get your iPhone up and running. Check out the steps in this article to start: If you have questions, or need further assistance, let us know.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_046",
+    "customer_text": "Yayz 11.1 and just 2 English and emoji",
+    "reference_reply": "Thank you! Is this issue only occurring in messages or in other applications as well? Send us a DM to let us know.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    }
+  },
+  {
+    "example_id": "gold_047",
+    "customer_text": "battery on iOS 11 is draining when I\u2019m using Spotify",
+    "reference_reply": "We'd like to get your battery working perfectly. Have you updated to iOS 11.0.2?",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 3,
+      "groundedness": 4,
+      "safety": 5,
+      "overall": 4.2
+    }
+  },
+  {
+    "example_id": "gold_048",
+    "customer_text": "my iPhone is a fully up to date so why does my phone keep freezing \ud83d\ude43???",
+    "reference_reply": "We want to help in any way we can. Which iPhone are you using? Let us know in DM, and we\u2019ll work with you there.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_049",
+    "customer_text": "how do I see much longer I have to pay on my iPhone. Not sure I want to upgrade yet but curious how much longer the term I\u2019ve been paying is. I am on the apply upgrade program. Thanks!",
+    "reference_reply": "Hi there. We're happy to get you pointed in the right direction. You can check your eligibility for an upgrade here: That should give you the information you're looking for.",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    },
+    "rater_2": {
+      "relevance": 5,
+      "helpfulness": 4,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.6
+    }
+  },
+  {
+    "example_id": "gold_050",
+    "customer_text": "What\u2019s going with #iphone7plus batteries? Over the last few days my battery has been losing power, without being used much, at a rate I\u2019ve never seen? is something happening? #apple",
+    "reference_reply": "Let's look into that. Send us a DM and we'll go from there,",
+    "rater_1": {
+      "relevance": 5,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.4
+    },
+    "rater_2": {
+      "relevance": 4,
+      "helpfulness": 3,
+      "brand_alignment": 4,
+      "groundedness": 5,
+      "safety": 5,
+      "overall": 4.2
+    }
+  }
+]

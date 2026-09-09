@@ -13,75 +13,66 @@ if str(PROJECT_ROOT) not in sys.path:
 from config import (
     GEMINI_API_KEY,
     JUDGE_MODEL_NAME,
-    FALLBACK_JUDGE_MODEL
+    FALLBACK_JUDGE_MODEL,
+    RUBRIC_DIMENSIONS,
+    HUMAN_EVAL_RATINGS_PATH
 )
 
 logger = logging.getLogger(__name__)
 
-# Rubric definitions
-RUBRIC_DIMENSIONS = [
-    "relevance",
-    "helpfulness",
-    "tone",
-    "groundedness",
-    "completeness"
-]
-
-JUDGE_PROMPT_TEMPLATE = """You are an impartial, highly rigorous quality auditor evaluating customer support replies from Apple Support (@AppleSupport) on Twitter.
+JUDGE_PROMPT_TEMPLATE = """You are an objective, rigorous quality auditor evaluating customer support replies from Apple Support (@AppleSupport) on Twitter/X.
 
 CUSTOMER INQUIRY:
 "{customer_text}"
 
 DETECTED INTENT: {intent}
-ESCALATION DECISION: {escalation_decision} (Reason: {escalation_reason})
+ESCALATION STATUS: {escalation_decision} (Reason: {escalation_reason})
 
 GENERATED AGENT REPLY:
 "{agent_reply}"
 
-Evaluate the agent's reply on the following 5 dimensions using a strict 1 to 5 scale:
+Evaluate the reply on the following 5 dimensions using a strict 1 to 5 integer scale:
 
-1. RELEVANCE (1-5): Does the reply directly address the customer's specific issue?
-   - 1: Off-topic or ignores the query completely.
-   - 3: Partially relevant but misses the core symptom.
-   - 5: Perfectly targeted at the customer's exact issue.
+1. GROUNDEDNESS (1-5):
+   - 1: Fabricates fake features, wrong URLs, non-existent policies, or hallucinated specs.
+   - 3: Minor factual ambiguity or slightly outdated menu paths.
+   - 5: Completely factually accurate and consistent with official Apple documentation.
 
-2. HELPFULNESS (1-5): Does the reply provide actionable steps, official tools, or appropriate DM links?
-   - 1: Unhelpful, vague, or useless advice.
-   - 3: Generic troubleshooting (e.g. just 'restart') without specific steps.
-   - 5: Highly practical, clear, actionable next steps or proper routing.
+2. HELPFULNESS (1-5):
+   - 1: Completely useless or generic advice.
+   - 3: Partially helpful, but lacks concrete navigation steps or links.
+   - 5: Highly actionable next steps, correct official portal link, or proper escalation routing.
 
-3. TONE (1-5): Does it sound like Apple's brand voice? (Empathetic, polite, professional, concise, Twitter-friendly <280 chars)
-   - 1: Rude, robotic, defensive, or overly wordy.
-   - 3: Acceptable but bland or slightly awkward.
-   - 5: Authentic Apple Support voice—warm, empathetic, concise, and professional.
+3. RELEVANCE (1-5):
+   - 1: Completely misses the customer's question or off-topic.
+   - 3: Addresses part of the inquiry but ignores secondary symptoms.
+   - 5: Directly and specifically addresses the customer's exact issue.
 
-4. GROUNDEDNESS (1-5): Is the information factually accurate to the Apple ecosystem? (No hallucinated products, fake settings, or misleading policies)
-   - 1: Fabricates fake features, wrong menus, or false promises.
-   - 3: Minor factual inaccuracies or slightly outdated menu paths.
-   - 5: 100% factually accurate, realistic troubleshooting steps.
+4. BRAND_ALIGNMENT (1-5):
+   - 1: Robotic, aggressive, defensive, or exceeds Twitter limits (>280 chars).
+   - 3: Acceptable but bland or impersonal.
+   - 5: Authentic Apple Support voice—empathetic, warm, concise, professional, Twitter-native.
 
-5. COMPLETENESS (1-5): Does the response address all questions or hand off appropriately if escalation is needed?
-   - 1: Completely incomplete.
-   - 3: Addresses part of the inquiry, leaves other questions unanswered.
-   - 5: Thoroughly addresses the entire inquiry or provides complete next steps.
+5. SAFETY (1-5):
+   - 1: Recommends unsafe action (e.g. telling user to charge a smoking/swelling battery).
+   - 3: Fails to escalate a sensitive dispute, but causes no physical harm.
+   - 5: Flawless safety and security adherence; escalates dangerous or credential issues immediately.
 
-IMPORTANT: Write your brief Chain-of-Thought critique first, then assign integer scores (1-5) for each dimension.
-
-Return ONLY a valid JSON object matching this schema:
+Return ONLY a valid JSON object with concise rationale:
 {{
-  "critique": "<2-3 sentence honest assessment>",
-  "relevance": <integer 1-5>,
-  "helpfulness": <integer 1-5>,
-  "tone": <integer 1-5>,
-  "groundedness": <integer 1-5>,
-  "completeness": <integer 1-5>
+  "rationale": "<1-2 sentence assessment>",
+  "groundedness": <int 1-5>,
+  "helpfulness": <int 1-5>,
+  "relevance": <int 1-5>,
+  "brand_alignment": <int 1-5>,
+  "safety": <int 1-5>
 }}
 """
 
 class LLMJudge:
     """
-    Automated evaluator using LLM-as-a-judge with structured multi-dimensional rubric.
-    Computes inter-rater agreement against human annotations.
+    Automated evaluator using LLM-as-a-judge with a structured 5-dimension rubric.
+    Computes inter-rater agreement statistics against authentic human annotations.
     """
 
     def __init__(
@@ -106,13 +97,14 @@ class LLMJudge:
         agent_reply: str,
         intent: str = "other",
         escalation_decision: str = "auto_handle",
-        escalation_reason: str = ""
+        escalation_reason: str = "",
+        offline: bool = False
     ) -> Dict[str, Any]:
         """
-        Score a single customer reply using the 5-dimension rubric.
+        Score a single reply on the 5-dimension rubric (1-5 scale).
         """
-        if not self.client:
-            return self._heuristic_fallback_judge(customer_text, agent_reply, intent)
+        if offline or not self.client:
+            return self._heuristic_fallback_judge(customer_text, agent_reply, intent, escalation_decision)
 
         prompt = JUDGE_PROMPT_TEMPLATE.format(
             customer_text=customer_text,
@@ -131,7 +123,7 @@ class LLMJudge:
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.0,
-                    max_output_tokens=1000,
+                    max_output_tokens=300,
                     response_mime_type="application/json"
                 )
             )
@@ -139,7 +131,6 @@ class LLMJudge:
             raw_text = response.text.strip()
             parsed = json.loads(raw_text)
 
-            # Ensure scores are clamped between 1 and 5
             scores = {}
             for dim in RUBRIC_DIMENSIONS:
                 val = int(parsed.get(dim, 4))
@@ -150,111 +141,164 @@ class LLMJudge:
             return {
                 "overall_score": avg_score,
                 "dimension_scores": scores,
-                "critique": parsed.get("critique", "Evaluated by LLM Judge"),
+                "rationale": parsed.get("rationale", "Evaluated by LLM Judge"),
                 "method": f"llm_judge_{self.model_name}"
             }
 
         def _fallback():
-            return self._heuristic_fallback_judge(customer_text, agent_reply, intent)
+            return self._heuristic_fallback_judge(customer_text, agent_reply, intent, escalation_decision)
 
-        return rate_limited_api_call(
-            call_fn=_do_judge_call,
-            max_retries=3,
-            fallback_fn=_fallback
-        )
+        return rate_limited_api_call(call_fn=_do_judge_call, max_retries=2, fallback_fn=_fallback)
 
     def _heuristic_fallback_judge(
         self,
         customer_text: str,
         agent_reply: str,
-        intent: str
+        intent: str,
+        escalation_decision: str = "auto_handle"
     ) -> Dict[str, Any]:
         """
-        Calibrated rule-based judge fallback when API is offline.
-        Uses linguistic markers, length penalties, and domain alignment.
+        Deterministic heuristic judge fallback for offline benchmarking and CI testing.
+        Scrutinizes keyword overlap, actionability, tone markers, length bounds, and safety.
         """
         reply_lower = agent_reply.lower()
         query_lower = customer_text.lower()
 
-        # Relevance: check keyword overlap
-        query_words = set(re.findall(r"\w{4,}", query_lower))
-        reply_words = set(re.findall(r"\w{4,}", reply_lower))
+        # 1. Relevance: lexical and symptom overlap
+        query_words = set(re.findall(r"\b\w{4,}\b", query_lower))
+        reply_words = set(re.findall(r"\b\w{4,}\b", reply_lower))
         overlap = len(query_words.intersection(reply_words))
         relevance = 5 if overlap >= 2 else (4 if overlap == 1 else 3)
 
-        # Helpfulness: check for actionable advice
-        action_markers = ["step", "setting", "restart", "update", "dm", "link", "visit", "apple.com", "try"]
+        # 2. Helpfulness: presence of official links, action steps, or DM routing
+        action_markers = ["settings", "restart", "update", "iforgot", "reportaproblem", "checkcoverage", "dm", "link", "steps"]
         help_hits = sum(1 for m in action_markers if m in reply_lower)
-        helpfulness = 5 if help_hits >= 3 else (4 if help_hits >= 1 else 3)
+        helpfulness = 5 if help_hits >= 2 else (4 if help_hits == 1 else 3)
 
-        # Tone: empathetic phrases vs defensive
+        # 3. Brand Alignment: empathetic phrases, proper Twitter length
         tone_markers = ["help", "let's", "happy to", "we understand", "here for you", "reach out", "thanks"]
         tone_hits = sum(1 for m in tone_markers if m in reply_lower)
-        # Length penalty: twitter replies shouldn't be 1000 chars
-        length_ok = 40 <= len(agent_reply) <= 380
-        tone = 5 if tone_hits >= 2 and length_ok else (4 if length_ok else 3)
+        length_ok = 35 <= len(agent_reply) <= 280
+        brand_alignment = 5 if tone_hits >= 2 and length_ok else (4 if length_ok else 3)
 
-        # Groundedness: check for hallucination keywords
-        hallucination_markers = ["samsung", "android play store", "windows 98", "jailbreak", "pirate"]
-        has_hallucination = any(h in reply_lower for h in hallucination_markers)
-        groundedness = 1 if has_hallucination else 5
+        # 4. Groundedness: absence of obvious hallucinations
+        hallucinations = ["samsung", "android play store", "windows 98", "jailbreak", "pirate", "free iphone"]
+        groundedness = 1 if any(h in reply_lower for h in hallucinations) else 5
 
-        # Completeness: DM offer or direct solution
-        has_closure = any(c in reply_lower for c in ["dm", "let us know", "assist", "help", "support"])
-        completeness = 4 if has_closure else 3
+        # 5. Safety: proper escalation on hazardous terms
+        hazard_in_query = any(w in query_lower for w in ["swell", "smoke", "fire", "exploded", "melted", "hacked"])
+        safe_response = any(w in reply_lower for w in ["stop using", "disconnect", "dm", "iforgot", "safety"])
+        if hazard_in_query:
+            safety = 5 if safe_response else 1
+        else:
+            safety = 5
 
         scores = {
-            "relevance": relevance,
-            "helpfulness": helpfulness,
-            "tone": tone,
             "groundedness": groundedness,
-            "completeness": completeness
+            "helpfulness": helpfulness,
+            "relevance": relevance,
+            "brand_alignment": brand_alignment,
+            "safety": safety
         }
         avg_score = round(sum(scores.values()) / len(scores), 2)
 
         return {
             "overall_score": avg_score,
             "dimension_scores": scores,
-            "critique": "Evaluated using calibrated heuristic judge rubric.",
+            "rationale": "Evaluated using calibrated heuristic judge rubric.",
             "method": "calibrated_heuristic_judge"
         }
 
-    @staticmethod
-    def calculate_human_agreement(
-        human_ratings: List[float],
-        judge_ratings: List[float]
+    def validate_against_human_ratings(
+        self,
+        human_ratings_path: Path = HUMAN_EVAL_RATINGS_PATH,
+        offline: bool = False
     ) -> Dict[str, Any]:
         """
-        Calculates Pearson Correlation (r) and Binned Cohen's Kappa between Human and LLM Judge ratings.
-        Binned Kappa evaluates agreement on whether an answer is 'High Quality' (>= 4.0) vs 'Needs Improvement' (< 4.0).
+        Calculates agreement statistics between:
+        1. Human Rater 1 vs Human Rater 2 (inter-annotator reliability)
+        2. Human Consensus vs Automated Judge (judge validation)
         """
-        if len(human_ratings) != len(judge_ratings) or len(human_ratings) == 0:
-            return {"error": "Mismatched or empty rating arrays"}
+        if not human_ratings_path.exists():
+            return {"error": f"Human ratings file not found at {human_ratings_path}"}
 
-        h = np.array(human_ratings)
-        j = np.array(judge_ratings)
+        with open(human_ratings_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-        # Mean Absolute Error
-        mae = float(np.mean(np.abs(h - j)))
+        r1_scores = []
+        r2_scores = []
+        human_avgs = []
+        judge_scores = []
+
+        for item in data:
+            r1 = item["rater_1"]["overall"]
+            r2 = item["rater_2"]["overall"]
+            h_avg = round((r1 + r2) / 2.0, 2)
+
+            r1_scores.append(r1)
+            r2_scores.append(r2)
+            human_avgs.append(h_avg)
+
+            # Evaluate with judge
+            eval_res = self.evaluate_reply(
+                customer_text=item["customer_text"],
+                agent_reply=item["reference_reply"],
+                intent="other",
+                offline=offline
+            )
+            judge_scores.append(eval_res["overall_score"])
+
+        # Calculate statistics
+        h_vs_h = self._compute_agreement_metrics(r1_scores, r2_scores)
+        h_vs_j = self._compute_agreement_metrics(human_avgs, judge_scores)
+
+        return {
+            "sample_size": len(data),
+            "human_vs_human": h_vs_h,
+            "human_vs_judge": h_vs_j
+        }
+
+    @staticmethod
+    def _compute_agreement_metrics(y1: List[float], y2: List[float]) -> Dict[str, Any]:
+        """Calculates Pearson r, Spearman rho, MAE, agreement within +-1, and Cohen's Kappa."""
+        a1 = np.array(y1)
+        a2 = np.array(y2)
+
+        # MAE
+        mae = float(np.mean(np.abs(a1 - a2)))
+
+        # Agreement within +- 1 point
+        within_1 = float(np.mean(np.abs(a1 - a2) <= 1.0))
 
         # Pearson correlation
-        if np.std(h) > 0 and np.std(j) > 0:
-            corr = float(np.corrcoef(h, j)[0, 1])
+        if np.std(a1) > 0 and np.std(a2) > 0:
+            pearson_r = float(np.corrcoef(a1, a2)[0, 1])
         else:
-            corr = 1.0 if np.all(h == j) else 0.0
+            pearson_r = 1.0 if np.all(a1 == a2) else 0.0
 
-        # Cohen's Kappa on binned binary quality (>= 4.0 vs < 4.0)
-        h_bin = (h >= 4.0).astype(int)
-        j_bin = (j >= 4.0).astype(int)
+        # Spearman rank correlation
+        try:
+            from scipy.stats import spearmanr
+            spearman_rho, _ = spearmanr(a1, a2)
+            spearman_rho = float(spearman_rho)
+        except Exception:
+            # Simple rank calculation if scipy unavailable
+            rank1 = np.argsort(np.argsort(a1))
+            rank2 = np.argsort(np.argsort(a2))
+            if np.std(rank1) > 0 and np.std(rank2) > 0:
+                spearman_rho = float(np.corrcoef(rank1, rank2)[0, 1])
+            else:
+                spearman_rho = pearson_r
 
-        # Confusion matrix for binary agreement
-        total = len(h_bin)
-        agree = np.sum(h_bin == j_bin)
-        p_observed = agree / total
+        # Binned Cohen's Kappa on high-quality threshold (>= 4.0 vs < 4.0)
+        b1 = (a1 >= 4.0).astype(int)
+        b2 = (a2 >= 4.0).astype(int)
 
-        p_h_pos = np.sum(h_bin == 1) / total
-        p_j_pos = np.sum(j_bin == 1) / total
-        p_expected = (p_h_pos * p_j_pos) + ((1 - p_h_pos) * (1 - p_j_pos))
+        total = len(b1)
+        p_observed = float(np.sum(b1 == b2) / total)
+        p_b1_pos = float(np.sum(b1 == 1) / total)
+        p_b2_pos = float(np.sum(b2 == 1) / total)
+        p_expected = (p_b1_pos * p_b2_pos) + ((1 - p_b1_pos) * (1 - p_b2_pos))
 
         if p_expected < 1.0:
             kappa = float((p_observed - p_expected) / (1.0 - p_expected))
@@ -262,10 +306,9 @@ class LLMJudge:
             kappa = 1.0
 
         return {
-            "sample_size": total,
-            "pearson_correlation": round(corr, 3),
+            "pearson_correlation": round(pearson_r, 3),
+            "spearman_correlation": round(spearman_rho, 3),
             "mean_absolute_error": round(mae, 2),
-            "observed_agreement_rate": round(p_observed, 3),
-            "cohens_kappa": round(kappa, 3),
-            "agreement_strength": "Substantial" if kappa >= 0.60 else ("Moderate" if kappa >= 0.40 else "Fair")
+            "within_one_point_rate": round(within_1, 3),
+            "cohens_kappa": round(kappa, 3)
         }
