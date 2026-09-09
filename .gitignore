@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Secrets & Environment variables
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv
+venv/
+ENV/
+
+# Large raw datasets (can be downloaded via script)
+data/twcs.csv
+data/retrieval_corpus.pkl
+*.csv.zip
+
+# Keep cleaned conversation sample and golden evaluation set
+!data/golden_eval_set.jsonl
+!data/apple_conversations.jsonl
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
