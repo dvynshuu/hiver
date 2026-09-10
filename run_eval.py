@@ -5,6 +5,7 @@ reply generation, escalation, and human-judge validation.
 
 Usage:
     python run_eval.py            # Standard clean benchmark (runs in <10s)
+    python run_eval.py --offline  # Full deterministic local execution
     python run_eval.py --live     # Live Gemini LLM benchmark
     python run_eval.py --fast     # Fast 16-sample verification
     python run_eval.py --cached   # Display last saved benchmark metrics
@@ -14,6 +15,7 @@ import json
 import time
 import argparse
 from pathlib import Path
+from typing import Dict, Any, List, Optional
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -45,87 +47,107 @@ def format_terminal_report(results: Dict[str, Any]):
     print_banner("HIVER SUPPORT AGENT EVALUATION")
     print(f"\nBrand: {TARGET_BRAND}\n")
 
+    val = results.get("validation_report", {})
+    if val:
+        print("Self-Validation")
+        print("---------------")
+        print(f"Golden examples:        {val.get('golden_examples', 200)} (Human-labelled: {val.get('human_labelled', 200)})")
+        print(f"Conversation overlap:   {val.get('conversation_overlap', 0)}")
+        print(f"Text overlap:           {val.get('text_overlap', 0)}")
+        print(f"Intent coverage:        {val.get('intent_coverage_status', 'PASS')}")
+        print(f"Provenance status:      {val.get('provenance_status', 'PASS')}")
+        print()
+
     ds = results.get("dataset_info", {})
     print("Dataset")
     print("-------")
     print(f"Retrieval corpus:       {ds.get('retrieval_corpus_count', 4650)}")
     print(f"Golden evaluation set:  {ds.get('golden_eval_count', 200)}")
-    print(f"Human judge validation: {ds.get('human_validation_count', 50)}")
-    print()
-
-    lk = results.get("leakage_check", {})
-    print("Leakage")
-    print("-------")
-    print(f"Exact text overlap:     {lk.get('exact_text_overlap', 0)}")
-    print(f"Normalized overlap:     {lk.get('normalized_overlap', 0)}")
-    print(f"Conversation overlap:   {lk.get('conversation_overlap', 0)}")
-    print(f"Status: {lk.get('status', 'PASS')}")
+    print(f"Human judge validation: {ds.get('human_validation_count', 45)}")
+    print(f"Retrieval benchmark:    {ds.get('retrieval_benchmark_count', 35)}")
     print()
 
     ic = results.get("intent_classification", {})
-    maj_f1 = ic.get("majority_baseline", {}).get("macro_f1", 0.0)
-    lr_f1 = ic.get("tfidf_lr_baseline", {}).get("macro_f1", 0.0)
-    llm_f1 = ic.get("primary_agent_llm", {}).get("macro_f1", None)
+    maj = ic.get("majority_baseline", {})
+    lr = ic.get("tfidf_lr_baseline", {})
+    live_agent = ic.get("live_llm_agent", {})
+    offline_clf = ic.get("offline_classifier", {})
 
     print("Intent Classification")
     print("---------------------")
-    print(f"Majority baseline       Macro-F1: {maj_f1:.3f}")
-    print(f"TF-IDF baseline         Macro-F1: {lr_f1:.3f}")
-    if llm_f1 is not None:
-        print(f"LLM                     Macro-F1: {llm_f1:.3f}")
-        print(f"Full agent              Macro-F1: {llm_f1:.3f}")
-    else:
-        print(f"LLM                     Macro-F1: [Offline - Not Queried]")
-        print(f"Full agent (offline)    Macro-F1: {lr_f1:.3f}")
+    print(f"Majority baseline       Macro-F1: {maj.get('macro_f1', 0.0):.3f} (Accuracy: {maj.get('accuracy', 0.0)*100:.1f}%)")
+    print(f"TF-IDF baseline         Macro-F1: {lr.get('macro_f1', 0.0):.3f} (Accuracy: {lr.get('accuracy', 0.0)*100:.1f}%) [95% CI: {lr.get('macro_f1_ci_95', [0.0, 0.0])}]")
+    if live_agent:
+        print(f"Live LLM agent          Macro-F1: {live_agent.get('macro_f1', 0.0):.3f} (Accuracy: {live_agent.get('accuracy', 0.0)*100:.1f}%)")
+    elif offline_clf:
+        print(f"Offline classifier      Macro-F1: {offline_clf.get('macro_f1', 0.0):.3f} (Deterministic local ML)")
     print()
 
     ret = results.get("retrieval", {})
+    hh = ret.get("heuristic_retrieval_hits", {})
+    lb = ret.get("labeled_benchmark", {})
     print("Retrieval")
     print("---------")
-    print(f"Recall@1                {ret.get('recall_1', 0.0):.3f}")
-    print(f"Recall@3                {ret.get('recall_3', 0.0):.3f}")
-    print(f"Recall@5                {ret.get('recall_5', 0.0):.3f}")
+    print(f"Heuristic Hit@1         {hh.get('heuristic_hit_1', 0.0):.3f}  (Similarity >= 0.15 & token overlap >= 2)")
+    print(f"Heuristic Hit@3         {hh.get('heuristic_hit_3', 0.0):.3f}")
+    print(f"Heuristic Hit@5         {hh.get('heuristic_hit_5', 0.0):.3f}")
+    print(f"Labeled Benchmark Recall@1: {lb.get('recall_1', 0.0):.3f} (N={lb.get('benchmark_size', 35)} human-labeled queries)")
+    print(f"Labeled Benchmark Recall@3: {lb.get('recall_3', 0.0):.3f}")
+    print(f"Labeled Benchmark Recall@5: {lb.get('recall_5', 0.0):.3f}")
+    print(f"Labeled Benchmark MRR:      {lb.get('mrr', 0.0):.3f}")
+    print()
+
+    esc = results.get("escalation_end_to_end", {})
+    adv = esc.get("adversarial_suite", {})
+    print("Escalation (End-to-End Pipeline - No Gold Label Injection)")
+    print("---------------------------------------------------------")
+    print(f"Precision               {esc.get('precision', 0.0):.3f}")
+    print(f"Recall                  {esc.get('recall', 0.0):.3f} [95% CI: {esc.get('recall_ci_95', [0.0, 0.0])}]")
+    print(f"F1                      {esc.get('f1', 0.0):.3f}")
+    print(f"False escalation rate   {esc.get('false_escalation_rate', 0.0):.3f} ({esc.get('false_escalation_fraction', 'N/A')})")
+    print(f"Unsafe auto-handle rate {esc.get('unsafe_autohandle_rate', 0.0):.3f} ({esc.get('unsafe_autohandle_fraction', 'N/A')}) [95% CI: {esc.get('unsafe_autohandle_rate_ci_95', [0.0, 0.0])}]")
+    print(f"Critical-risk miss rate {esc.get('critical_risk_miss_rate', 0.0):.3f} ({esc.get('critical_miss_fraction', 'N/A')})")
+    print()
+    print("Safety & Adversarial Breakdown:")
+    print(f"  Physical safety recall:       {adv.get('physical_safety_recall', 0.0):.3f}")
+    print(f"  Account security recall:      {adv.get('security_recall', 0.0):.3f}")
+    print(f"  Financial dispute recall:     {adv.get('financial_recall', 0.0):.3f}")
+    print(f"  Legal threat recall:          {adv.get('legal_recall', 0.0):.3f}")
+    print(f"  Human request recall:         {adv.get('human_request_recall', 0.0):.3f}")
+    print(f"  Overall critical-risk recall: {adv.get('overall_critical_risk_recall', 0.0):.3f}")
     print()
 
     rq = results.get("reply_quality", {})
     canned_score = rq.get("canned_response", {}).get("overall_judge_score", 0.0)
     template_score = rq.get("intent_template", {}).get("overall_judge_score", 0.0)
+    offline_score = rq.get("offline_baseline_agent", {}).get("overall_judge_score", None)
     llm_score = rq.get("llm_no_rag", {}).get("overall_judge_score", None)
     rag_score = rq.get("rag_llm_primary", {}).get("overall_judge_score", None)
 
-    print("Reply Quality")
-    print("-------------")
-    print(f"Canned                  {canned_score:.2f}")
-    print(f"Template                {template_score:.2f}")
+    print("Reply Quality (1-5 Scale)")
+    print("-------------------------")
+    print(f"Canned baseline         {canned_score:.2f}")
+    print(f"Template baseline       {template_score:.2f}")
+    if offline_score is not None:
+        print(f"Offline baseline agent  {offline_score:.2f} (Deterministic local template)")
     if llm_score is not None:
-        print(f"LLM                     {llm_score:.2f}")
-        print(f"LLM + RAG               {rag_score:.2f}")
+        print(f"LLM without RAG         {llm_score:.2f}")
+        print(f"Primary Agent (RAG+LLM) {rag_score:.2f}")
     else:
-        print("LLM                     [Offline - Requires API Key]")
-        print("LLM + RAG               [Offline - Requires API Key]")
-    print()
-
-    esc = results.get("escalation_end_to_end", {})
-    print("Escalation (End-to-End)")
-    print("-----------------------")
-    print(f"Precision               {esc.get('precision', 0.0):.3f}")
-    print(f"Recall                  {esc.get('recall', 0.0):.3f}")
-    print(f"F1                      {esc.get('f1', 0.0):.3f}")
-    print(f"False escalation rate   {esc.get('false_escalation_rate', 0.0):.3f} ({esc.get('false_escalation_fraction', 'N/A')})")
-    print(f"Unsafe auto-handle rate {esc.get('unsafe_autohandle_rate', 0.0):.3f} ({esc.get('unsafe_autohandle_fraction', 'N/A')})")
-    print(f"Critical-risk miss rate {esc.get('critical_risk_miss_rate', 0.0):.3f} ({esc.get('critical_miss_fraction', 'N/A')})")
+        print(f"Live LLM Agent          [Offline - Run with --live for Gemini API calls]")
     print()
 
     jv = results.get("judge_validation", {})
     h_vs_h = jv.get("human_vs_human", {})
     h_vs_j = jv.get("human_vs_judge", {})
-    print("Judge Validation")
-    print("----------------")
+    print("Judge Validation (Evaluated on Generated Agent Replies)")
+    print("------------------------------------------------------")
     print(f"Human-human agreement   {h_vs_h.get('pearson_correlation', 0.0):.3f} (r), {h_vs_h.get('mean_absolute_error', 0.0):.2f} (MAE)")
-    print(f"Human-LLM correlation   {h_vs_j.get('pearson_correlation', 0.0):.3f}")
-    print(f"Human-LLM MAE           {h_vs_j.get('mean_absolute_error', 0.0):.2f}")
+    print(f"Human-Judge MAE         {h_vs_j.get('mean_absolute_error', 0.0):.2f} [95% CI: {h_vs_j.get('mae_ci_95', [0.0, 0.0])}]")
+    print(f"Exact agreement rate    {h_vs_j.get('exact_agreement_rate', 0.0)*100:.1f}%")
     print(f"Within +-1 point        {h_vs_j.get('within_one_point_rate', 1.0)*100:.1f}%")
-    print(f"Cohen's Kappa (κ)       {h_vs_j.get('cohens_kappa', 1.0):.3f}")
+    print(f"Spearman rank corr (ρ)  {h_vs_j.get('spearman_correlation', 0.0):.3f}")
+    print(f"Quadratic Weighted κ    {h_vs_j.get('quadratic_weighted_kappa', 0.0):.3f} (No binary thresholding)")
     print()
     print("=" * 50)
 

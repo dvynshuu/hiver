@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import pickle
 import logging
 from pathlib import Path
@@ -97,19 +98,20 @@ class HistoricalRetrievalEngine:
 
         return "\n\n".join(context_parts)
 
-    def evaluate_retrieval_metrics(
+    def evaluate_heuristic_hits(
         self,
         eval_items: List[Dict[str, Any]],
         top_k_levels: List[int] = [1, 3, 5]
     ) -> Dict[str, float]:
         """
-        Calculates Recall@k on evaluation queries.
-        A retrieval match is deemed relevant if:
+        Calculates Heuristic Retrieval Hit@K on evaluation queries.
+        A retrieval match is deemed a heuristic hit if:
         1. Cosine similarity score >= 0.15 AND
-        2. Content shares domain relevance with query.
+        2. Content shares domain relevance with query (token overlap >= 2).
+        Note: This is an automated lexical/similarity heuristic, NOT human-labeled Recall@K.
         """
         if not self.corpus or self.vectorizer is None:
-            return {f"recall_{k}": 0.0 for k in top_k_levels}
+            return {f"heuristic_hit_{k}": 0.0 for k in top_k_levels}
 
         hits = {k: 0 for k in top_k_levels}
         total = 0
@@ -123,28 +125,103 @@ class HistoricalRetrievalEngine:
             max_k = max(top_k_levels)
             retrieved = self.retrieve(query, top_k=max_k)
 
-            # Check relevance at each k
-            # An item is relevant if it achieves meaningful cosine similarity (>0.15)
-            # and shares common key tokens
             query_tokens = set(query.lower().split())
 
             for k in top_k_levels:
                 k_retrieved = retrieved[:k]
-                found_relevant = False
+                found_hit = False
                 for r in k_retrieved:
                     sim = r.get("similarity_score", 0.0)
                     r_tokens = set(r.get("customer_text", "").lower().split())
                     overlap = len(query_tokens.intersection(r_tokens))
                     if sim >= 0.15 and overlap >= 2:
-                        found_relevant = True
+                        found_hit = True
                         break
-                if found_relevant:
+                if found_hit:
                     hits[k] += 1
 
         metrics = {}
         for k in top_k_levels:
             rate = round(hits[k] / total, 3) if total > 0 else 0.0
-            metrics[f"recall_{k}"] = rate
+            metrics[f"heuristic_hit_{k}"] = rate
+
+        return metrics
+
+    def evaluate_retrieval_metrics(
+        self,
+        eval_items: List[Dict[str, Any]],
+        top_k_levels: List[int] = [1, 3, 5]
+    ) -> Dict[str, float]:
+        """Alias maintaining compatibility while computing accurate heuristic hit rates."""
+        return self.evaluate_heuristic_hits(eval_items, top_k_levels)
+
+    def evaluate_labeled_benchmark(
+        self,
+        benchmark_path: Optional[Path] = None,
+        top_k_levels: List[int] = [1, 3, 5]
+    ) -> Dict[str, float]:
+        """
+        Calculates authentic Recall@K and MRR on the human-judged retrieval benchmark
+        (data/retrieval_benchmark.json).
+        """
+        from config import DATA_DIR
+        if isinstance(benchmark_path, list):
+            bench_data = benchmark_path
+        else:
+            bench_file = benchmark_path or (DATA_DIR / "retrieval_benchmark.json")
+
+            if not os.path.exists(bench_file):
+                from scripts.build_retrieval_benchmark import main as build_bench
+                try:
+                    build_bench()
+                except Exception:
+                    pass
+
+            if not os.path.exists(bench_file):
+                res = {f"recall_{k}": 0.0 for k in top_k_levels}
+                for k in top_k_levels:
+                    res[f"recall_at_{k}"] = 0.0
+                return res | {"mrr": 0.0, "benchmark_size": 0}
+
+            with open(bench_file, "r", encoding="utf-8") as f:
+                bench_data = json.load(f)
+
+        hits = {k: 0 for k in top_k_levels}
+        reciprocal_ranks = []
+        total = len(bench_data)
+
+        for item in bench_data:
+            query = item["query"]
+            gold_ids = set(item.get("relevant_pair_ids", []))
+            if not gold_ids:
+                continue
+
+            max_k = max(top_k_levels)
+            retrieved = self.retrieve(query, top_k=max_k)
+            retrieved_ids = [r["pair_id"] for r in retrieved]
+
+            # Reciprocal rank
+            rr = 0.0
+            for rank, rid in enumerate(retrieved_ids, 1):
+                if rid in gold_ids:
+                    rr = 1.0 / rank
+                    break
+            reciprocal_ranks.append(rr)
+
+            # Hit at k
+            for k in top_k_levels:
+                top_k_ids = set(retrieved_ids[:k])
+                if top_k_ids.intersection(gold_ids):
+                    hits[k] += 1
+
+        metrics = {
+            f"recall_{k}": round(hits[k] / total, 3) if total > 0 else 0.0
+            for k in top_k_levels
+        }
+        for k in top_k_levels:
+            metrics[f"recall_at_{k}"] = metrics[f"recall_{k}"]
+        metrics["mrr"] = round(float(np.mean(reciprocal_ranks)), 3) if reciprocal_ranks else 0.0
+        metrics["benchmark_size"] = total
 
         return metrics
 
@@ -159,9 +236,20 @@ class HistoricalRetrievalEngine:
 
     @classmethod
     def load(cls, file_path=CORPUS_INDEX_PATH) -> "HistoricalRetrievalEngine":
-        """Load from disk if available."""
+        """Load from disk if available, or automatically rebuild from JSONL (Option B)."""
+        from config import RETRIEVAL_CORPUS_JSONL_PATH
         if not os.path.exists(file_path):
-            raise FileNotFoundError(f"Retrieval index not found at {file_path}")
+            if RETRIEVAL_CORPUS_JSONL_PATH.exists():
+                logger.info(f"Retrieval index {file_path} not found. Automatically rebuilding from {RETRIEVAL_CORPUS_JSONL_PATH}...")
+                corpus = []
+                with open(RETRIEVAL_CORPUS_JSONL_PATH, "r", encoding="utf-8") as f:
+                    for line in f:
+                        if line.strip():
+                            corpus.append(json.loads(line))
+                engine = cls(corpus=corpus)
+                engine.save(file_path)
+                return engine
+            raise FileNotFoundError(f"Retrieval index not found at {file_path} and corpus jsonl not available.")
 
         with open(file_path, "rb") as f:
             data = pickle.load(f)
@@ -171,3 +259,8 @@ class HistoricalRetrievalEngine:
         engine.vectorizer = data["vectorizer"]
         engine.tfidf_matrix = data["tfidf_matrix"]
         return engine
+
+def evaluate_labeled_benchmark(engine: HistoricalRetrievalEngine, benchmark_path_or_items=None) -> Dict[str, Any]:
+    """Module-level wrapper for evaluate_labeled_benchmark."""
+    return engine.evaluate_labeled_benchmark(benchmark_path_or_items)
+

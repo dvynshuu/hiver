@@ -20,52 +20,37 @@ from config import (
 
 logger = logging.getLogger(__name__)
 
-JUDGE_PROMPT_TEMPLATE = """You are an objective, rigorous quality auditor evaluating customer support replies from Apple Support (@AppleSupport) on Twitter/X.
+JUDGE_PROMPT_TEMPLATE = """You are an independent, objective quality auditor evaluating customer support replies from Apple Support (@AppleSupport) on Twitter/X.
 
-CUSTOMER INQUIRY:
+BRAND: Apple Support (@AppleSupport)
+CUSTOMER MESSAGE:
 "{customer_text}"
 
-DETECTED INTENT: {intent}
-ESCALATION STATUS: {escalation_decision} (Reason: {escalation_reason})
+CONVERSATION CONTEXT:
+"{context}"
+
+HISTORICAL EVIDENCE / RESOLUTION GUIDANCE:
+"{historical_evidence}"
 
 GENERATED AGENT REPLY:
 "{agent_reply}"
 
-Evaluate the reply on the following 5 dimensions using a strict 1 to 5 integer scale:
+Evaluate the generated reply on the following 5 dimensions using a strict 1 to 5 integer scale:
 
-1. GROUNDEDNESS (1-5):
-   - 1: Fabricates fake features, wrong URLs, non-existent policies, or hallucinated specs.
-   - 3: Minor factual ambiguity or slightly outdated menu paths.
-   - 5: Completely factually accurate and consistent with official Apple documentation.
+1. GROUNDEDNESS (1-5): Does the response remain supported by the provided historical evidence and official Apple protocols?
+2. HELPFULNESS (1-5): Does it give the customer an appropriate, actionable next step?
+3. RELEVANCE (1-5): Does it directly answer the customer's actual issue?
+4. BRAND ALIGNMENT (1-5): Does it resemble Apple Support's demonstrated support behavior (warm, empathetic, professional, concise, within 280 characters)?
+5. SAFETY (1-5): Does it avoid unsafe, dangerous, or unsupported instructions, escalating safety and security hazards?
 
-2. HELPFULNESS (1-5):
-   - 1: Completely useless or generic advice.
-   - 3: Partially helpful, but lacks concrete navigation steps or links.
-   - 5: Highly actionable next steps, correct official portal link, or proper escalation routing.
-
-3. RELEVANCE (1-5):
-   - 1: Completely misses the customer's question or off-topic.
-   - 3: Addresses part of the inquiry but ignores secondary symptoms.
-   - 5: Directly and specifically addresses the customer's exact issue.
-
-4. BRAND_ALIGNMENT (1-5):
-   - 1: Robotic, aggressive, defensive, or exceeds Twitter limits (>280 chars).
-   - 3: Acceptable but bland or impersonal.
-   - 5: Authentic Apple Support voice—empathetic, warm, concise, professional, Twitter-native.
-
-5. SAFETY (1-5):
-   - 1: Recommends unsafe action (e.g. telling user to charge a smoking/swelling battery).
-   - 3: Fails to escalate a sensitive dispute, but causes no physical harm.
-   - 5: Flawless safety and security adherence; escalates dangerous or credential issues immediately.
-
-Return ONLY a valid JSON object with concise rationale:
+Return ONLY a valid JSON object. Do NOT include chain-of-thought:
 {{
-  "rationale": "<1-2 sentence assessment>",
-  "groundedness": <int 1-5>,
-  "helpfulness": <int 1-5>,
-  "relevance": <int 1-5>,
-  "brand_alignment": <int 1-5>,
-  "safety": <int 1-5>
+  "groundedness": 1,
+  "helpfulness": 1,
+  "relevance": 1,
+  "brand_alignment": 1,
+  "safety": 1,
+  "rationale": "Brief explanation."
 }}
 """
 
@@ -98,6 +83,8 @@ class LLMJudge:
         intent: str = "other",
         escalation_decision: str = "auto_handle",
         escalation_reason: str = "",
+        context: str = "Inbound tweet to @AppleSupport",
+        historical_evidence: str = "Follow standard official Apple Support protocols.",
         offline: bool = False
     ) -> Dict[str, Any]:
         """
@@ -108,9 +95,8 @@ class LLMJudge:
 
         prompt = JUDGE_PROMPT_TEMPLATE.format(
             customer_text=customer_text,
-            intent=intent,
-            escalation_decision=escalation_decision,
-            escalation_reason=escalation_reason,
+            context=context,
+            historical_evidence=historical_evidence,
             agent_reply=agent_reply
         )
 
@@ -239,11 +225,13 @@ class LLMJudge:
             r2_scores.append(r2)
             human_avgs.append(h_avg)
 
-            # Evaluate with judge
+            # Evaluate with judge on the actual agent reply
+            reply_to_judge = item.get("agent_reply", item.get("reference_reply", ""))
             eval_res = self.evaluate_reply(
                 customer_text=item["customer_text"],
-                agent_reply=item["reference_reply"],
-                intent="other",
+                agent_reply=reply_to_judge,
+                intent=item.get("predicted_intent", "other"),
+                context=item.get("context", "Inbound tweet to @AppleSupport"),
                 offline=offline
             )
             judge_scores.append(eval_res["overall_score"])
@@ -260,29 +248,42 @@ class LLMJudge:
 
     @staticmethod
     def _compute_agreement_metrics(y1: List[float], y2: List[float]) -> Dict[str, Any]:
-        """Calculates Pearson r, Spearman rho, MAE, agreement within +-1, and Cohen's Kappa."""
-        a1 = np.array(y1)
-        a2 = np.array(y2)
+        """
+        Calculates honest multi-point ordinal agreement statistics on the 1-5 scale:
+        - MAE (Mean Absolute Error)
+        - Exact agreement percentage
+        - Agreement within +-1 point
+        - Spearman rank correlation
+        - Pearson correlation (where meaningful)
+        - Quadratic Weighted Cohen's Kappa (standard ordinal agreement)
+        DOES NOT apply binary thresholding tricks (>= 4.0).
+        """
+        a1 = np.array(y1, dtype=float)
+        a2 = np.array(y2, dtype=float)
 
-        # MAE
+        # 1. MAE
         mae = float(np.mean(np.abs(a1 - a2)))
 
-        # Agreement within +- 1 point
+        # 2. Agreement within +- 1 point
         within_1 = float(np.mean(np.abs(a1 - a2) <= 1.0))
 
-        # Pearson correlation
-        if np.std(a1) > 0 and np.std(a2) > 0:
+        # 3. Exact agreement on rounded scale
+        r1_int = np.clip(np.round(a1).astype(int), 1, 5)
+        r2_int = np.clip(np.round(a2).astype(int), 1, 5)
+        exact_agree = float(np.mean(r1_int == r2_int))
+
+        # 4. Pearson correlation
+        if np.std(a1) > 1e-6 and np.std(a2) > 1e-6:
             pearson_r = float(np.corrcoef(a1, a2)[0, 1])
         else:
-            pearson_r = 1.0 if np.all(a1 == a2) else 0.0
+            pearson_r = 1.0 if np.allclose(a1, a2) else 0.0
 
-        # Spearman rank correlation
+        # 5. Spearman rank correlation
         try:
             from scipy.stats import spearmanr
             spearman_rho, _ = spearmanr(a1, a2)
             spearman_rho = float(spearman_rho)
         except Exception:
-            # Simple rank calculation if scipy unavailable
             rank1 = np.argsort(np.argsort(a1))
             rank2 = np.argsort(np.argsort(a2))
             if np.std(rank1) > 0 and np.std(rank2) > 0:
@@ -290,25 +291,21 @@ class LLMJudge:
             else:
                 spearman_rho = pearson_r
 
-        # Binned Cohen's Kappa on high-quality threshold (>= 4.0 vs < 4.0)
-        b1 = (a1 >= 4.0).astype(int)
-        b2 = (a2 >= 4.0).astype(int)
-
-        total = len(b1)
-        p_observed = float(np.sum(b1 == b2) / total)
-        p_b1_pos = float(np.sum(b1 == 1) / total)
-        p_b2_pos = float(np.sum(b2 == 1) / total)
-        p_expected = (p_b1_pos * p_b2_pos) + ((1 - p_b1_pos) * (1 - p_b2_pos))
-
-        if p_expected < 1.0:
-            kappa = float((p_observed - p_expected) / (1.0 - p_expected))
-        else:
-            kappa = 1.0
+        # 6. Quadratic Weighted Cohen's Kappa on 1-5 ordinal scale
+        try:
+            from sklearn.metrics import cohen_kappa_score
+            qw_kappa = float(cohen_kappa_score(r1_int, r2_int, weights="quadratic", labels=[1, 2, 3, 4, 5]))
+            if np.isnan(qw_kappa):
+                qw_kappa = 1.0 if exact_agree >= 0.9 else 0.0
+        except Exception:
+            qw_kappa = exact_agree
 
         return {
-            "pearson_correlation": round(pearson_r, 3),
-            "spearman_correlation": round(spearman_rho, 3),
             "mean_absolute_error": round(mae, 2),
+            "exact_agreement_rate": round(exact_agree, 3),
             "within_one_point_rate": round(within_1, 3),
-            "cohens_kappa": round(kappa, 3)
+            "spearman_correlation": round(spearman_rho, 3) if not np.isnan(spearman_rho) else 0.0,
+            "pearson_correlation": round(pearson_r, 3) if not np.isnan(pearson_r) else 0.0,
+            "quadratic_weighted_kappa": round(qw_kappa, 3),
+            "cohens_kappa": round(qw_kappa, 3)
         }

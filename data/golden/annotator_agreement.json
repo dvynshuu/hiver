@@ -1,0 +1,299 @@
+{
+  "sample_size": 40,
+  "primary_annotator": "human_single_annotator",
+  "second_annotator": "human_rater_2",
+  "intent_classification": {
+    "raw_agreement_rate": 0.95,
+    "raw_agreement_percentage": "95.0%",
+    "cohens_kappa": 0.937,
+    "interpretation": "Substantial agreement (Landis & Koch, 1977)"
+  },
+  "escalation_decision": {
+    "raw_agreement_rate": 1.0,
+    "raw_agreement_percentage": "100.0%",
+    "cohens_kappa": 1.0,
+    "interpretation": "Almost perfect agreement"
+  },
+  "per_sample_records": [
+    {
+      "example_id": "gold_001",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_006",
+      "rater_1_intent": "product_inquiry",
+      "rater_2_intent": "product_inquiry",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_011",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_016",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_021",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_026",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_031",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_036",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_041",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_046",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_051",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_056",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_061",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_066",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_071",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_076",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_081",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_086",
+      "rater_1_intent": "account_security",
+      "rater_2_intent": "account_security",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_091",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_096",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_101",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_106",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_111",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_116",
+      "rater_1_intent": "other",
+      "rater_2_intent": "other",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_121",
+      "rater_1_intent": "billing_purchase",
+      "rater_2_intent": "billing_purchase",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_126",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_131",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_136",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_141",
+      "rater_1_intent": "account_security",
+      "rater_2_intent": "account_security",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_146",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_151",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_156",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_161",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_166",
+      "rater_1_intent": "software_bug",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_171",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_176",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "software_bug",
+      "rater_1_escalation": false,
+      "rater_2_escalation": false
+    },
+    {
+      "example_id": "gold_181",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_186",
+      "rater_1_intent": "device_issue",
+      "rater_2_intent": "device_issue",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_191",
+      "rater_1_intent": "billing_purchase",
+      "rater_2_intent": "billing_purchase",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    },
+    {
+      "example_id": "gold_196",
+      "rater_1_intent": "general_feedback",
+      "rater_2_intent": "general_feedback",
+      "rater_1_escalation": true,
+      "rater_2_escalation": true
+    }
+  ]
+}

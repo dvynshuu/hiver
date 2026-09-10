@@ -53,9 +53,31 @@ SECURITY_PATTERNS = [
 ]
 
 FINANCIAL_PATTERNS = [
-    r"\b(unauthorized charge|unauthorized purchase|double charge|charged twice)\b",
-    r"\b(refund declined|billing dispute|stolen card|fraudulent charge)\b",
-    r"\b(charged.*times|unrecognized charge)\b"
+    # Explicit unauthorized / unrecognized
+    r"\b(unauthorized|unapproved|unrecognized|unknown|unexpected)\s+(?:[\w\./-]+\s+)*(charge|payment|transaction|purchase|fee|debit|bill|order|deduction)\b",
+    r"\b(charge|payment|transaction|purchase)\s+(wasn'?t mine|is not mine|was not mine)\b",
+    r"\b(don'?t recognize|do not recognize|didn'?t authorize|did not authorize)\s+(this|the|that|my)?\s*(charge|payment|transaction|purchase|order)?\b",
+    r"\b(apple\.com/bill|itunes\.com/bill)\b",
+    
+    # Duplicate / multiple charges
+    r"\b(double|duplicate|repeat|extra)\s+(charge|payment|transaction|billing|billed)\b",
+    r"\b(charged|billed|paid)\s+(twice|two times|double|again|multiple times|\d+\s*times)\b",
+    r"\bwhy\s+(was i|am i being|did you)\s+(charge|charged)\b",
+    r"\bwithout\s+(?:my\s+)?(authorization|permission|consent|approval)\b",
+    r"\b(charge|charged|debit|debited)\s+(?:my\s+)?(?:card|debit card|credit card|account)\s+without\b",
+    
+    # Fraud / stolen card
+    r"\b(someone|somebody|thief)\s+used\s+my\s+(card|account|credit card|debit card|apple pay|apple card)\b",
+    r"\b(card|credit card|debit card|apple card)\s+(was\s+)?stolen\b",
+    r"\b(stolen\s+card|card\s+theft|compromised\s+card)\b",
+    r"\b(fraud|fraudulent)\s+(charge|transaction|purchase|activity|payment|billing)\b",
+    r"\b(credit card|debit card|bank)\s+fraud\b",
+    
+    # Disputes & failed refunds
+    r"\b(dispute|disputing|disputed)\s+(this|the|a)?\s*(charge|payment|transaction|bill)\b",
+    r"\b(refund\s+(declined|denied|rejected|refused)|denied\s+(my\s+)?refund)\b",
+    r"\b(overcharged|overcharge|overcharging)\b",
+    r"\b(scam|scammed|scammer)\s+(charge|purchase|payment|transaction)\b"
 ]
 
 class EscalationEngine:
@@ -179,6 +201,22 @@ class EscalationEngine:
                     "confidence": 0.92
                 }
 
+        # Policy rule: If classified as billing_purchase with dispute/fraud indicators
+        if intent == "billing_purchase":
+            dispute_terms = [
+                "dispute", "fraud", "unauthorized", "duplicate", "twice", "stolen", 
+                "refund", "declined", "denied", "charged", "overcharged", "not mine", 
+                "recognize", "scam", "wrong amount", "unknown charge", "double"
+            ]
+            if any(term in text_lower for term in dispute_terms):
+                return {
+                    "decision": "escalate",
+                    "reason": "Billing inquiry involves financial dispute or transaction complaint requiring specialist review.",
+                    "urgency": "high",
+                    "trigger": "financial_dispute",
+                    "confidence": 0.94
+                }
+
         # -------------------------------------------------------------
         # 6. MULTI-TURN THREAD FATIGUE (>= 3 TURNS)
         # -------------------------------------------------------------
@@ -265,6 +303,12 @@ class EscalationEngine:
 
         results = {
             "overall_adversarial_recall": round(total_caught / total_adv, 3) if total_adv else 1.0,
+            "overall_critical_risk_recall": round(total_caught / total_adv, 3) if total_adv else 1.0,
+            "physical_safety_recall": round(categories["safety_hazard"]["caught"] / categories["safety_hazard"]["total"], 3) if categories["safety_hazard"]["total"] else 1.0,
+            "security_recall": round(categories["security"]["caught"] / categories["security"]["total"], 3) if categories["security"]["total"] else 1.0,
+            "financial_recall": round(categories["financial"]["caught"] / categories["financial"]["total"], 3) if categories["financial"]["total"] else 1.0,
+            "legal_recall": round(categories["legal"]["caught"] / categories["legal"]["total"], 3) if categories["legal"]["total"] else 1.0,
+            "human_request_recall": round(categories["human_request"]["caught"] / categories["human_request"]["total"], 3) if categories["human_request"]["total"] else 1.0,
             "total_adversarial_tested": total_adv,
             "total_adversarial_caught": total_caught,
             "categories": {}

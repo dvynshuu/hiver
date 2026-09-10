@@ -1,0 +1,677 @@
+[
+  {
+    "example_id": "gold_001",
+    "customer_text": "This is what it looks like",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 31 22:09:52 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04608",
+      "apple_04599",
+      "apple_00545"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04608] (Similarity: 0.45)\nCustomer Query: Hi It looks like i'm one of many. suddenly Touch Id is not working. What to do?\nAppleSupport Reply: Let's help get this resolved. Please check out this article: Keep us posted on the results.\n\n[Historical Case #2 | Evidence ID: apple_04599] (Similarity: 0.42)\nCustomer Query: looks like the widget for the weather is down still says sunset on mine but when I go in to the weather app it\u2019s fine\nAppleSupport Reply: We'd be happy to look into any issues you are having. Send us a DM.\n\n[Historical Case #3 | Evidence ID: apple_00545] (Similarity: 0.39)\nCustomer Query: It looks like spam, but it bypassed my spam filter. cc:\nAppleSupport Reply: Sure is phishing. Learn more about phishing and suspicious emails, as well as how to report them here:",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_005",
+    "customer_text": "It\u2019s showing it\u2019s connected and the battery is decreasing.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 00:13:50 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04590",
+      "apple_00782",
+      "apple_01497"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04590] (Similarity: 0.28)\nCustomer Query: Battery down! Please\ud83d\ude4f\nAppleSupport Reply: Let's help. DM us what's going on and we can go from there.\n\n[Historical Case #2 | Evidence ID: apple_00782] (Similarity: 0.26)\nCustomer Query: the charging screening is now showing, now what?\nAppleSupport Reply: Let's give it some time to charge. It can sometimes take up to 20 minutes to come back on if it was completely depleted.\n\n[Historical Case #3 | Evidence ID: apple_01497] (Similarity: 0.23)\nCustomer Query: Updated my phone & my I\ufe0fs are still showing as squares...what\u2019s good\nAppleSupport Reply: Let's help get this sorted and the keyboard working. To start, are you currently running iOS 11.1?",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_009",
+    "customer_text": "How do I get rid of this notification?",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Mon Oct 30 15:08:26 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_03478",
+      "apple_00131",
+      "apple_03173"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03478] (Similarity: 0.42)\nCustomer Query: how do I get rid of this pop up on my iPhone X?\nAppleSupport Reply: We\u2019d be glad to help with this. Can you confirm what action is being completed when you see this message?\n\n[Historical Case #2 | Evidence ID: apple_00131] (Similarity: 0.31)\nCustomer Query: I don\u2019t know. I need the space though. How do I get rid of some snapshots\nAppleSupport Reply: Finder and Get Info windows don't include snapshots in their calculations so that's not the root cause. Let's meet within DM:\n\n[Historical Case #3 | Evidence ID: apple_03173] (Similarity: 0.29)\nCustomer Query: hi, how do i get rid of the syncing? symbol next to my wifi. it's been like this for months.\nAppleSupport Reply: Hi there. We're happy to look into this. Is that symbol there intermittently or constantly? Let us know in DM and we'll go from there.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_013",
+    "customer_text": "My worst fear came true... my iPhone alarm isn\u2019t working and never went off this morning",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 22 15:25:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.28). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_00854",
+      "apple_00791",
+      "apple_01319"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00854] (Similarity: 0.34)\nCustomer Query: I\ufe0f most updated my phone, why isn\u2019t my I\ufe0f working\nAppleSupport Reply: We're here for you. Which version of iOS are you running in Settings > General > About? Is this happening in all apps?\n\n[Historical Case #2 | Evidence ID: apple_00791] (Similarity: 0.32)\nCustomer Query: My alarm never went off this morning and I have no idea why help\nAppleSupport Reply: We want you to be able to wake up on time. Is this the first time this happened?\n\n[Historical Case #3 | Evidence ID: apple_01319] (Similarity: 0.26)\nCustomer Query: yet another head phone adapter isn\u2019t working\nAppleSupport Reply: We'd be happy to look into this issue with you. Send us a DM, and we'll continue there.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_017",
+    "customer_text": "So at midnight my phone just went blank, spun the wheel,and asked me to enter my passcode ...wtf since os 11 this randomly :(",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 12:33:37 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
+    "retrieved_evidence_ids": [
+      "apple_03966",
+      "apple_03202",
+      "apple_01708"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03966] (Similarity: 0.47)\nCustomer Query: I can\u2019t enter my passcode! \ud83e\udd2c\nAppleSupport Reply: Is this issue continuing with your iPhone? Were you able to complete the restore? Please let us know. We'd love to help out.\n\n[Historical Case #2 | Evidence ID: apple_03202] (Similarity: 0.19)\nCustomer Query: Hi guys i am running on version 4.0 watch os and iphone os - 11.1.2 so the most current on both\nAppleSupport Reply: Let's calibrate your watch for better accuracy. Here's how:\n\n[Historical Case #3 | Evidence ID: apple_01708] (Similarity: 0.19)\nCustomer Query: \u201cI.T\u201d Wtf is this?\nAppleSupport Reply: We'd like to help you with that autocorrect issue, no worries. Let's start by having you tell us which iOS version you are running under Settings > General > About.",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_021",
+    "customer_text": "My iphone 6s hs crackling sound coming on call and whn I hold phn a little away from mouth, the person cannot hear my voice",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Mon Oct 30 14:17:43 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00797",
+      "apple_02080",
+      "apple_04017"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00797] (Similarity: 0.30)\nCustomer Query: I am running on iOS 11.1, crackling sound ws reported 6 months back but now it is relatively less after update but Call Volumes have dropped\nAppleSupport Reply: Thanks for that information. DM the country or region where you are currently located to continue.\n\n[Historical Case #2 | Evidence ID: apple_02080] (Similarity: 0.24)\nCustomer Query: my iphone X earpiece has a crackling sound every time i play music or put calls on loudspeaker\nAppleSupport Reply: We're here to help! We have a few questions to help us learn more. Is the volume high on your iPhone X? Does it happen while using headphones? DM us more details, including the exact version of the operating system that's installed, and we'll get started.\n\n[Historical Case #3 | Evidence ID: apple_04017] (Similarity: 0.22)\nCustomer Query: iPhone 6S, software 10.3.3\nAppleSupport Reply: Let's figure out what's going on. Send us a DM so we can gather some info.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_025",
+    "customer_text": "what\u2019s up with when I\ufe0f type \u201cI\ufe0f\u201d some A and ? Comes up",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 15:38:01 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00299",
+      "apple_02807",
+      "apple_02497"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00299] (Similarity: 0.48)\nCustomer Query: So now I can\u2019t type \u201cit\u201d without I.T being a problem has to get I.T together\nAppleSupport Reply: We're here for you! Let us know which device you're using and the iOS version installed, in DM, and we'll get started.\n\n[Historical Case #2 | Evidence ID: apple_02807] (Similarity: 0.41)\nCustomer Query: Not always but sometimes this error comes\nAppleSupport Reply: If you haven't yet, let's restart your iPhone normally using the steps found here: Let us know if the behavior occurs again after restarting.\n\n[Historical Case #3 | Evidence ID: apple_02497] (Similarity: 0.34)\nCustomer Query: How comes the UK website is down?\nAppleSupport Reply: Hey there! We aren't seeing any issues with the website on our end. What happens when you try to access",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_029",
+    "customer_text": "Apple logo. Won\u2019t know it\u2019s turned off till I check, then have to turn back on",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 18:58:01 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00318",
+      "apple_02985",
+      "apple_00371"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00318] (Similarity: 0.36)\nCustomer Query: my phone was acting up. I then restarted it and now all it does is stay on the apple logo when I turn it on. Wtf\nAppleSupport Reply: We\u2019ve got your back. Let us know if the steps in this article help with your iPhone:\n\n[Historical Case #2 | Evidence ID: apple_02985] (Similarity: 0.31)\nCustomer Query: What is happening to ? My phone has been freezing with the Apple logo since last night and I can do nothing. Can you do something?\nAppleSupport Reply: We can help. Let's follow these steps: If the issue remains, please DM and let us know. We'll be here for you.\n\n[Historical Case #3 | Evidence ID: apple_00371] (Similarity: 0.29)\nCustomer Query: It cuts on but only to the apple logo and then it turns off again and idk iOS 10\nAppleSupport Reply: Have you had a chance to connect to your charger? Please let us know in DM what happens when you do that.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_033",
+    "customer_text": "Yeah I can\u2019t wipe it without entering the restrictions passcode. Have tried.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 31 15:48:00 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
+    "retrieved_evidence_ids": [
+      "apple_03892",
+      "apple_03079",
+      "apple_03720"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03892] (Similarity: 0.36)\nCustomer Query: I tried this already\nAppleSupport Reply: Let's look into that further. Send us a DM and we'll go from there.\n\n[Historical Case #2 | Evidence ID: apple_03079] (Similarity: 0.33)\nCustomer Query: Yeah and it switches back on\nAppleSupport Reply: So we can take a deeper look at this, could you join us in DM?\n\n[Historical Case #3 | Evidence ID: apple_03720] (Similarity: 0.27)\nCustomer Query: Yeah I tried it all. Was told to take it to my carrier so they can send it in.\nAppleSupport Reply: Thank you for letting us know. We'll be glad to look into this further with you. Please send us a DM with all the steps you've completed.",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_037",
+    "customer_text": "I don\u2019t like the screen shot update. When I do a screen shot I simply want it saved to my phone, not all this extra editing. \ud83d\udc4e",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 19:49:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02911",
+      "apple_00477",
+      "apple_03492"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02911] (Similarity: 0.45)\nCustomer Query: Also the front camera seems to not work either now. Here is a screen shot\nAppleSupport Reply: We'd like to keep working on this with you. DM us and we'll continue there.\n\n[Historical Case #2 | Evidence ID: apple_00477] (Similarity: 0.36)\nCustomer Query: This is self explanatory screen shot of one of example of hanging\nAppleSupport Reply: Let's see if updating the iPhone to iOS 11.1 helps. DM us if it doesn't.\n\n[Historical Case #3 | Evidence ID: apple_03492] (Similarity: 0.28)\nCustomer Query: It reset itself after a few seconds. It was long enough to notice a take the screen shot. Just odd and not like apple to miss something like that.\nAppleSupport Reply: When it reset itself, did the battery percentage match? Let us know.",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_041",
+    "customer_text": "my phone screen doesn\u2019t time out and auto lock how it\u2019s supposed to. I\u2019m pretty sure all my settings are right",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 21:09:26 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02328",
+      "apple_00927",
+      "apple_04806"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02328] (Similarity: 0.38)\nCustomer Query: dear my phone screen stays on all the time despite my 30 sec. auto-lock settings - version 11.1.2\nAppleSupport Reply: You\u2019re in the right place for help. Since noticing this, have you had a chance to restart your iPhone? This simple step can resolve some minor issues with the device.\n\n[Historical Case #2 | Evidence ID: apple_00927] (Similarity: 0.35)\nCustomer Query: Pretty sure this isn\u2019t legit \ud83e\uddd0\nAppleSupport Reply: Good eye! This article explains what to do and how to report these types of emails:\n\n[Historical Case #3 | Evidence ID: apple_04806] (Similarity: 0.24)\nCustomer Query: Pretty sure I broke my app store lol i\u2019m pretty upset i can\u2019t download or update apps #iOS11\nAppleSupport Reply: We want to be sure you can install updates. Please try loading the App Store with another network to see how things load up.",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_045",
+    "customer_text": "i.t really sucks that every time i go to type the word i.t, i.t autocorrects so there\u2019s a stupid ass period in the middle of i.t. what is going on",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 13:14:27 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_03965",
+      "apple_02271",
+      "apple_01687"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03965] (Similarity: 0.36)\nCustomer Query: , I\u2019m sick of not being able to type the word \u201cI\u201d\nAppleSupport Reply: We'd like to help out. Does this happen when you enter text or when viewing text from another iOS device? Which iOS version is installed? Tell us more in a DM.\n\n[Historical Case #2 | Evidence ID: apple_02271] (Similarity: 0.26)\nCustomer Query: what\u2019s going on with this latest update? Whenever I type the \u201cit\u201d it autocorrects to \u201cI.T\u201d unless I press the actual word it. Wtf is going on?\nAppleSupport Reply: We'd be happy to look into this with you. Can you provide us which iOS version you're using? This can be located in Settings > General > About > Version.\n\n[Historical Case #3 | Evidence ID: apple_01687] (Similarity: 0.24)\nCustomer Query: Is anyone else having a weird glitch on their iPhone ? When I type the word \u201cI.T \u201c I.T auto corrects to I . T\nAppleSupport Reply: We want to take a look with you. Could you Direct Message us and let us know what iOS version you're on?",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_049",
+    "customer_text": "In about 8 hours, I had restarted my iPad thrice because the dock keeps on disappearing. It\u2019s getting annoying.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Nov 28 14:08:28 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04025",
+      "apple_01533",
+      "apple_02510"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04025] (Similarity: 0.28)\nCustomer Query: you guys about to make me go back to Android if my keyboard keeps disappearing\nAppleSupport Reply: Thanks for reaching out. We're here to help. DM us so we can look into this further with you.\n\n[Historical Case #2 | Evidence ID: apple_01533] (Similarity: 0.27)\nCustomer Query: apps have been timing out for the last week and a half and it\u2019s getting annoying\nAppleSupport Reply: We'd love to help! Are you having trouble downloading apps, or launching apps? Are you connected to Wi-Fi?\n\n[Historical Case #3 | Evidence ID: apple_02510] (Similarity: 0.18)\nCustomer Query: My iPhone 8plus is showing issues(hanging and slowdown) while multitasking,from the past two hours, restarted 2 times. IOS11 is the worst ever!\nAppleSupport Reply: We\u2019d like to understand more about this. DM us some details of how you restarted, which exact version of iOS you're using, and which country you're in, and we'll get going.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_053",
+    "customer_text": "Hi, I\u2019m in Cyprus where they have no actual Apple Store. I have an iPad Pro 10.5 inch and it\u2019s bent, despite being in a good quality case since I bought it. What can I do? It also has a dead pixel and rotation issues. Thanks",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 14:15:00 +0000 2017)",
+    "predicted_intent": "general_feedback",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.39). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_02563",
+      "apple_04620",
+      "apple_04179"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02563] (Similarity: 0.27)\nCustomer Query: Why is the Apple Store down? \ud83d\ude0a\nAppleSupport Reply: Hello! Are you trying to access the Online Apple Store?\n\n[Historical Case #2 | Evidence ID: apple_04620] (Similarity: 0.24)\nCustomer Query: iPad Pro & iPhone 6.\nAppleSupport Reply: Have you restarted your devices since noticing this? DM us and let us know.\n\n[Historical Case #3 | Evidence ID: apple_04179] (Similarity: 0.21)\nCustomer Query: Can we get good quality charger cables? These are really sad and unexpected quality standards. what to do with this\nAppleSupport Reply: We'd like to look in to your options with you. DM us about this cable and we'll continue there.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_057",
+    "customer_text": "#iOS1112 notifications on the lock screen are buggy yet.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:06:29 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_01043",
+      "apple_01871",
+      "apple_04712"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_01043] (Similarity: 0.50)\nCustomer Query: Yes on the lock screen\nAppleSupport Reply: We're here to help. DM us so we can look into this further with you.\n\n[Historical Case #2 | Evidence ID: apple_01871] (Similarity: 0.41)\nCustomer Query: why can\u2019t I see notifications in my lock screen? Eg a text comes up as \u2018text notification\u2019 can\u2019t see who it\u2019s from and it\u2019s starting to seriously annoy me \ud83d\ude1f\nAppleSupport Reply: We want you to be able to see your notifications properly. When did this start? Which iOS version are you running? Please reply in DM.\n\n[Historical Case #3 | Evidence ID: apple_04712] (Similarity: 0.39)\nCustomer Query: It happens when I don\u2019t have notifications on the lock screen. It happened this evening for the first time. Restarting did help!\nAppleSupport Reply: Since the restart, has the issue reoccurred?",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_061",
+    "customer_text": "let my ft fail one mo time \ud83e\udd2c",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 14:30:31 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04697",
+      "apple_03156",
+      "apple_02845"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04697] (Similarity: 0.19)\nCustomer Query: Let me know time and place. I will be there.\nAppleSupport Reply: We have released an updated version of iOS 11 (11.0.2) If you are all backed up, we suggest trying the update as a solution.\n\n[Historical Case #2 | Evidence ID: apple_03156] (Similarity: 0.16)\nCustomer Query: Thanks for letting me register. #ux #fail #bug\nAppleSupport Reply: Let's take a look at this together. Were you able to get signed up for our forums after all? Is there anything below that section that you have to mark as read or that provides any further details?\n\n[Historical Case #3 | Evidence ID: apple_02845] (Similarity: 0.15)\nCustomer Query: Ft needs a leave a message update like ASAP\nAppleSupport Reply: We appreciate any feedback you can give us. Let us know about the features you'd like to see implemented or changed using our official feedback form online here:",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_065",
+    "customer_text": "how do I see much longer I have to pay on my iPhone. Not sure I want to upgrade yet but curious how much longer the term I\u2019ve been paying is. I am on the apply upgrade program. Thanks!",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 16:26:00 +0000 2017)",
+    "predicted_intent": "general_feedback",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.40). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_01762",
+      "apple_04986",
+      "apple_00320"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_01762] (Similarity: 0.41)\nCustomer Query: It was there, but no longer there.\nAppleSupport Reply: Let's go ahead and reset the SMC on the Mac and see if it boots up as expected after that. DM us the result and we'll continue there. You can see how to do the reset here:\n\n[Historical Case #2 | Evidence ID: apple_04986] (Similarity: 0.30)\nCustomer Query: Hello, I want to know when getting a new iPhone from the upgrade program, what do I give back ? Only the iPhone ?\nAppleSupport Reply: For help regarding the iPhone upgrade program, contact our Sales team here:\n\n[Historical Case #3 | Evidence ID: apple_00320] (Similarity: 0.23)\nCustomer Query: I\u2019ve tried to do the upgrade program online and can\u2019t. t-mobile as a carrier and no apple store closer then 3hours away. Help\nAppleSupport Reply: We'd like to help. Let's take this to DM and we'll explore ways to provide you assistance.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_069",
+    "customer_text": "I never use Live Photo mode and I don\u2019t intend to. Why does it sporadically keep getting turned back on in camera?",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 17:06:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.54). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_04159",
+      "apple_02187",
+      "apple_02102"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04159] (Similarity: 0.40)\nCustomer Query: Only Live Photo is turned on which for some reason also doesn\u2019t work on my phone\nAppleSupport Reply: OK, got it. Go ahead and send us over a DM when you have a moment. We'll pick things back up there.\n\n[Historical Case #2 | Evidence ID: apple_02187] (Similarity: 0.38)\nCustomer Query: Thanks for the reply. I\u2019ve done all that but once in a while Live Photo\u2019s still turns back on by itself, it seems.\nAppleSupport Reply: Thanks for letting us know. Has this always happening with your device or just start? Which iOS version is your device running?\n\n[Historical Case #3 | Evidence ID: apple_02102] (Similarity: 0.37)\nCustomer Query: is there a way to turn off live photo permanently. Constantly turning it off and yes I have the preserve live photo setting turned on. So annoying! If I want video I will do video.\nAppleSupport Reply: We want you to enjoy taking pics with your device, and we'll do all we can to help. Let us know what device and OS you're using via DM and we'll continue from there:",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_073",
+    "customer_text": "is it possible to make an appointment for someone else? My sister is locked out of her account and her iPhone is dead so she can\u2019t receive the code.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 17:17:25 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Security breach signal detected ('locked out'). Requires authenticated human verification.",
+    "retrieved_evidence_ids": [
+      "apple_02875",
+      "apple_01880",
+      "apple_00802"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02875] (Similarity: 0.37)\nCustomer Query: How do i make an appointment at the Genius Bar?\nAppleSupport Reply: Hi. We are here to help. What country are you located in? Let us know in DM, and we'll take it from there.\n\n[Historical Case #2 | Evidence ID: apple_01880] (Similarity: 0.33)\nCustomer Query: Anyone else\u2019s iPhone been nothing but dead since iOS 11 update? Sort it out\nAppleSupport Reply: Thanks for reaching out! It\u2019s important that your iPhone is reliable so you can stay in touch with friends and family. Let\u2019s get to the bottom of the issues you\u2019re having. To start, which version of iOS 11 are you running on the iPhone currently?\n\n[Historical Case #3 | Evidence ID: apple_00802] (Similarity: 0.18)\nCustomer Query: would I ever receive a txt saying my apple account had been locked and a link to a website to verify it? Seems odd!\nAppleSupport Reply: We typically don't send texts. You can learn more about suspicious messages here:",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_077",
+    "customer_text": "no sound in the right earphone and yes.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 18:52:34 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04454",
+      "apple_01501",
+      "apple_04875"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04454] (Similarity: 0.50)\nCustomer Query: Yes. These are one's I made on my own.\nAppleSupport Reply: Let's restart the device. Sometimes it can help with issues like this. Does the issue remain?\n\n[Historical Case #2 | Evidence ID: apple_01501] (Similarity: 0.50)\nCustomer Query: Yes, I'm with them now\nAppleSupport Reply: Let's take this to DM, and we can talk more details once there. Thank you in advance!\n\n[Historical Case #3 | Evidence ID: apple_04875] (Similarity: 0.35)\nCustomer Query: Yes. A few times already.\nAppleSupport Reply: Please tell us which version of iOS you have installed on the iPod. You can check this in Settings > General > About > Version.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_081",
+    "customer_text": "Ok guys, I\u2019m going to let you have this one because it\u2019s been 3 updates and you haven\u2019t fixed the issue, but I want it on the record that it\u2019s stupid that \u201ccontrol\u201d center doesn\u2019t allow you to control your phone and you have to be all extra and open settings.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:52:01 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00053",
+      "apple_00731",
+      "apple_00468"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00053] (Similarity: 0.31)\nCustomer Query: And why is my music NEVER in my control center?!\nAppleSupport Reply: We're here to help out! Which device is this on and which version of iOS is currently installed?\n\n[Historical Case #2 | Evidence ID: apple_00731] (Similarity: 0.29)\nCustomer Query: Apple music in control center doesn\u2019t show the song name and i can\u2019t change the song or anything.\nAppleSupport Reply: Got it, thanks. Let us know the exact iOS installed in a DM and we'll continue.\n\n[Historical Case #3 | Evidence ID: apple_00468] (Similarity: 0.26)\nCustomer Query: I\u2019m turning it off from the control center I believe\nAppleSupport Reply: OK! Take a look here for the way Wi-Fi functions in the Control Center of iOS 11:",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_085",
+    "customer_text": "Nothin. It\u2019ll say they\u2019re set but nothing will happen. I\u2019ve done everything I can think of n still no luck ????",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 22:30:58 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_01404",
+      "apple_04990",
+      "apple_03273"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_01404] (Similarity: 0.30)\nCustomer Query: why can\u2019t I\ufe0f say I\ufe0f when I\ufe0f text.\nAppleSupport Reply: We've received your DM as well. We're on our way there to begin assisting. Please await our response.\n\n[Historical Case #2 | Evidence ID: apple_04990] (Similarity: 0.21)\nCustomer Query: I\u2019ll take a look at it but I\u2019ve never changed any of my settings, they\u2019ve been set correctly since before the update.\nAppleSupport Reply: Got it. After reviewing our support article and the issue persist, please DM us and we'll continue to review this for you.\n\n[Historical Case #3 | Evidence ID: apple_03273] (Similarity: 0.18)\nCustomer Query: Thank you! I'll get on it.\nAppleSupport Reply: Sounds like a plan! Don't hesitate to reach back out if you have questions in the future. We're here for you.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_089",
+    "customer_text": "A recent upgrade to iOS 11.1.2 has made my phone so so slow . I hate it. It\u2019s so laggy now",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 21:26:00 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (software bug) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02548",
+      "apple_04822",
+      "apple_03400"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02548] (Similarity: 0.40)\nCustomer Query: Hi, I have an iphone 6. Should i upgrade to IOS 11 ?\nAppleSupport Reply: Thanks for reaching out. We always recommend that you upgrade to our latest version of iOS, to get the most current features and security protections. Before upgrading, be sure to make a backup so your information will be safe:\n\n[Historical Case #2 | Evidence ID: apple_04822] (Similarity: 0.30)\nCustomer Query: Ever since I updated to iOS 11 my phone has been freezing !\nAppleSupport Reply: We want to help out with your iPhone. Reach us via DM to continue.\n\n[Historical Case #3 | Evidence ID: apple_03400] (Similarity: 0.30)\nCustomer Query: the most recent one(ios 11.1.2)\nAppleSupport Reply: Thanks! We'd like to gather additional details about your iPhone. Join us in DM with your current location.",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version."
+  },
+  {
+    "example_id": "gold_093",
+    "customer_text": "FED UP! My iPhone 6+ is useless after the latest major update! Something has got to give or Samsung will have a new customer! Makes me think twice about my: 6-iPhone 6s, 2-Mac Airs, 1-Mac mini, 4-airport extremes and 5-AppleTVs.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 22:21:26 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.43). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_04506",
+      "apple_04017",
+      "apple_02646"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04506] (Similarity: 0.42)\nCustomer Query: That makes me think it\u2019s the battery\nAppleSupport Reply: What's the exact OS version number installed on your Mac? Please DM us here:\n\n[Historical Case #2 | Evidence ID: apple_04017] (Similarity: 0.21)\nCustomer Query: iPhone 6S, software 10.3.3\nAppleSupport Reply: Let's figure out what's going on. Send us a DM so we can gather some info.\n\n[Historical Case #3 | Evidence ID: apple_02646] (Similarity: 0.21)\nCustomer Query: It's a iPhone 6s and i cannot get signal anywhere.\nAppleSupport Reply: When did this first start? Which version of the iOS is currently installed?",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_097",
+    "customer_text": "I upgraded to iPhone8 from 6s, and am wondering if I could find out how many old (6s) backups I still have on iCloud. Are backups identified by device?",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 23:46:25 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
+    "retrieved_evidence_ids": [
+      "apple_03864",
+      "apple_02020",
+      "apple_01649"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03864] (Similarity: 0.24)\nCustomer Query: But I only have one device with me\nAppleSupport Reply: The next step will be to request account recovery to regain access to your account. Here is how:\n\n[Historical Case #2 | Evidence ID: apple_02020] (Similarity: 0.24)\nCustomer Query: on my iPad 2 (iOS 9.3.5), I can't backup to iCloud, iBooks doesn't show my books in iCloud. Can't see what I've purchased in AppStore, iBooks, iTunes, Music, Videos. I reset it and found no iCloud backups when there should be. Any ideas?\nAppleSupport Reply: We'd like to take a look into this with you, reach us in DM.\n\n[Historical Case #3 | Evidence ID: apple_01649] (Similarity: 0.18)\nCustomer Query: I deleted texts by mistake. iPhone backed up automatically and erased last backups. Unable to restore backup cuz older backups don't appear on iTunes to select from although I see it in my computer. No iCloud backup. Can I do anything to retrieve the texts?\nAppleSupport Reply: Hi there and thanks for reaching out. To restore deleted text messages, we would need to use a backup that was created before the messages were deleted.",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_101",
+    "customer_text": "why has the update ruined by battery life ?\ud83d\ude12\ud83d\ude12",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 13:56:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00094",
+      "apple_04741",
+      "apple_00046"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00094] (Similarity: 0.43)\nCustomer Query: I have and my battery life has become even worse\nAppleSupport Reply: Let's look into this further in DM.\n\n[Historical Case #2 | Evidence ID: apple_04741] (Similarity: 0.34)\nCustomer Query: #iPhone update is killing my battery life. Thanks\nAppleSupport Reply: We'd love to assist you. DM us using the link below for further assistance.\n\n[Historical Case #3 | Evidence ID: apple_00046] (Similarity: 0.33)\nCustomer Query: why is my battery life short? I updated to 11.1, my battery is poor. Wife didn\u2019t she likes her battery life\nAppleSupport Reply: Let\u2019s work together on this situation. To clarify, did this start after updating to iOS 11.1? Also, which device are you using?",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_105",
+    "customer_text": "Pretty discouraged that my #AppleWatch didn\u2019t award me the #ThanksgivingDayChallenge for completing a 5k. Twice.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 13:32:55 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_03383",
+      "apple_02738",
+      "apple_02420"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03383] (Similarity: 0.33)\nCustomer Query: I ran a 5K yesterday and didn\u2019t get my achievement award\nAppleSupport Reply: Hey there! Congratulations on the achievement. You will earn the award within 9 days of completing the Activity Challenge.\n\n[Historical Case #2 | Evidence ID: apple_02738] (Similarity: 0.26)\nCustomer Query: Pretty sad that for some reason I did not get my 5k achievement when I clearly completed my run. #AppleWatch #Apple #activity #TurkeyTrot #5k #AppleSupport #AppleNews #AppleEvent\nAppleSupport Reply: Congratulations on completing the 5K! Achievement badges are awarded within 9 days of completing the Activity Challenge. This article explains more:\n\n[Historical Case #3 | Evidence ID: apple_02420] (Similarity: 0.18)\nCustomer Query: Well it recorded at 3.07 but I ran a 5k :(\nAppleSupport Reply: Thank you for the screenshot and additional details. 5 kilometers is approximately 3.1 miles. Have you noticed issues with the Watch being slightly inaccurate with distances run in the past? Within a tenth of a mile or so?",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_109",
+    "customer_text": "my phone has turned itself off and when I put it on charge the logo comes on for a few seconds then goes off then back on again?",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:34:16 +0000 2017)",
+    "predicted_intent": "billing_purchase",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.49). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_01674",
+      "apple_03853",
+      "apple_03433"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_01674] (Similarity: 0.33)\nCustomer Query: my phone turned off and now all my pictures are gone?? what the fuck????\nAppleSupport Reply: We know how important those memories are, so let's work together to figure out what's going on. Do you have Optimize iPhone Storage turned on in Settings > Photos? DM us the answer and we'll get started.\n\n[Historical Case #2 | Evidence ID: apple_03853] (Similarity: 0.26)\nCustomer Query: how is it that my battery and phone have turned to complete trash in under a year????? Nothing works and my phone dies within an hour after a full nights charge \ud83d\ude30\nAppleSupport Reply: We're happy to help. Let's take a look at this further for you. Reach out to us in DM.\n\n[Historical Case #3 | Evidence ID: apple_03433] (Similarity: 0.22)\nCustomer Query: I\u2019ve noticed it at least twice in the morning just after the phone was turned on. However it happened just before I tweeted you this afternoon. I\u2019ve then turned off phone and back on but it worked ok\nAppleSupport Reply: Just to clarify for our end, you've restarted the device and since then it appears to be working properly, correct?",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_113",
+    "customer_text": "I'm here trying to ft Jordan but it keeps reconnecting\ud83d\ude2d fix it",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:28:28 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02568",
+      "apple_00724",
+      "apple_00880"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02568] (Similarity: 0.32)\nCustomer Query: now fix this \u201cI.T\u201d \ud83d\ude44\nAppleSupport Reply: We'd like to discuss this issue further with you today. Meet us in DM to continue, here's a link:\n\n[Historical Case #2 | Evidence ID: apple_00724] (Similarity: 0.32)\nCustomer Query: Can you fix this \ud83d\udc49\ud83c\udffcI\ufe0fm\nAppleSupport Reply: We'd love to help figure this out with you today. Which iOS version are you using under Settings > General > About?\n\n[Historical Case #3 | Evidence ID: apple_00880] (Similarity: 0.32)\nCustomer Query: FIX THIS NOW!!!!! I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f I\ufe0f\nAppleSupport Reply: Thanks for reaching out. DM which iPhone and specific iOS version you are using to get started.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_117",
+    "customer_text": "please do something for battery life in the next update! I just did the update to ios 11.1.2 last night and my battery has gone down 30% in 30 minutes after a full charge!",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:55:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04994",
+      "apple_03027",
+      "apple_00931"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04994] (Similarity: 0.33)\nCustomer Query: I just did the update and I can\u2019t find the AirDrop button anywhere. Where can I find it?\nAppleSupport Reply: We want you to be able to enjoy this feature. Can you confirm what model iPhone you are using?\n\n[Historical Case #2 | Evidence ID: apple_03027] (Similarity: 0.21)\nCustomer Query: IOS 11.1.2 battery draining is shitting on me. My iPhone 6S\u2019 battery literally goes from 70% to 30% in minutes, and to make it worse, it takes over 4 hours to fully charge.\nAppleSupport Reply: We want to help. DM us if this has only been happening since the most recent update and let us know which country you're in. We'll go from there.\n\n[Historical Case #3 | Evidence ID: apple_00931] (Similarity: 0.21)\nCustomer Query: 11.1 update broke my wifi it's greyed out i've been waiting on live chat for over 30 minutes..\nAppleSupport Reply: We are here to help whenever possible. DM which iPhone you are using to get started.",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_121",
+    "customer_text": "i want to update my payment method but it keeps saying the date cant be in the past when its well in the future.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:37:36 +0000 2017)",
+    "predicted_intent": "billing_purchase",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.33). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_02002",
+      "apple_00464",
+      "apple_03819"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02002] (Similarity: 0.50)\nCustomer Query: So i got a email to update my payment method, i keep trying & reset my iPhone to do this but it keeps saying try again later it cannot update. Any Suggestions \ud83e\udd37\ud83c\udffd\u200d\u2642\ufe0f\nAppleSupport Reply: We've received your DM, and will continue there. Look for a response shortly.\n\n[Historical Case #2 | Evidence ID: apple_00464] (Similarity: 0.33)\nCustomer Query: Help!! I need to update the payment method for my iPhone X pre-order. It won\u2019t let me do it online\nAppleSupport Reply: We're happy to help you with that. DM us the country you are located in so we can better assist you:\n\n[Historical Case #3 | Evidence ID: apple_03819] (Similarity: 0.23)\nCustomer Query: I\ufe0ft says that I have an update but then that it\u2019s up to date.\nAppleSupport Reply: Send us a DM, we'll join you there.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_125",
+    "customer_text": "Dear : : I dropped my iPhone (6S) in water & need a new one ... remembering that it\u2019s #Thanksgiving - what deal can you give me? ;)",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 16:37:33 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02608",
+      "apple_04925",
+      "apple_04017"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02608] (Similarity: 0.38)\nCustomer Query: How can I tell if I need a new battery for my iPhone 6S?\nAppleSupport Reply: We can assist you with this. Please feel free to DM us.\n\n[Historical Case #2 | Evidence ID: apple_04925] (Similarity: 0.25)\nCustomer Query: Yes y\u2019all need a new update I can\u2019t see my notifications thanks\nAppleSupport Reply: We'd like to help get those notifications showing as expected for you. To start, which device are you experiencing this on, and which software version is it running?\n\n[Historical Case #3 | Evidence ID: apple_04017] (Similarity: 0.25)\nCustomer Query: iPhone 6S, software 10.3.3\nAppleSupport Reply: Let's figure out what's going on. Send us a DM so we can gather some info.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_129",
+    "customer_text": "iphone 6s silent mode keeps switching ringer on and off vibrating the phone every 2 seconds. Please advice!",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 17:56:00 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_01305",
+      "apple_04017",
+      "apple_02646"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_01305] (Similarity: 0.48)\nCustomer Query: What is this I\ufe0f shit? it\u2019s keeps switching to A ?\nAppleSupport Reply: We'd like to look into this with you. Please DM us your current country and iOS version.\n\n[Historical Case #2 | Evidence ID: apple_04017] (Similarity: 0.24)\nCustomer Query: iPhone 6S, software 10.3.3\nAppleSupport Reply: Let's figure out what's going on. Send us a DM so we can gather some info.\n\n[Historical Case #3 | Evidence ID: apple_02646] (Similarity: 0.23)\nCustomer Query: It's a iPhone 6s and i cannot get signal anywhere.\nAppleSupport Reply: When did this first start? Which version of the iOS is currently installed?",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_133",
+    "customer_text": "Ever since I\u2019ve updated my phone it has been a POS I\u2019m about to get a galaxy or something",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 18:50:36 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00092",
+      "apple_01468",
+      "apple_01653"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00092] (Similarity: 0.45)\nCustomer Query: AFTER I\ufe0f updated my phone.\nAppleSupport Reply: Does that continue after restarting your iPhone? Do you have any other iOS devices or a Mac computer? Let us know in DM.\n\n[Historical Case #2 | Evidence ID: apple_01468] (Similarity: 0.31)\nCustomer Query: It seems as it\u2019s been fixed now that I\u2019ve updated to iOS 11.1.2\nAppleSupport Reply: Excellent! Let us know if you need anything further. Have a great rest of your day.\n\n[Historical Case #3 | Evidence ID: apple_01653] (Similarity: 0.31)\nCustomer Query: why am I still seeing this for the I character. I\u2019ve updated my phone to last iOS software. Fix it y\u2019all.\nAppleSupport Reply: Hi there. We can definitely look into this with you. Are you seeing this character when you're typing on your iPhone or are you seeing it in messages or social media posts?",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_137",
+    "customer_text": "Hi! Please help me \ud83d\ude4f\ud83c\udffb I can't update mi iOS \ud83d\ude14",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 19:41:28 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (software bug) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00700",
+      "apple_01184",
+      "apple_01148"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00700] (Similarity: 0.24)\nCustomer Query: Can you help me update to iOS 11.1 it says \"verifying update\" and then error every time I try to install it.\nAppleSupport Reply: Hey there. We'd be happy to help. Send us a DM so we can look into the issue with you there.\n\n[Historical Case #2 | Evidence ID: apple_01184] (Similarity: 0.23)\nCustomer Query: can you please help me\nAppleSupport Reply: We've received your DM and we can happily help. We'll follow up with you there.\n\n[Historical Case #3 | Evidence ID: apple_01148] (Similarity: 0.23)\nCustomer Query: SAMEEEE WTFFF please help us\nAppleSupport Reply: We'd like to see if we can help. DM us the device you're experiencing this on and we'll get started.",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version."
+  },
+  {
+    "example_id": "gold_141",
+    "customer_text": "Activation lock on both of my two step verification devices, is there any possible way can I get on to either phone when I've forgotten my password for my icloud email, without it take 3 weeks by going through Account Recovery - I have no phone right now",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 22:14:00 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
+    "retrieved_evidence_ids": [
+      "apple_03213",
+      "apple_01018",
+      "apple_00120"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_03213] (Similarity: 0.29)\nCustomer Query: issue with my daughters iphone,its asking for apple id and password but shes forgotten the password,icloud has locked her out of her icloud account,when she tries to reset the password it will only send an email to icloud which cant be accessed can you help please\nAppleSupport Reply: Hi there. Check out this article for information about other ways to regain access to her account: Please DM if you have any questions.\n\n[Historical Case #2 | Evidence ID: apple_01018] (Similarity: 0.25)\nCustomer Query: Do I have to do an account recovery?? Which I have to wait 24 hours for??\nAppleSupport Reply: Recovery should only be used as a last step. First, contact our Account Security team by going to\n\n[Historical Case #3 | Evidence ID: apple_00120] (Similarity: 0.22)\nCustomer Query: how long does it take usually for account recovery to get back to you? It\u2019s been about a week now.\nAppleSupport Reply: Having access to your Apple ID is important. Did you receive an email with a confirmation of your request? DM us here:",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_145",
+    "customer_text": "Please tell me why 1-800-MY-IPHONE isn't working. I keep getting a \"can't connect/disconnected\" message. I really need help.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 12:11:53 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02251",
+      "apple_00854",
+      "apple_04805"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02251] (Similarity: 0.38)\nCustomer Query: I need your help!!\nAppleSupport Reply: You've come to the right place! What's going on?\n\n[Historical Case #2 | Evidence ID: apple_00854] (Similarity: 0.28)\nCustomer Query: I\ufe0f most updated my phone, why isn\u2019t my I\ufe0f working\nAppleSupport Reply: We're here for you. Which version of iOS are you running in Settings > General > About? Is this happening in all apps?\n\n[Historical Case #3 | Evidence ID: apple_04805] (Similarity: 0.24)\nCustomer Query: i need some help yo\nAppleSupport Reply: We're glad to help! Tell us what's happening and we'll get started.",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_149",
+    "customer_text": "#ios11update I don\u2019t find camera option in notes from where I can scan documents.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 02:59:00 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.38). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_02653",
+      "apple_00386",
+      "apple_02582"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02653] (Similarity: 0.23)\nCustomer Query: Thank you for supporting me with #Notes\nAppleSupport Reply: Our pleasure! Thanks for reaching out. We love a happy ending.\n\n[Historical Case #2 | Evidence ID: apple_00386] (Similarity: 0.20)\nCustomer Query: Can you tell me how I can scan a document into notes, if I\u2019ve already taken a picture of it, i.e. I want to use the image that\u2019s already in my photo library. I can\u2019t see a way to do this. Thanks!\nAppleSupport Reply: Sure thing! We are glad to help! Could you let us know which iOS version you are running? The process has changed a little, and we want to make sure we\u2019re giving you the best direction. You can find this info at Settings > General > About.\n\n[Historical Case #3 | Evidence ID: apple_02582] (Similarity: 0.18)\nCustomer Query: Hey; 10.13.1 Just doing regular stuff: writing documents, taking notes, surfing the web... Yes I've restarted several times already...\nAppleSupport Reply: When the behavior occurs, what steps do you take to get your Mac working normally again? How long ago did you upgrade your Mac, how many times have you encountered this behavior since?",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_153",
+    "customer_text": "I signed out and back into iCloud on my devices. Toggled things to photo stream and deleted some larger video files. I so cried a little bit.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Oct 06 03:47:50 +0000 2017)",
+    "predicted_intent": "account_security",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Account security and Apple ID credentials involve confidential PII and 2FA verification requiring authenticated support.",
+    "retrieved_evidence_ids": [
+      "apple_00328",
+      "apple_02177",
+      "apple_02416"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00328] (Similarity: 0.28)\nCustomer Query: Still can\u2019t stream\nAppleSupport Reply: We're happy to help. Reach us here for more assistance:\n\n[Historical Case #2 | Evidence ID: apple_02177] (Similarity: 0.22)\nCustomer Query: My iPhone X does not have all of my most recent photos stored on iCloud. It does have both \"iCloud Photo Library\" and \"Upload to my Photo Stream\" enabled. Help! I want to see my latest photos...\nAppleSupport Reply: Hello there. Let's find your photos so you can enjoy them at a glance. In Settings > Photos is Optimize iPhone Storage checked? And is Photos on in iCloud Settings? If yes, our Photo Specialists can help you here:\n\n[Historical Case #3 | Evidence ID: apple_02416] (Similarity: 0.19)\nCustomer Query: Is IOS 10.3.3 still being signed?\nAppleSupport Reply: Most devices that can run iOS 10 will work with iOS 11. DM us if you have any other questions on how to update.",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist."
+  },
+  {
+    "example_id": "gold_157",
+    "customer_text": "Ever since upgrading to High Sierra my Mac Pro\u2019s AirPlay connection to AppleTV breaks every time the AppleTV sleeps. #appletv #macos",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 12:51:01 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.33). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_02634",
+      "apple_03731",
+      "apple_00951"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02634] (Similarity: 0.23)\nCustomer Query: So is Logic Pro X not supported by macOS High Sierra? ? Is that why the software isn\u2019t working?\nAppleSupport Reply: If you're having trouble with Logic Pro X, we recommend contacting our experts by phone that can help with this. Here's a link to get started:\n\n[Historical Case #2 | Evidence ID: apple_03731] (Similarity: 0.21)\nCustomer Query: The update to macOS High Sierra sucks. It has broken my system. Need recovery.\nAppleSupport Reply: We\u2019d like to understand more about this. Please DM us some details and which country you're in, and we\u2019ll take it from there.\n\n[Historical Case #3 | Evidence ID: apple_00951] (Similarity: 0.20)\nCustomer Query: High Sierra but it shows on multiple macs that way using Sierra and High Sierra.\nAppleSupport Reply: How many devices are in use with this iCloud account? Let's get in touch by DM so we can help from here.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  },
+  {
+    "example_id": "gold_161",
+    "customer_text": "It doesn\u2019t adjust the volume. I have to change it in sounds.",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 15:39:00 +0000 2017)",
+    "predicted_intent": "other",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (other) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_00071",
+      "apple_00039",
+      "apple_04377"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_00071] (Similarity: 0.23)\nCustomer Query: ios 11.0.3 on 6s. Cannot adjust alarm volume so waking up all in my house and neighbours despite ringer being set to minimum!\nAppleSupport Reply: We'd love to help with your alarm volume. Is the option to \"Change with Buttons\" disabled under Settings > Sounds?\n\n[Historical Case #2 | Evidence ID: apple_00039] (Similarity: 0.20)\nCustomer Query: why can\u2019t I change ringer volume with the buttons? Whose dumb idea was it to change that and how do they still have a job?\nAppleSupport Reply: Let us look into that. What device and OS version are you using?\n\n[Historical Case #3 | Evidence ID: apple_04377] (Similarity: 0.20)\nCustomer Query: new iOS update doesn\u2019t let you change volume using the buttons on the side. #fixit #apple #iOS11\nAppleSupport Reply: You should still be able to control the volume with side buttons in iOS 11. What happens when you use those buttons?",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist."
+  },
+  {
+    "example_id": "gold_165",
+    "customer_text": "So wish I hadn\u2019t updated to iOS 11, everything taking ages to load, mail only partially loading. Solution? Quickly, please!",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 03 14:26:47 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (software bug) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_02788",
+      "apple_03878",
+      "apple_03823"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_02788] (Similarity: 0.22)\nCustomer Query: Updated to iOS 11.1.2 and now i have no sound \ud83d\udc4d\ud83c\udffc #sickupdatedudes\nAppleSupport Reply: We don't want you to be without any sound on your device. We can definitely look into this further with you. Let us know if this helps:\n\n[Historical Case #2 | Evidence ID: apple_03878] (Similarity: 0.22)\nCustomer Query: I updated it to IOS 11.1.2 or whichever was the newest one\nAppleSupport Reply: Great! Next we'd like to have you take a look at the steps listed in this article under, \"If an alert says that your accessory isn't supported or certified\" and let us know in DM if the issue persists:\n\n[Historical Case #3 | Evidence ID: apple_03823] (Similarity: 0.22)\nCustomer Query: ever since I updated to iOS 11 my battery seems to run out really quickly. Any suggestions why? Please fix x\nAppleSupport Reply: We'd be happy to look into this with you. Could you please confirm for us the exact iOS version you're currently running? This will help you locate that",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version."
+  },
+  {
+    "example_id": "gold_169",
+    "customer_text": "So I update my phone yesterday and the touch screen isn\u2019t working properly, I\u2019ve restarted it numerous times and it\u2019s still not ok \u2639\ufe0f",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Oct 05 16:16:01 +0000 2017)",
+    "predicted_intent": "device_issue",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (device issue) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04358",
+      "apple_00945",
+      "apple_00854"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04358] (Similarity: 0.28)\nCustomer Query: Yes I\u2019ve restarted my phone numerous times today & I\u2019m still having issues after the update. Apps freezing (Instagram, Kik, vsco & Facebook)\nAppleSupport Reply: Got it. Have you checked for app updates within the App Store? Send us a DM, and we'll go from there.\n\n[Historical Case #2 | Evidence ID: apple_00945] (Similarity: 0.26)\nCustomer Query: It\u2019s become too slow ,apps not working properly\nAppleSupport Reply: Let's get you back to enjoying your device. What kind of Apple device are you using?\n\n[Historical Case #3 | Evidence ID: apple_00854] (Similarity: 0.25)\nCustomer Query: I\ufe0f most updated my phone, why isn\u2019t my I\ufe0f working\nAppleSupport Reply: We're here for you. Which version of iOS are you running in Settings > General > About? Is this happening in all apps?",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us."
+  },
+  {
+    "example_id": "gold_173",
+    "customer_text": "You ruined my phone because of the latest update\ud83d\ude3f\ud83d\ude4f\ud83c\udffb",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 21:15:26 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "auto_handle",
+    "escalation_reason": "Inquiry matches standard support domain (software bug) without high-risk escalation triggers.",
+    "retrieved_evidence_ids": [
+      "apple_04399",
+      "apple_00604",
+      "apple_00934"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04399] (Similarity: 0.43)\nCustomer Query: Latest update fixed it \ud83d\udc4d\ud83c\udffb\nAppleSupport Reply: We're glad to hear that's working for you now. Please reach out to us if you have questions in the future. Have a great week.\n\n[Historical Case #2 | Evidence ID: apple_00604] (Similarity: 0.34)\nCustomer Query: The latest update from yesterday\nAppleSupport Reply: DM us using the link below. We'll look into things from there.\n\n[Historical Case #3 | Evidence ID: apple_00934] (Similarity: 0.32)\nCustomer Query: what have you done to my phone with the latest update?! Please fix it. The freezing is tedious and every1 is complaining #back2the90s\nAppleSupport Reply: We're here for you. Send us a DM and we'll take a closer look at your device there.",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version."
+  },
+  {
+    "example_id": "gold_177",
+    "customer_text": "just updated to latest update now I can\u2019t access I tunes or download podcast please help",
+    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Oct 05 03:30:52 +0000 2017)",
+    "predicted_intent": "software_bug",
+    "predicted_escalation": "escalate",
+    "escalation_reason": "Low intent classification confidence (0.54). Escalate to prevent automated error.",
+    "retrieved_evidence_ids": [
+      "apple_04399",
+      "apple_00028",
+      "apple_01601"
+    ],
+    "retrieval_context": "[Historical Case #1 | Evidence ID: apple_04399] (Similarity: 0.36)\nCustomer Query: Latest update fixed it \ud83d\udc4d\ud83c\udffb\nAppleSupport Reply: We're glad to hear that's working for you now. Please reach out to us if you have questions in the future. Have a great week.\n\n[Historical Case #2 | Evidence ID: apple_00028] (Similarity: 0.33)\nCustomer Query: I\ufe0f just updated it and it\u2019s still coming up\nAppleSupport Reply: Let's dig into this further with you. DM us and we'll continue there.\n\n[Historical Case #3 | Evidence ID: apple_01601] (Similarity: 0.30)\nCustomer Query: I just updated to 11.1.2\nAppleSupport Reply: OK, great. Thanks for letting us know. Are you still seeing the same results? If so, send us a DM and let us know.",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport"
+  }
+]

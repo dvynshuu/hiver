@@ -27,6 +27,7 @@ HELD_OUT_EVAL_POOL_PATH = DATA_DIR / "held_out_eval_pool.jsonl"
 GOLDEN_EVAL_PATH = DATA_DIR / "golden_eval_set.jsonl"
 HUMAN_EVAL_RATINGS_PATH = DATA_DIR / "human_eval_ratings.json"
 BENCHMARK_RESULTS_PATH = RESULTS_DIR / "benchmark_metrics.json"
+RETRIEVAL_BENCHMARK_PATH = DATA_DIR / "retrieval_benchmark.json"
 
 # Brand Target
 TARGET_BRAND = "AppleSupport"

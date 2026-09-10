@@ -1,0 +1,11 @@
+{
+  "git_commit": "570f7c0ca29390c3c45c9ee974efc0a6872183d7",
+  "timestamp": "2026-09-10T07:14:13.717221+00:00",
+  "seed": 42,
+  "agent_model": "gemini-3.6-flash",
+  "judge_model": "gemini-3.6-flash",
+  "golden_size": 200,
+  "retrieval_size": 4650,
+  "judge_validation_size": 45,
+  "retrieval_benchmark_size": 35
+}

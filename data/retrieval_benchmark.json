@@ -1,0 +1,371 @@
+[
+  {
+    "example_id": "gold_001",
+    "query": "This is what it looks like",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_04608",
+      "apple_04599",
+      "apple_00545",
+      "apple_04751",
+      "apple_03498"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_006",
+    "query": "Does the person you send it too also have to have a iPhone to see this?I see it on my phone.",
+    "intent": "product_inquiry",
+    "relevant_pair_ids": [
+      "apple_02661",
+      "apple_01169"
+    ],
+    "notes": "Verified relevant historical cases for product_inquiry"
+  },
+  {
+    "example_id": "gold_011",
+    "query": ". WHY DOES THIS KEEP HAPPENING\ud83d\ude2d",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00440",
+      "apple_00066",
+      "apple_00714",
+      "apple_00771",
+      "apple_04241"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_016",
+    "query": "October challenge was fine. November challenge went weird after update",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00199",
+      "apple_00773"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_021",
+    "query": "My iphone 6s hs crackling sound coming on call and whn I hold phn a little away from mouth, the person cannot hear my voice",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_00797"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_026",
+    "query": "Odd that my #iphone has been acting crazy just when the #iPhoneX comes out. I haven\u2019t had any issues than all of a sudden.... #hmm \ud83d\udcf1\ud83e\udd14",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_04859"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_031",
+    "query": "this happens when my phone types the letter \u201ceye\u201d by itself annoying i\u2019m trying to talk abt myself",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00252",
+      "apple_00565",
+      "apple_00918"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_036",
+    "query": "can you tell me when when I type the letter \u201cI\u201d some damn symbols pop up like I\u2019m out here coding and doing a MySpace edit \ud83e\udd28",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_00252"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_041",
+    "query": "my phone screen doesn\u2019t time out and auto lock how it\u2019s supposed to. I\u2019m pretty sure all my settings are right",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_02328",
+      "apple_00927"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_046",
+    "query": "WHY IS MY AUTOCORRECT CORRECTING \u201cit\u201d to \u201cI.T\u201d all of a sudden\ud83d\ude21\ud83d\ude21 it\u2019s just creepy and very annoying honestly.",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_01290"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_051",
+    "query": "11.1.2 and 6s. Thanks.",
+    "intent": "general_feedback",
+    "relevant_pair_ids": [
+      "apple_04635",
+      "apple_04999",
+      "apple_03314",
+      "apple_04076",
+      "apple_04572"
+    ],
+    "notes": "Verified relevant historical cases for general_feedback"
+  },
+  {
+    "example_id": "gold_056",
+    "query": "Having loads of issues with bluetooth audio streaming since iOS11 in combination with updated apps",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_04257",
+      "apple_00631",
+      "apple_04374"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_061",
+    "query": "let my ft fail one mo time \ud83e\udd2c",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_04697"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_066",
+    "query": "bro, ever since the update my phone has been trash ihy",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_04061",
+      "apple_00334",
+      "apple_00047",
+      "apple_04325"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_071",
+    "query": "Alguien sabe pxq le pasa esto a mi nuevo iPhone X ese cuadro q?\ud83d\ude24",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_02318"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_076",
+    "query": "It\u2019s not that. It\u2019s because there\u2019s many possible inference vision to the face. Like hands on face and other objects.",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_01657"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_081",
+    "query": "Ok guys, I\u2019m going to let you have this one because it\u2019s been 3 updates and you haven\u2019t fixed the issue, but I want it on the record that it\u2019s stupid that \u201ccontrol\u201d center doesn\u2019t allow you to control your phone and you have to be all extra and open settings.",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00053",
+      "apple_00731",
+      "apple_00462",
+      "apple_01543",
+      "apple_02710"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_086",
+    "query": "My phone got stolen but i can't change my apple id password because of the 2 step verification that requires my phone! Do you have a uk based email that i can contact about this?",
+    "intent": "account_security",
+    "relevant_pair_ids": [
+      "apple_02469"
+    ],
+    "notes": "Verified relevant historical cases for account_security"
+  },
+  {
+    "example_id": "gold_091",
+    "query": "when does that thing where they erase all of my threads AND contacts without my consent. Real cute. Y'all best have my shit stored on y'all magical ass database or sumn for when I need to extract receipts for science. Got me fucked up.",
+    "intent": "general_feedback",
+    "relevant_pair_ids": [
+      "apple_01244"
+    ],
+    "notes": "Verified relevant historical cases for general_feedback"
+  },
+  {
+    "example_id": "gold_096",
+    "query": "Hey I'm having trouble with a defective iPhone. It's impossible to pick up signal with this phone. Can you please help me? Thanks!",
+    "intent": "general_feedback",
+    "relevant_pair_ids": [
+      "apple_03419"
+    ],
+    "notes": "Verified relevant historical cases for general_feedback"
+  },
+  {
+    "example_id": "gold_101",
+    "query": "why has the update ruined by battery life ?\ud83d\ude12\ud83d\ude12",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_00094",
+      "apple_04741",
+      "apple_00046",
+      "apple_00037",
+      "apple_03440"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_106",
+    "query": "2nd and 3rd notifications getting overlapped in the Notification Center.",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_03292"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_111",
+    "query": "Who\u2019s stupid idea was that? My phone randomly connects to which ever car switches on in the driveway, how do I roll back the iOS",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_03079",
+      "apple_02193"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_116",
+    "query": "Senior advisor on Monday told me I\u2019d be sent a replacement phone, so I\u2019d not be without a phone. I thought we\u2019re better than this.",
+    "intent": "other",
+    "relevant_pair_ids": [
+      "apple_00703"
+    ],
+    "notes": "Verified relevant historical cases for other"
+  },
+  {
+    "example_id": "gold_121",
+    "query": "i want to update my payment method but it keeps saying the date cant be in the past when its well in the future.",
+    "intent": "billing_purchase",
+    "relevant_pair_ids": [
+      "apple_02002",
+      "apple_00464",
+      "apple_03819",
+      "apple_02281"
+    ],
+    "notes": "Verified relevant historical cases for billing_purchase"
+  },
+  {
+    "example_id": "gold_126",
+    "query": "No error because I don\u2019t even have the screen/option to type anything. The bottom of the screen usually looks like the screenshot here, but it\u2019s missing in the group message. The messages go all the way to the bottom of the screen and I can\u2019t bring up the keyboard or anything.",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_03414"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_131",
+    "query": "Yeah I am. Not sure what I was on before it was iOS 10 of some sort.",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_03904",
+      "apple_02416",
+      "apple_03079",
+      "apple_04460",
+      "apple_02415"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_136",
+    "query": "My thanksgiving badge will show up eventually, right?",
+    "intent": "general_feedback",
+    "relevant_pair_ids": [
+      "apple_02601",
+      "apple_03338",
+      "apple_03555",
+      "apple_03020"
+    ],
+    "notes": "Verified relevant historical cases for general_feedback"
+  },
+  {
+    "example_id": "gold_141",
+    "query": "Activation lock on both of my two step verification devices, is there any possible way can I get on to either phone when I've forgotten my password for my icloud email, without it take 3 weeks by going through Account Recovery - I have no phone right now",
+    "intent": "account_security",
+    "relevant_pair_ids": [
+      "apple_03213"
+    ],
+    "notes": "Verified relevant historical cases for account_security"
+  },
+  {
+    "example_id": "gold_146",
+    "query": "Yes.. when the microphone is on I hear my own voice on the recording when it\u2019s off.. silents.",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_03950",
+      "apple_04454",
+      "apple_01501"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_151",
+    "query": "Although I didn't get any sort of an error message, I deleted additional apps to go from 1GB free to 1.5GB free and was able to install OTA",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00216"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_156",
+    "query": "Ever since i updated my phone to iOS 11 my phone has been acting fucking stupid and I\u2019m ready to square up with",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_03693",
+      "apple_02562",
+      "apple_04183",
+      "apple_00092",
+      "apple_04822"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_161",
+    "query": "It doesn\u2019t adjust the volume. I have to change it in sounds.",
+    "intent": "device_issue",
+    "relevant_pair_ids": [
+      "apple_00071",
+      "apple_00039",
+      "apple_04377",
+      "apple_00844",
+      "apple_04699"
+    ],
+    "notes": "Verified relevant historical cases for device_issue"
+  },
+  {
+    "example_id": "gold_166",
+    "query": "Mano a t\u00e1 de sacanagem, arruma esse bug da bateria aiiiiii caraio, enquanto digitei isso, a bateria caiu 2% \ud83d\ude21\ud83d\ude21\ud83d\ude21\ud83d\ude21\ud83d\ude21\ud83d\ude21",
+    "intent": "software_bug",
+    "relevant_pair_ids": [
+      "apple_00192"
+    ],
+    "notes": "Verified relevant historical cases for software_bug"
+  },
+  {
+    "example_id": "gold_171",
+    "query": "could you please make it simple like what is the first important two steps i have to do first and thank you so much",
+    "intent": "general_feedback",
+    "relevant_pair_ids": [
+      "apple_04297",
+      "apple_02389",
+      "apple_03845",
+      "apple_00612"
+    ],
+    "notes": "Verified relevant historical cases for general_feedback"
+  }
+]
