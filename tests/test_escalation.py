@@ -19,7 +19,11 @@ class TestEscalationEngine(unittest.TestCase):
             "The back of my phone is puffy and feels unusually thick",
             "Screen is lifting away from the frame with a chemical smell",
             "My charger sparked and started smoking while plugged in",
-            "The phone got burning hot on my desk and scorched the surface"
+            "The phone got burning hot on my desk and scorched the surface",
+            "my battery is swelling",
+            "the phone is getting hot",
+            "screen is lifting",
+            "battery smells weird"
         ]
         for q in queries:
             res = self.engine.decide(q)

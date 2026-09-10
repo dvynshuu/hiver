@@ -19,7 +19,9 @@ from config import (
     CLEANED_CONVERSATIONS_PATH,
     RETRIEVAL_CORPUS_JSONL_PATH,
     CORPUS_INDEX_PATH,
+    HELD_OUT_POOL_PATH,
     HELD_OUT_EVAL_POOL_PATH,
+    SPLIT_MANIFEST_PATH,
     GOLDEN_EVAL_PATH,
     TARGET_BRAND,
     MAX_HISTORY_PAIRS,
@@ -344,24 +346,39 @@ def format_leakage_report(leakage_result: Dict[str, Any]) -> str:
     return "\n".join(lines)
 
 def load_or_build_conversations() -> List[Dict[str, Any]]:
-    """Ensure cleaned conversations and splits exist, loading retrieval corpus."""
-    if (
-        CLEANED_CONVERSATIONS_PATH.exists()
-        and RETRIEVAL_CORPUS_JSONL_PATH.exists()
-        and CORPUS_INDEX_PATH.exists()
-        and HELD_OUT_EVAL_POOL_PATH.exists()
-    ):
+    """
+    Load retrieval corpus from disk.
+    If the index pickle is missing, rebuild it strictly from retrieval_corpus.jsonl.
+    Never dynamically regenerate the dataset split.
+    """
+    if RETRIEVAL_CORPUS_JSONL_PATH.exists():
         logger.info(f"Loading retrieval corpus from {RETRIEVAL_CORPUS_JSONL_PATH}...")
         corpus = []
         with open(RETRIEVAL_CORPUS_JSONL_PATH, "r", encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     corpus.append(json.loads(line))
+
+        # Check if index is missing; if so, rebuild strictly from existing corpus without re-splitting
+        if not CORPUS_INDEX_PATH.exists():
+            logger.info(f"Index {CORPUS_INDEX_PATH} missing. Rebuilding index strictly from {RETRIEVAL_CORPUS_JSONL_PATH} (zero re-splitting)...")
+            from src.retrieval import HistoricalRetrievalEngine
+            engine = HistoricalRetrievalEngine(corpus=corpus)
+            engine.save(CORPUS_INDEX_PATH)
+
         return corpus
 
-    logger.info("Initializing dataset cleaning and conversation-level train/eval splitting...")
-    retrieval_corpus, _ = build_conversation_splits(eval_pool_size=200, seed=SEED)
-    return retrieval_corpus
+    # Only if retrieval_corpus does not exist at all, build canonical split with manifest
+    logger.info("Retrieval corpus not found. Building canonical splits and manifest...")
+    from scripts.build_dataset_split import build_split
+    build_split()
+    
+    corpus = []
+    with open(RETRIEVAL_CORPUS_JSONL_PATH, "r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                corpus.append(json.loads(line))
+    return corpus
 
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):

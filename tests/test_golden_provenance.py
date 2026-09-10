@@ -49,16 +49,30 @@ class TestGoldenDatasetProvenance(unittest.TestCase):
             )
 
     def test_inter_annotator_agreement_file(self):
-        """Verify dual-annotator agreement file exists and exhibits substantial agreement."""
+        """Verify provenance and annotator agreement documentation honestly declares single-annotator setup with zero simulated data."""
         agreement_path = PROJECT_ROOT / "data" / "golden" / "annotator_agreement.json"
         self.assertTrue(agreement_path.exists(), "annotator_agreement.json does not exist.")
         
         with open(agreement_path, "r", encoding="utf-8") as f:
             agreement = json.load(f)
             
-        self.assertGreaterEqual(agreement.get("sample_size", 0), 30)
-        self.assertGreater(agreement["intent_classification"]["cohens_kappa"], 0.80)
-        self.assertGreater(agreement["escalation_decision"]["cohens_kappa"], 0.80)
+        self.assertEqual(agreement.get("primary_annotator"), "human_single_annotator")
+        self.assertFalse(agreement.get("simulated_data", True), "Must NOT contain simulated data!")
+        self.assertIn("independently reviewed by one human annotator", agreement.get("statement", ""))
+
+    def test_auditable_machine_suggestion_fields(self):
+        """Verify auditable machine suggestion vs final human intent fields in manual annotations."""
+        manual_path = PROJECT_ROOT / "data" / "golden" / "manual_annotations.jsonl"
+        self.assertTrue(manual_path.exists(), "manual_annotations.jsonl must exist.")
+        
+        with open(manual_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    item = json.loads(line)
+                    self.assertIn("machine_suggestion", item)
+                    self.assertIn("final_intent", item)
+                    self.assertIn("label_changed", item)
+                    self.assertEqual(item.get("annotator_type"), "human_single_annotator")
 
 if __name__ == "__main__":
     unittest.main()

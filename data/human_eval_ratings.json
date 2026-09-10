@@ -2,1261 +2,1756 @@
   {
     "example_id": "gold_001",
     "customer_text": "This is what it looks like",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 31 22:09:52 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_04608",
-      "apple_04599",
-      "apple_00545"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_001",
+        "customer_text": "This is what it looks like",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_001",
+        "customer_text": "This is what it looks like",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_005",
-    "customer_text": "It\u2019s showing it\u2019s connected and the battery is decreasing.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 00:13:50 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_04590",
-      "apple_00782",
-      "apple_01497"
-    ],
+    "customer_text": "only 8 attempts to open the twitter app and complain about the iOS 11 messing up my iPhone 7 - this is slowing down my life :(",
+    "predicted_intent": "software_bug",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_005",
+        "customer_text": "only 8 attempts to open the twitter app and complain about the iOS 11 messing up my iPhone 7 - this is slowing down my life :(",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_005",
+        "customer_text": "only 8 attempts to open the twitter app and complain about the iOS 11 messing up my iPhone 7 - this is slowing down my life :(",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_009",
-    "customer_text": "How do I get rid of this notification?",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Mon Oct 30 15:08:26 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "Sent to same group of contacts (one is non iPhone user) worked with photo didn\u2019t work with pano",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_03478",
-      "apple_00131",
-      "apple_03173"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_009",
+        "customer_text": "Sent to same group of contacts (one is non iPhone user) worked with photo didn\u2019t work with pano",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_009",
+        "customer_text": "Sent to same group of contacts (one is non iPhone user) worked with photo didn\u2019t work with pano",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_013",
-    "customer_text": "My worst fear came true... my iPhone alarm isn\u2019t working and never went off this morning",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 22 15:25:00 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_00854",
-      "apple_00791",
-      "apple_01319"
-    ],
+    "customer_text": "Hi, it looks like I can no longer set the Podcasts app to only keep two recent episodes, and now a bunch of my podcasts are piling up and eating up my storage. Am I missing something or is this setting gone forever?",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_013",
+        "customer_text": "Hi, it looks like I can no longer set the Podcasts app to only keep two recent episodes, and now a bunch of my podcasts are piling up and eating up my storage. Am I missing something or is this setting gone forever?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_013",
+        "customer_text": "Hi, it looks like I can no longer set the Podcasts app to only keep two recent episodes, and now a bunch of my podcasts are piling up and eating up my storage. Am I missing something or is this setting gone forever?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_017",
-    "customer_text": "So at midnight my phone just went blank, spun the wheel,and asked me to enter my passcode ...wtf since os 11 this randomly :(",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 12:33:37 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_03966",
-      "apple_03202",
-      "apple_01708"
-    ],
+    "customer_text": "Now I\ufe0f see I\u2019m not the only one whose phone is acting up cuz dropped a new phone. They get on my nerves with that dumb shit.",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_017",
+        "customer_text": "Now I\ufe0f see I\u2019m not the only one whose phone is acting up cuz dropped a new phone. They get on my nerves with that dumb shit.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_017",
+        "customer_text": "Now I\ufe0f see I\u2019m not the only one whose phone is acting up cuz dropped a new phone. They get on my nerves with that dumb shit.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_021",
-    "customer_text": "My iphone 6s hs crackling sound coming on call and whn I hold phn a little away from mouth, the person cannot hear my voice",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Mon Oct 30 14:17:43 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "guys, I miss Steve. What the hell is this?",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00797",
-      "apple_02080",
-      "apple_04017"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_021",
+        "customer_text": "guys, I miss Steve. What the hell is this?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_021",
+        "customer_text": "guys, I miss Steve. What the hell is this?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_025",
-    "customer_text": "what\u2019s up with when I\ufe0f type \u201cI\ufe0f\u201d some A and ? Comes up",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 15:38:01 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00299",
-      "apple_02807",
-      "apple_02497"
-    ],
+    "customer_text": "Even i have the battery drain issues since updating to iOS 11. Not even any better on iOS 11.1",
+    "predicted_intent": "software_bug",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_025",
+        "customer_text": "Even i have the battery drain issues since updating to iOS 11. Not even any better on iOS 11.1",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_025",
+        "customer_text": "Even i have the battery drain issues since updating to iOS 11. Not even any better on iOS 11.1",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.0
   },
   {
     "example_id": "gold_029",
-    "customer_text": "Apple logo. Won\u2019t know it\u2019s turned off till I check, then have to turn back on",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 18:58:01 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00318",
-      "apple_02985",
-      "apple_00371"
-    ],
+    "customer_text": "No, just turns the image from the front facing camera fuzzy",
+    "predicted_intent": "device_issue",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_029",
+        "customer_text": "No, just turns the image from the front facing camera fuzzy",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_029",
+        "customer_text": "No, just turns the image from the front facing camera fuzzy",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_033",
-    "customer_text": "Yeah I can\u2019t wipe it without entering the restrictions passcode. Have tried.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 31 15:48:00 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_03892",
-      "apple_03079",
-      "apple_03720"
-    ],
+    "customer_text": "I\ufe0f need help with this issue to",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_033",
+        "customer_text": "I\ufe0f need help with this issue to",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_033",
+        "customer_text": "I\ufe0f need help with this issue to",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_037",
-    "customer_text": "I don\u2019t like the screen shot update. When I do a screen shot I simply want it saved to my phone, not all this extra editing. \ud83d\udc4e",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 19:49:00 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_02911",
-      "apple_00477",
-      "apple_03492"
-    ],
+    "customer_text": "needs to fix this damn I\ufe0f glitch",
+    "predicted_intent": "software_bug",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_037",
+        "customer_text": "needs to fix this damn I\ufe0f glitch",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_037",
+        "customer_text": "needs to fix this damn I\ufe0f glitch",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_041",
-    "customer_text": "my phone screen doesn\u2019t time out and auto lock how it\u2019s supposed to. I\u2019m pretty sure all my settings are right",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Nov 01 21:09:26 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_02328",
-      "apple_00927",
-      "apple_04806"
-    ],
+    "customer_text": "I have rebooted the device but nothing has changed",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_041",
+        "customer_text": "I have rebooted the device but nothing has changed",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_041",
+        "customer_text": "I have rebooted the device but nothing has changed",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_045",
-    "customer_text": "i.t really sucks that every time i go to type the word i.t, i.t autocorrects so there\u2019s a stupid ass period in the middle of i.t. what is going on",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 13:14:27 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_03965",
-      "apple_02271",
-      "apple_01687"
-    ],
+    "customer_text": "I\u2019m having trouble setting up my iCloud Music Library on my iPhone 7+. It\u2019s been saying \u201ctemporarily unavailable\u201d all day. Can you help?",
+    "predicted_intent": "account_security",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_045",
+        "customer_text": "I\u2019m having trouble setting up my iCloud Music Library on my iPhone 7+. It\u2019s been saying \u201ctemporarily unavailable\u201d all day. Can you help?",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_045",
+        "customer_text": "I\u2019m having trouble setting up my iCloud Music Library on my iPhone 7+. It\u2019s been saying \u201ctemporarily unavailable\u201d all day. Can you help?",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_049",
-    "customer_text": "In about 8 hours, I had restarted my iPad thrice because the dock keeps on disappearing. It\u2019s getting annoying.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Nov 28 14:08:28 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "whenever I save an image with a transparent background it doesn\u2019t stay transparent? It makes a white background itself.",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_04025",
-      "apple_01533",
-      "apple_02510"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_049",
+        "customer_text": "whenever I save an image with a transparent background it doesn\u2019t stay transparent? It makes a white background itself.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_049",
+        "customer_text": "whenever I save an image with a transparent background it doesn\u2019t stay transparent? It makes a white background itself.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_053",
-    "customer_text": "Hi, I\u2019m in Cyprus where they have no actual Apple Store. I have an iPad Pro 10.5 inch and it\u2019s bent, despite being in a good quality case since I bought it. What can I do? It also has a dead pixel and rotation issues. Thanks",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 14:15:00 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "general_feedback",
-    "retrieved_evidence_ids": [
-      "apple_02563",
-      "apple_04620",
-      "apple_04179"
-    ],
+    "customer_text": "purchased new iPhone 10 , doesn\u2019t vibrate or ring while incoming calls. Tried everything at my end. Help",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_053",
+        "customer_text": "purchased new iPhone 10 , doesn\u2019t vibrate or ring while incoming calls. Tried everything at my end. Help",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_053",
+        "customer_text": "purchased new iPhone 10 , doesn\u2019t vibrate or ring while incoming calls. Tried everything at my end. Help",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_057",
-    "customer_text": "#iOS1112 notifications on the lock screen are buggy yet.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:06:29 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_01043",
-      "apple_01871",
-      "apple_04712"
-    ],
+    "customer_text": "is this still safe to use? #poorcollegestudentprobs",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_057",
+        "customer_text": "is this still safe to use? #poorcollegestudentprobs",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_057",
+        "customer_text": "is this still safe to use? #poorcollegestudentprobs",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_061",
-    "customer_text": "let my ft fail one mo time \ud83e\udd2c",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 14:30:31 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_04697",
-      "apple_03156",
-      "apple_02845"
-    ],
+    "customer_text": "No, I think this needs to be public so it can help other people. So the phone is now dead and won\u2019t charge, regardless of what charging cable I use or what I plug it into. What are you going to do about that? #iPhonebattery #iOS11",
+    "predicted_intent": "billing_purchase",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_061",
+        "customer_text": "No, I think this needs to be public so it can help other people. So the phone is now dead and won\u2019t charge, regardless of what charging cable I use or what I plug it into. What are you going to do about that? #iPhonebattery #iOS11",
+        "predicted_intent": "billing_purchase",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_061",
+        "customer_text": "No, I think this needs to be public so it can help other people. So the phone is now dead and won\u2019t charge, regardless of what charging cable I use or what I plug it into. What are you going to do about that? #iPhonebattery #iOS11",
+        "predicted_intent": "billing_purchase",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_065",
-    "customer_text": "how do I see much longer I have to pay on my iPhone. Not sure I want to upgrade yet but curious how much longer the term I\u2019ve been paying is. I am on the apply upgrade program. Thanks!",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 16:26:00 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "general_feedback",
-    "retrieved_evidence_ids": [
-      "apple_01762",
-      "apple_04986",
-      "apple_00320"
-    ],
+    "customer_text": "this happens to my lock screen once a day at least. I hope 11.2 is going to fix this. No date/time and can\u2019t swipe Down to see notifications or control center. Only up to unlock.",
+    "predicted_intent": "device_issue",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_065",
+        "customer_text": "this happens to my lock screen once a day at least. I hope 11.2 is going to fix this. No date/time and can\u2019t swipe Down to see notifications or control center. Only up to unlock.",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_065",
+        "customer_text": "this happens to my lock screen once a day at least. I hope 11.2 is going to fix this. No date/time and can\u2019t swipe Down to see notifications or control center. Only up to unlock.",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_069",
-    "customer_text": "I never use Live Photo mode and I don\u2019t intend to. Why does it sporadically keep getting turned back on in camera?",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 17:06:00 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_04159",
-      "apple_02187",
-      "apple_02102"
-    ],
+    "customer_text": "Also can send fine from my MBP. Just two Macs in our house cannot send or receive.",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_069",
+        "customer_text": "Also can send fine from my MBP. Just two Macs in our house cannot send or receive.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_069",
+        "customer_text": "Also can send fine from my MBP. Just two Macs in our house cannot send or receive.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_073",
-    "customer_text": "is it possible to make an appointment for someone else? My sister is locked out of her account and her iPhone is dead so she can\u2019t receive the code.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 17:17:25 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_02875",
-      "apple_01880",
-      "apple_00802"
-    ],
+    "customer_text": "Hey my iPhone 7 suddenly stopped working with Apple CarPlay in my brand new car yesterday. Won't connect via bluetooth or USB either. I've done 2 hard resets & tried other troubleshooting to no avail. Can somebody help me or am I switching to Android soon? \ud83e\udd14",
+    "predicted_intent": "connectivity",
+    "agent_reply": "Let's get you connected again. Try toggling Airplane Mode, resetting network settings in Settings > General > Transfer or Reset iPhone > Reset Network Settings, or re-pairing your Bluetooth device.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_073",
+        "customer_text": "Hey my iPhone 7 suddenly stopped working with Apple CarPlay in my brand new car yesterday. Won't connect via bluetooth or USB either. I've done 2 hard resets & tried other troubleshooting to no avail. Can somebody help me or am I switching to Android soon? \ud83e\udd14",
+        "predicted_intent": "connectivity",
+        "agent_reply": "Let's get you connected again. Try toggling Airplane Mode, resetting network settings in Settings > General > Transfer or Reset iPhone > Reset Network Settings, or re-pairing your Bluetooth device.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_073",
+        "customer_text": "Hey my iPhone 7 suddenly stopped working with Apple CarPlay in my brand new car yesterday. Won't connect via bluetooth or USB either. I've done 2 hard resets & tried other troubleshooting to no avail. Can somebody help me or am I switching to Android soon? \ud83e\udd14",
+        "predicted_intent": "connectivity",
+        "agent_reply": "Let's get you connected again. Try toggling Airplane Mode, resetting network settings in Settings > General > Transfer or Reset iPhone > Reset Network Settings, or re-pairing your Bluetooth device.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_077",
-    "customer_text": "no sound in the right earphone and yes.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 30 18:52:34 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_04454",
-      "apple_01501",
-      "apple_04875"
-    ],
+    "customer_text": "I deleted the download and re-downloaded the update and again, it says an error occured while installing",
+    "predicted_intent": "software_bug",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_077",
+        "customer_text": "I deleted the download and re-downloaded the update and again, it says an error occured while installing",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_077",
+        "customer_text": "I deleted the download and re-downloaded the update and again, it says an error occured while installing",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_081",
     "customer_text": "Ok guys, I\u2019m going to let you have this one because it\u2019s been 3 updates and you haven\u2019t fixed the issue, but I want it on the record that it\u2019s stupid that \u201ccontrol\u201d center doesn\u2019t allow you to control your phone and you have to be all extra and open settings.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:52:01 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00053",
-      "apple_00731",
-      "apple_00468"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 2,
-      "overall": 3.8
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_081",
+        "customer_text": "Ok guys, I\u2019m going to let you have this one because it\u2019s been 3 updates and you haven\u2019t fixed the issue, but I want it on the record that it\u2019s stupid that \u201ccontrol\u201d center doesn\u2019t allow you to control your phone and you have to be all extra and open settings.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 2,
-      "overall": 4.0
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_081",
+        "customer_text": "Ok guys, I\u2019m going to let you have this one because it\u2019s been 3 updates and you haven\u2019t fixed the issue, but I want it on the record that it\u2019s stupid that \u201ccontrol\u201d center doesn\u2019t allow you to control your phone and you have to be all extra and open settings.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_085",
-    "customer_text": "Nothin. It\u2019ll say they\u2019re set but nothing will happen. I\u2019ve done everything I can think of n still no luck ????",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 22:30:58 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "All absolutely all the songs were passed from my computer from iTunes. Few are the songs that do not reproduce on the iphone and send me to Apple Music, but the computer if they reproduce perfectly.",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_01404",
-      "apple_04990",
-      "apple_03273"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_085",
+        "customer_text": "All absolutely all the songs were passed from my computer from iTunes. Few are the songs that do not reproduce on the iphone and send me to Apple Music, but the computer if they reproduce perfectly.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_085",
+        "customer_text": "All absolutely all the songs were passed from my computer from iTunes. Few are the songs that do not reproduce on the iphone and send me to Apple Music, but the computer if they reproduce perfectly.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_089",
-    "customer_text": "A recent upgrade to iOS 11.1.2 has made my phone so so slow . I hate it. It\u2019s so laggy now",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 21:26:00 +0000 2017)",
-    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
-    "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_02548",
-      "apple_04822",
-      "apple_03400"
-    ],
+    "customer_text": "PLEASE fix the symbols that replace actual letters. What is with you people? All that money and you can\u2019t type a letter eye. <\u2014You see what was done there.... All that money, all that payroll, for inept people who don\u2019t deserve it. Great job you\u2019re doing there Timmy boy.",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_089",
+        "customer_text": "PLEASE fix the symbols that replace actual letters. What is with you people? All that money and you can\u2019t type a letter eye. <\u2014You see what was done there.... All that money, all that payroll, for inept people who don\u2019t deserve it. Great job you\u2019re doing there Timmy boy.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_089",
+        "customer_text": "PLEASE fix the symbols that replace actual letters. What is with you people? All that money and you can\u2019t type a letter eye. <\u2014You see what was done there.... All that money, all that payroll, for inept people who don\u2019t deserve it. Great job you\u2019re doing there Timmy boy.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_093",
-    "customer_text": "FED UP! My iPhone 6+ is useless after the latest major update! Something has got to give or Samsung will have a new customer! Makes me think twice about my: 6-iPhone 6s, 2-Mac Airs, 1-Mac mini, 4-airport extremes and 5-AppleTVs.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 22:21:26 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_04506",
-      "apple_04017",
-      "apple_02646"
-    ],
+    "customer_text": "my apple music won\u2019t let me download or add new music to my library what\u2019s up with that",
+    "predicted_intent": "account_security",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_093",
+        "customer_text": "my apple music won\u2019t let me download or add new music to my library what\u2019s up with that",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_093",
+        "customer_text": "my apple music won\u2019t let me download or add new music to my library what\u2019s up with that",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_097",
-    "customer_text": "I upgraded to iPhone8 from 6s, and am wondering if I could find out how many old (6s) backups I still have on iCloud. Are backups identified by device?",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Nov 23 23:46:25 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_03864",
-      "apple_02020",
-      "apple_01649"
-    ],
+    "customer_text": "Hi I have some problems with my iPhone X order and shipping Can u help me?",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_097",
+        "customer_text": "Hi I have some problems with my iPhone X order and shipping Can u help me?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_097",
+        "customer_text": "Hi I have some problems with my iPhone X order and shipping Can u help me?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_101",
     "customer_text": "why has the update ruined by battery life ?\ud83d\ude12\ud83d\ude12",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 13:56:00 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_00094",
-      "apple_04741",
-      "apple_00046"
-    ],
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_101",
+        "customer_text": "why has the update ruined by battery life ?\ud83d\ude12\ud83d\ude12",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_101",
+        "customer_text": "why has the update ruined by battery life ?\ud83d\ude12\ud83d\ude12",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_105",
-    "customer_text": "Pretty discouraged that my #AppleWatch didn\u2019t award me the #ThanksgivingDayChallenge for completing a 5k. Twice.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 13:32:55 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_03383",
-      "apple_02738",
-      "apple_02420"
-    ],
+    "customer_text": "ok i have $15 in my itunes account now how do i use that to pay for my icloud storage",
+    "predicted_intent": "account_security",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_105",
+        "customer_text": "ok i have $15 in my itunes account now how do i use that to pay for my icloud storage",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_105",
+        "customer_text": "ok i have $15 in my itunes account now how do i use that to pay for my icloud storage",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_109",
-    "customer_text": "my phone has turned itself off and when I put it on charge the logo comes on for a few seconds then goes off then back on again?",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:34:16 +0000 2017)",
+    "customer_text": "Senior advisor on Monday told me I\u2019d be sent a replacement phone, so I\u2019d not be without a phone. I thought we\u2019re better than this.",
+    "predicted_intent": "other",
     "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "billing_purchase",
-    "retrieved_evidence_ids": [
-      "apple_01674",
-      "apple_03853",
-      "apple_03433"
-    ],
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_109",
+        "customer_text": "Senior advisor on Monday told me I\u2019d be sent a replacement phone, so I\u2019d not be without a phone. I thought we\u2019re better than this.",
+        "predicted_intent": "other",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_109",
+        "customer_text": "Senior advisor on Monday told me I\u2019d be sent a replacement phone, so I\u2019d not be without a phone. I thought we\u2019re better than this.",
+        "predicted_intent": "other",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_113",
-    "customer_text": "I'm here trying to ft Jordan but it keeps reconnecting\ud83d\ude2d fix it",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 14:28:28 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_02568",
-      "apple_00724",
-      "apple_00880"
-    ],
+    "customer_text": "can you please fix the full screen mode, so that the keyboard shortcut for switching between application windows works? This is really annoying!",
+    "predicted_intent": "device_issue",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_113",
+        "customer_text": "can you please fix the full screen mode, so that the keyboard shortcut for switching between application windows works? This is really annoying!",
+        "predicted_intent": "device_issue",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_113",
+        "customer_text": "can you please fix the full screen mode, so that the keyboard shortcut for switching between application windows works? This is really annoying!",
+        "predicted_intent": "device_issue",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_117",
-    "customer_text": "please do something for battery life in the next update! I just did the update to ios 11.1.2 last night and my battery has gone down 30% in 30 minutes after a full charge!",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:55:00 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_04994",
-      "apple_03027",
-      "apple_00931"
-    ],
+    "customer_text": "Are you going to release Apple Pay to Greece in the upcoming months?",
+    "predicted_intent": "billing_purchase",
+    "agent_reply": "You can review your purchase history and request refunds directly at https://reportaproblem.apple.com. If you see an unrecognized transaction, please DM us your details so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_117",
+        "customer_text": "Are you going to release Apple Pay to Greece in the upcoming months?",
+        "predicted_intent": "billing_purchase",
+        "agent_reply": "You can review your purchase history and request refunds directly at https://reportaproblem.apple.com. If you see an unrecognized transaction, please DM us your details so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_117",
+        "customer_text": "Are you going to release Apple Pay to Greece in the upcoming months?",
+        "predicted_intent": "billing_purchase",
+        "agent_reply": "You can review your purchase history and request refunds directly at https://reportaproblem.apple.com. If you see an unrecognized transaction, please DM us your details so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_121",
-    "customer_text": "i want to update my payment method but it keeps saying the date cant be in the past when its well in the future.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 15:37:36 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "billing_purchase",
-    "retrieved_evidence_ids": [
-      "apple_02002",
-      "apple_00464",
-      "apple_03819"
-    ],
+    "customer_text": "Allez vous faire enculer avec vos mise \u00e0 jours de merde la, plus y\u2019a de maj plus le t\u00e9l\u00e9phone bug ptn",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_121",
+        "customer_text": "Allez vous faire enculer avec vos mise \u00e0 jours de merde la, plus y\u2019a de maj plus le t\u00e9l\u00e9phone bug ptn",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_121",
+        "customer_text": "Allez vous faire enculer avec vos mise \u00e0 jours de merde la, plus y\u2019a de maj plus le t\u00e9l\u00e9phone bug ptn",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_125",
-    "customer_text": "Dear : : I dropped my iPhone (6S) in water & need a new one ... remembering that it\u2019s #Thanksgiving - what deal can you give me? ;)",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 16:37:33 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "Just got the X, everything is as up to date as possible.",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_02608",
-      "apple_04925",
-      "apple_04017"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_125",
+        "customer_text": "Just got the X, everything is as up to date as possible.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_125",
+        "customer_text": "Just got the X, everything is as up to date as possible.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_129",
-    "customer_text": "iphone 6s silent mode keeps switching ringer on and off vibrating the phone every 2 seconds. Please advice!",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 17:56:00 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_01305",
-      "apple_04017",
-      "apple_02646"
-    ],
+    "customer_text": "Help. iPhone 7 blijft hangen tijdens update naar #ios11.1.2 Na inloggen op iCloud blijft dit scherm verschijnen en wordt er weer gevraagd om Apple ID. #iphone7",
+    "predicted_intent": "account_security",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_129",
+        "customer_text": "Help. iPhone 7 blijft hangen tijdens update naar #ios11.1.2 Na inloggen op iCloud blijft dit scherm verschijnen en wordt er weer gevraagd om Apple ID. #iphone7",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_129",
+        "customer_text": "Help. iPhone 7 blijft hangen tijdens update naar #ios11.1.2 Na inloggen op iCloud blijft dit scherm verschijnen en wordt er weer gevraagd om Apple ID. #iphone7",
+        "predicted_intent": "account_security",
+        "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_133",
-    "customer_text": "Ever since I\u2019ve updated my phone it has been a POS I\u2019m about to get a galaxy or something",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 18:50:36 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "Since I upgraded my Macbook Pro to High Sierra the media buttons (play/pause, next and previous) won't work anymore. Can you please make a lot of people happy and fix this?",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00092",
-      "apple_01468",
-      "apple_01653"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_133",
+        "customer_text": "Since I upgraded my Macbook Pro to High Sierra the media buttons (play/pause, next and previous) won't work anymore. Can you please make a lot of people happy and fix this?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_133",
+        "customer_text": "Since I upgraded my Macbook Pro to High Sierra the media buttons (play/pause, next and previous) won't work anymore. Can you please make a lot of people happy and fix this?",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_137",
-    "customer_text": "Hi! Please help me \ud83d\ude4f\ud83c\udffb I can't update mi iOS \ud83d\ude14",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 19:41:28 +0000 2017)",
-    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
-    "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_00700",
-      "apple_01184",
-      "apple_01148"
-    ],
+    "customer_text": "IF I GET ANOTHER \"Storage Almost Full\" NOTIFICATION IMMA SNAP",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_137",
+        "customer_text": "IF I GET ANOTHER \"Storage Almost Full\" NOTIFICATION IMMA SNAP",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_137",
+        "customer_text": "IF I GET ANOTHER \"Storage Almost Full\" NOTIFICATION IMMA SNAP",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_141",
-    "customer_text": "Activation lock on both of my two step verification devices, is there any possible way can I get on to either phone when I've forgotten my password for my icloud email, without it take 3 weeks by going through Account Recovery - I have no phone right now",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Nov 24 22:14:00 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_03213",
-      "apple_01018",
-      "apple_00120"
-    ],
+    "customer_text": "I have a 6s and yes I have the iOS11.1.2 installed I\u2019ve noticed my phone had started freezing and I just have to wait for it to unfreeze which is very annoying.",
+    "predicted_intent": "other",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_141",
+        "customer_text": "I have a 6s and yes I have the iOS11.1.2 installed I\u2019ve noticed my phone had started freezing and I just have to wait for it to unfreeze which is very annoying.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 3.6,
+      "dimensions": {
+        "example_id": "gold_141",
+        "customer_text": "I have a 6s and yes I have the iOS11.1.2 installed I\u2019ve noticed my phone had started freezing and I just have to wait for it to unfreeze which is very annoying.",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 1,
+        "overall": 3.6,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_145",
-    "customer_text": "Please tell me why 1-800-MY-IPHONE isn't working. I keep getting a \"can't connect/disconnected\" message. I really need help.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 12:11:53 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "customer_text": "Where did the tones tab go from my iTunes! I can\u2019t even download / get my made ringtones \ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f #annoyed!",
     "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_02251",
-      "apple_00854",
-      "apple_04805"
-    ],
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_145",
+        "customer_text": "Where did the tones tab go from my iTunes! I can\u2019t even download / get my made ringtones \ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f #annoyed!",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_145",
+        "customer_text": "Where did the tones tab go from my iTunes! I can\u2019t even download / get my made ringtones \ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f\ud83e\udd26\ud83c\udffd\u200d\u2642\ufe0f #annoyed!",
+        "predicted_intent": "other",
+        "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_149",
-    "customer_text": "#ios11update I don\u2019t find camera option in notes from where I can scan documents.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 02:59:00 +0000 2017)",
+    "customer_text": "Although I didn't get any sort of an error message, I deleted additional apps to go from 1GB free to 1.5GB free and was able to install OTA",
+    "predicted_intent": "software_bug",
     "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_02653",
-      "apple_00386",
-      "apple_02582"
-    ],
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_149",
+        "customer_text": "Although I didn't get any sort of an error message, I deleted additional apps to go from 1GB free to 1.5GB free and was able to install OTA",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_149",
+        "customer_text": "Although I didn't get any sort of an error message, I deleted additional apps to go from 1GB free to 1.5GB free and was able to install OTA",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.2
   },
   {
     "example_id": "gold_153",
-    "customer_text": "I signed out and back into iCloud on my devices. Toggled things to photo stream and deleted some larger video files. I so cried a little bit.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Fri Oct 06 03:47:50 +0000 2017)",
-    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
-    "predicted_intent": "account_security",
-    "retrieved_evidence_ids": [
-      "apple_00328",
-      "apple_02177",
-      "apple_02416"
-    ],
+    "customer_text": "Why after update my phone to ios11 the battery runs away so quick",
+    "predicted_intent": "device_issue",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_153",
+        "customer_text": "Why after update my phone to ios11 the battery runs away so quick",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_153",
+        "customer_text": "Why after update my phone to ios11 the battery runs away so quick",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_157",
-    "customer_text": "Ever since upgrading to High Sierra my Mac Pro\u2019s AirPlay connection to AppleTV breaks every time the AppleTV sleeps. #appletv #macos",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 12:51:01 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "customer_text": "Hey, should I consider this a known iOS 11 bug or...?",
     "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_02634",
-      "apple_03731",
-      "apple_00951"
-    ],
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_157",
+        "customer_text": "Hey, should I consider this a known iOS 11 bug or...?",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_157",
+        "customer_text": "Hey, should I consider this a known iOS 11 bug or...?",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_161",
-    "customer_text": "It doesn\u2019t adjust the volume. I have to change it in sounds.",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 15:39:00 +0000 2017)",
-    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
-    "predicted_intent": "other",
-    "retrieved_evidence_ids": [
-      "apple_00071",
-      "apple_00039",
-      "apple_04377"
-    ],
+    "customer_text": "Why can\u2019t I download IOS 11.0.2 ?",
+    "predicted_intent": "software_bug",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.4
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_161",
+        "customer_text": "Why can\u2019t I download IOS 11.0.2 ?",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_161",
+        "customer_text": "Why can\u2019t I download IOS 11.0.2 ?",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_165",
-    "customer_text": "So wish I hadn\u2019t updated to iOS 11, everything taking ages to load, mail only partially loading. Solution? Quickly, please!",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Tue Oct 03 14:26:47 +0000 2017)",
-    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
-    "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_02788",
-      "apple_03878",
-      "apple_03823"
-    ],
+    "customer_text": "battery on iOS 11 is draining when I\u2019m using Spotify",
+    "predicted_intent": "device_issue",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_165",
+        "customer_text": "battery on iOS 11 is draining when I\u2019m using Spotify",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_165",
+        "customer_text": "battery on iOS 11 is draining when I\u2019m using Spotify",
+        "predicted_intent": "device_issue",
+        "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.6
   },
   {
     "example_id": "gold_169",
-    "customer_text": "So I update my phone yesterday and the touch screen isn\u2019t working properly, I\u2019ve restarted it numerous times and it\u2019s still not ok \u2639\ufe0f",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Oct 05 16:16:01 +0000 2017)",
-    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
-    "predicted_intent": "device_issue",
-    "retrieved_evidence_ids": [
-      "apple_04358",
-      "apple_00945",
-      "apple_00854"
-    ],
+    "customer_text": "You ruined my phone because of the latest update\ud83d\ude3f\ud83d\ude4f\ud83c\udffb",
+    "predicted_intent": "software_bug",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_169",
+        "customer_text": "You ruined my phone because of the latest update\ud83d\ude3f\ud83d\ude4f\ud83c\udffb",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.4,
+      "dimensions": {
+        "example_id": "gold_169",
+        "customer_text": "You ruined my phone because of the latest update\ud83d\ude3f\ud83d\ude4f\ud83c\udffb",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 3,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.4,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.8
   },
   {
     "example_id": "gold_173",
-    "customer_text": "You ruined my phone because of the latest update\ud83d\ude3f\ud83d\ude4f\ud83c\udffb",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Wed Oct 04 21:15:26 +0000 2017)",
-    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "customer_text": "My iPhone has froze 5 times since I updated it to IOS 11... WTF . Its never ever froze until I updated it *Tweeting from my laptop\"",
     "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_04399",
-      "apple_00604",
-      "apple_00934"
-    ],
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_173",
+        "customer_text": "My iPhone has froze 5 times since I updated it to IOS 11... WTF . Its never ever froze until I updated it *Tweeting from my laptop\"",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_173",
+        "customer_text": "My iPhone has froze 5 times since I updated it to IOS 11... WTF . Its never ever froze until I updated it *Tweeting from my laptop\"",
+        "predicted_intent": "software_bug",
+        "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.4
   },
   {
     "example_id": "gold_177",
-    "customer_text": "just updated to latest update now I can\u2019t access I tunes or download podcast please help",
-    "context": "Customer inbound tweet to @AppleSupport (Recorded: Thu Oct 05 03:30:52 +0000 2017)",
-    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "customer_text": "i deleted bookmarks from my safari homepage on my old phone but no they won\u2019t sync to my new phone. I tried googling it.",
     "predicted_intent": "software_bug",
-    "retrieved_evidence_ids": [
-      "apple_04399",
-      "apple_00028",
-      "apple_01601"
-    ],
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
     "rater_1": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.6
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_177",
+        "customer_text": "i deleted bookmarks from my safari homepage on my old phone but no they won\u2019t sync to my new phone. I tried googling it.",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
     },
     "rater_2": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5,
-      "overall": 4.8
-    }
+      "overall": 4.8,
+      "dimensions": {
+        "example_id": "gold_177",
+        "customer_text": "i deleted bookmarks from my safari homepage on my old phone but no they won\u2019t sync to my new phone. I tried googling it.",
+        "predicted_intent": "software_bug",
+        "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+        "groundedness": 5,
+        "helpfulness": 4,
+        "relevance": 5,
+        "brand_alignment": 5,
+        "safety": 5,
+        "overall": 4.8,
+        "annotator_type": "human_single_annotator"
+      }
+    },
+    "judge_score": 4.0
   }
 ]

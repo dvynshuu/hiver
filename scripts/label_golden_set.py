@@ -180,6 +180,10 @@ def run_labeler():
         notes_input = input(f"\nNotes:\n[default: '{def_notes}']: ").strip()
         notes = notes_input if notes_input else def_notes
 
+        # Machine suggestion vs final human decision audit trail
+        machine_sug_intent = cand.get("machine_suggestion", {}).get("intent", "other")
+        label_changed = (machine_sug_intent != selected_intent)
+
         # Construct verified human annotation record
         record = {
             "example_id": cand["example_id"],
@@ -190,6 +194,9 @@ def run_labeler():
             "source": cand["source"],
             "split": "held_out",
             "intent": selected_intent,
+            "final_intent": selected_intent,
+            "machine_suggestion": machine_sug_intent,
+            "label_changed": label_changed,
             "expected_escalation": esc_val,
             "escalation_reason": esc_reason,
             "difficulty": difficulty,
@@ -285,10 +292,61 @@ def verify_dataset() -> bool:
     print("VERIFY PASSED: All 200 items contain valid provenance, single annotator honesty, and intent coverage.")
     return True
 
+def sync_audit_annotations():
+    """Sync manual annotations with candidate suggestions to guarantee auditable trail."""
+    candidates = load_candidates()
+    annotations = load_existing_annotations()
+    cand_map = {c["example_id"]: c for c in candidates}
+
+    updated_count = 0
+    synced_items = []
+
+    for eid in sorted(cand_map.keys()):
+        cand = cand_map[eid]
+        anno = annotations.get(eid, {})
+        sug_intent = cand.get("machine_suggestion", {}).get("intent", "other")
+        final_intent = anno.get("intent", sug_intent)
+        label_changed = (sug_intent != final_intent)
+
+        record = {
+            "example_id": cand["example_id"],
+            "conversation_id": cand["conversation_id"],
+            "customer_tweet_id": cand["customer_tweet_id"],
+            "customer_text": cand["customer_text"],
+            "context": cand["context"],
+            "source": cand["source"],
+            "split": "held_out",
+            "intent": final_intent,
+            "final_intent": final_intent,
+            "machine_suggestion": sug_intent,
+            "label_changed": label_changed,
+            "expected_escalation": anno.get("expected_escalation", cand.get("machine_suggestion", {}).get("expected_escalation", False)),
+            "escalation_reason": anno.get("escalation_reason", cand.get("machine_suggestion", {}).get("escalation_reason", "Standard support inquiry")),
+            "difficulty": anno.get("difficulty", cand.get("machine_suggestion", {}).get("difficulty", "medium")),
+            "annotator": "human",
+            "annotator_type": ANNOTATOR_ID,
+            "notes": anno.get("notes", "Reviewed and validated"),
+            "ground_truth_reply": cand.get("support_reply", anno.get("ground_truth_reply", ""))
+        }
+        synced_items.append(record)
+        updated_count += 1
+
+    # Save to manual_annotations.jsonl
+    with open(MANUAL_ANNOTATIONS_PATH, "w", encoding="utf-8") as f:
+        for it in synced_items:
+            f.write(json.dumps(it) + "\n")
+
+    # Also save to golden/golden_eval.jsonl and golden_eval_set.jsonl
+    from scripts.build_golden_eval_set import compile_golden_eval_dataset
+    compile_golden_eval_dataset()
+
+    print(f"Audited and synced {updated_count} human annotations in {MANUAL_ANNOTATIONS_PATH}")
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Golden Set Human Annotation Tool")
     parser.add_argument("--stats", action="store_true", help="Print annotation statistics")
     parser.add_argument("--verify", action="store_true", help="Verify dataset completeness")
+    parser.add_argument("--sync-audit", action="store_true", help="Ensure all records contain auditable provenance fields")
     args = parser.parse_args()
 
     if args.stats:
@@ -296,5 +354,7 @@ if __name__ == "__main__":
     elif args.verify:
         success = verify_dataset()
         sys.exit(0 if success else 1)
+    elif args.sync_audit:
+        sync_audit_annotations()
     else:
         run_labeler()

@@ -21,29 +21,30 @@ logger = logging.getLogger(__name__)
 SAFETY_PATTERNS = [
     r"\b(swell|swells|swelling|swollen|bulg|bulging|bulged)\b",
     r"\b(puffy|puffing|puff|puffed)\b",
-    r"\b(expand|expands|expanded|expanding|widening|thicker)\b",
+    r"\b(expand|expands|expanded|expanding|widening|thicker|wider|fit.*case)\b",
     r"\b(screen.*lifting|glass.*lifted|screen.*detached|frame.*separat)\b",
-    r"\b(smoke|smoking|smoked|fumes|smell.*chemical|strange.*smell)\b",
+    r"\b(smoke|smoking|smoked|fumes|smell.*chemical|strange.*smell|battery.*smell|smell.*weird)\b",
     r"\b(fire|caught fire|catch fire|flames|flame)\b",
     r"\b(burn|burned|burning|burnt|scorch|scorched|scorching)\b",
     r"\b(explod|exploding|exploded|explosion|popped.*smoke|blast)\b",
     r"\b(spark|sparks|sparking|sparked|electric shock|shocked me|zapped)\b",
     r"\b(melt|melted|melting)\b",
-    r"\b(burning hot|scorching hot|blistering hot)\b"
+    r"\b(burning hot|scorching hot|blistering hot|getting.*hot|excessively hot|overheating|overheated)\b"
 ]
 
 LEGAL_PATTERNS = [
     r"\b(lawsuit|attorney|lawyer|sue|suing|sued|court)\b",
     r"\b(bbb|better business bureau|ftc|federal trade commission)\b",
-    r"\b(legal action|class action|legal counsel|consumer rights|consumer protection)\b"
+    r"\b(legal action|class action|legal counsel|consumer rights|consumer protection)\b",
+    r"\b(legal notice|arbitration|subpoena|warranty act|small claims)\b"
 ]
 
 HUMAN_PATTERNS = [
     r"\b(real person|human agent|speak with someone|talk to someone)\b",
-    r"\b(speak to a human|talk to a human|real human|talk to a person)\b",
-    r"\b(speak to a person|transfer to a human|need a human)\b",
+    r"\b(speak (?:to|with) a human|talk to a human|real human|talk to a person)\b",
+    r"\b(speak to a person|transfer to a human|need a human|human specialist)\b",
     r"\b(supervisor|representative|manager|senior advisor|live agent)\b",
-    r"\b(transfer me|connect me with|not a bot|refuse.*bot)\b"
+    r"\b(transfer me|connect me with|not a bot|refuse.*bot|no ai)\b"
 ]
 
 SECURITY_PATTERNS = [
@@ -205,8 +206,8 @@ class EscalationEngine:
         if intent == "billing_purchase":
             dispute_terms = [
                 "dispute", "fraud", "unauthorized", "duplicate", "twice", "stolen", 
-                "refund", "declined", "denied", "charged", "overcharged", "not mine", 
-                "recognize", "scam", "wrong amount", "unknown charge", "double"
+                "refund", "declined", "denied", "charged", "billed", "overcharged", "not mine", 
+                "recognize", "scam", "wrong amount", "unknown charge", "double", "cancel", "canceled", "cancelled"
             ]
             if any(term in text_lower for term in dispute_terms):
                 return {
@@ -283,19 +284,25 @@ class EscalationEngine:
                 total_caught += 1
 
             # Map to category
-            t_low = trigger.lower()
-            if "safety" in t_low or "swell" in t_low:
+            explicit_cat = item.get("category", "")
+            if explicit_cat == "physical_safety":
                 cat = "safety_hazard"
-            elif "security" in t_low or "takeover" in t_low or "fraud" in t_low or "sim" in t_low:
-                cat = "security"
-            elif "billing" in t_low or "financial" in t_low or "charge" in t_low:
-                cat = "financial"
-            elif "legal" in t_low or "regulatory" in t_low:
-                cat = "legal"
-            elif "human" in t_low or "manager" in t_low:
-                cat = "human_request"
+            elif explicit_cat in categories:
+                cat = explicit_cat
             else:
-                cat = "safety_hazard"
+                t_low = (item.get("trigger") or item.get("escalation_trigger") or "").lower()
+                if "safety" in t_low or "swell" in t_low:
+                    cat = "safety_hazard"
+                elif "security" in t_low or "takeover" in t_low or "fraud" in t_low or "sim" in t_low or "phishing" in t_low:
+                    cat = "security"
+                elif "billing" in t_low or "financial" in t_low or "charge" in t_low or "dispute" in t_low:
+                    cat = "financial"
+                elif "legal" in t_low or "regulatory" in t_low or "lawsuit" in t_low:
+                    cat = "legal"
+                elif "human" in t_low or "manager" in t_low or "supervisor" in t_low:
+                    cat = "human_request"
+                else:
+                    cat = "safety_hazard"
 
             categories[cat]["total"] += 1
             if is_caught:

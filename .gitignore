@@ -45,3 +45,6 @@ data/retrieval_corpus.pkl
 .idea/
 *.swp
 *.swo
+
+# Scratch files
+scratch/

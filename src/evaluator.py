@@ -29,12 +29,14 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from config import (
+    DATA_DIR,
     INTENT_NAMES,
     GOLDEN_EVAL_PATH,
     BENCHMARK_RESULTS_PATH,
     RETRIEVAL_CORPUS_JSONL_PATH,
     HUMAN_EVAL_RATINGS_PATH,
     RESULTS_DIR,
+    TARGET_BRAND,
     SEED,
     AGENT_MODEL_NAME,
     JUDGE_MODEL_NAME
@@ -399,6 +401,9 @@ class BenchmarkEvaluator:
 
         false_esc_rate = fp / total_actual_autohandle if total_actual_autohandle else 0.0
         unsafe_autohandle_rate = fn / total_actual_escalate if total_actual_escalate else 0.0
+        automation_coverage = (tn + fn) / total if total else 0.0
+        safe_automation_rate = tn / (tn + fn) if (tn + fn) else 0.0
+        escalation_recall = rec
 
         # Critical hazard analysis
         critical_items = [it for it in self.eval_data if it.get("escalation_trigger") in ["safety_hazard", "critical"] or it.get("source") == "adversarial"]
@@ -411,8 +416,12 @@ class BenchmarkEvaluator:
 
         crit_miss_rate = (critical_missed / len(critical_items)) if critical_items else 0.0
 
-        # Adversarial suite breakdown
-        adv_items = [it for it in self.eval_data if it.get("source") == "adversarial"]
+        # Adversarial suite breakdown (uses expanded 50-case suite if available)
+        adv_path = DATA_DIR / "adversarial_cases.jsonl"
+        if adv_path.exists():
+            adv_items = [json.loads(line) for line in open(adv_path, encoding="utf-8") if line.strip()]
+        else:
+            adv_items = [it for it in self.eval_data if it.get("source") == "adversarial"]
         adv_results = self.escalation_engine.evaluate_adversarial_suite(adv_items) if adv_items else {}
 
         # Bootstrap 95% Confidence Intervals
@@ -438,8 +447,11 @@ class BenchmarkEvaluator:
             "accuracy": round(float(acc), 4),
             "precision": round(float(prec), 4),
             "recall": round(float(rec), 4),
+            "escalation_recall": round(float(escalation_recall), 4),
             "recall_ci_95": rec_ci,
             "f1": round(float(f1), 4),
+            "automation_coverage": round(float(automation_coverage), 4),
+            "safe_automation_rate": round(float(safe_automation_rate), 4),
             "true_positives": tp,
             "false_positives": fp,
             "false_negatives": fn,
@@ -639,13 +651,18 @@ class BenchmarkEvaluator:
                 json.dump(full_benchmark, f, indent=2)
             logger.info(f"Verified benchmark metrics exported to {BENCHMARK_RESULTS_PATH}")
 
-            # 2. Save auditable end-to-end evaluation records
+            # 2. Save auditable end-to-end evaluation records (detailed_results.jsonl)
             with open(E2E_RECORDS_PATH, "w", encoding="utf-8") as f:
                 for rec in e2e_records:
                     f.write(json.dumps(rec) + "\n")
-            logger.info(f"Auditable E2E records exported to {E2E_RECORDS_PATH}")
+            
+            detailed_path = RESULTS_DIR / "detailed_results.jsonl"
+            with open(detailed_path, "w", encoding="utf-8") as f:
+                for rec in e2e_records:
+                    f.write(json.dumps(rec) + "\n")
+            logger.info(f"Auditable E2E records exported to {E2E_RECORDS_PATH} and {detailed_path}")
 
-            # 3. Save benchmark metadata (Section 24)
+            # 3. Save benchmark metadata (Phase 19 & Phase 24)
             git_commit = "unknown"
             try:
                 git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL).decode("utf-8").strip()
@@ -653,15 +670,14 @@ class BenchmarkEvaluator:
                 pass
 
             metadata = {
-                "git_commit": git_commit,
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
                 "seed": SEED,
-                "agent_model": AGENT_MODEL_NAME,
-                "judge_model": JUDGE_MODEL_NAME,
+                "brand": TARGET_BRAND,
                 "golden_size": len(self.eval_data),
-                "retrieval_size": len(self.retrieval_engine.corpus) if self.retrieval_engine else 0,
                 "judge_validation_size": judge_validation.get("sample_size", 0),
-                "retrieval_benchmark_size": retrieval_metrics.get("labeled_benchmark", {}).get("benchmark_size", 35)
+                "retrieval_queries": retrieval_metrics.get("labeled_benchmark", {}).get("benchmark_size", 35),
+                "model": "offline_deterministic_agent" if self.offline else AGENT_MODEL_NAME,
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "git_commit": git_commit
             }
             with open(METADATA_PATH, "w", encoding="utf-8") as f:
                 json.dump(metadata, f, indent=2)

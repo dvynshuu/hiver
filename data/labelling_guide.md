@@ -59,8 +59,9 @@ All other routine troubleshooting (reboots, network resets, setting adjustments,
 
 ## 5. Human Validation for LLM-as-Judge
 
-To assess judge reliability:
-- 50 items were rated independently by two human raters (`rater_1`, `rater_2`) across the 5 dimensions on a 1–5 Likert scale.
-- Scores are stored in `data/human_eval_ratings.json`.
-- Inter-annotator agreement is computed via **Pearson correlation ($r$)**, **Spearman rank correlation ($\rho$)**, **Mean Absolute Error (MAE)**, **agreement within $\pm 1$ point**, and **Cohen's Kappa ($\kappa$)**.
-- Both human-to-human agreement and human-to-judge agreement are reported transparently in the evaluation pipeline.
+To assess judge reliability on actual agent-generated replies:
+- 45 agent-generated replies across held-out golden cases were evaluated on the 5 dimensions on a 1–5 integer scale.
+- Scores are stored in `data/judge/human_ratings.csv` and `data/judge/human_ratings.json`.
+- Provenance is explicitly single human engineer (`human_single_annotator`), avoiding fabricated second raters.
+- Judge calibration is evaluated via **Mean Absolute Error (MAE)**, **exact agreement rate**, **agreement within $\pm 1$ point**, **Spearman rank correlation ($\rho$)**, and **Quadratic Weighted Kappa ($\kappa$)**.
+- Full results are reported transparently in `results/benchmark_metrics.json` and `REPORT.md`.

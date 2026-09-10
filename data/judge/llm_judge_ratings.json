@@ -1,0 +1,542 @@
+[
+  {
+    "example_id": "gold_001",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_005",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_009",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_013",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_017",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_021",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_025",
+    "overall_score": 4.0,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_029",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_033",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 5,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_037",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_041",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_045",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 4,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_049",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_053",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_057",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_061",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 5,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_065",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_069",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_073",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 4,
+      "relevance": 5,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_077",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_081",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_085",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_089",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 5,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_093",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 4,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_097",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 5,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_101",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_105",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 4,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_109",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_113",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 5,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_117",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_121",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_125",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_129",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 4,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_133",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_137",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_141",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_145",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 5,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_149",
+    "overall_score": 4.2,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_153",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_157",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_161",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_165",
+    "overall_score": 4.6,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 4,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_169",
+    "overall_score": 4.8,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 5,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_173",
+    "overall_score": 4.4,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 5,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_177",
+    "overall_score": 4.0,
+    "dimension_scores": {
+      "groundedness": 5,
+      "helpfulness": 3,
+      "relevance": 3,
+      "brand_alignment": 4,
+      "safety": 5
+    },
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  }
+]
