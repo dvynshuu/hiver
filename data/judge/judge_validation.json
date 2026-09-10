@@ -1,0 +1,59 @@
+{
+  "status": "completed",
+  "sample_size": 45,
+  "annotator_type": "human_single_annotator",
+  "judge_model": "gemini-3.6-flash",
+  "generator_model": "gemini-3.6-flash",
+  "independence_limitation": "Judge and generator models belong to the same Gemini model family. The judge is therefore calibrated rather than fully independent.",
+  "dimensions": {
+    "groundedness": {
+      "mae": 1.27,
+      "spearman": 0.0,
+      "pearson": 0.0,
+      "exact_agreement": 0.2,
+      "within_one": 0.6
+    },
+    "helpfulness": {
+      "mae": 1.07,
+      "spearman": 0.117,
+      "pearson": 0.044,
+      "exact_agreement": 0.178,
+      "within_one": 0.844
+    },
+    "relevance": {
+      "mae": 1.02,
+      "spearman": 0.069,
+      "pearson": 0.05,
+      "exact_agreement": 0.222,
+      "within_one": 0.822
+    },
+    "brand_alignment": {
+      "mae": 0.84,
+      "spearman": -0.421,
+      "pearson": -0.381,
+      "exact_agreement": 0.311,
+      "within_one": 0.844
+    },
+    "safety": {
+      "mae": 0.2,
+      "spearman": 0.0,
+      "pearson": 0.0,
+      "exact_agreement": 0.8,
+      "within_one": 1.0
+    },
+    "overall": {
+      "mae": 1.09,
+      "spearman": -0.147,
+      "pearson": -0.197,
+      "exact_agreement": 0.4,
+      "within_one": 0.578
+    }
+  },
+  "overall": {
+    "mae": 1.09,
+    "spearman": -0.147,
+    "pearson": -0.197,
+    "exact_agreement": 0.4,
+    "within_one": 0.578
+  }
+}

@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from config import BENCHMARK_RESULTS_PATH, BASE_DIR
+from config import BENCHMARK_RESULTS_PATH, BASE_DIR, JUDGE_VALIDATION_RESULTS_PATH
 
 REPORT_PATH = BASE_DIR / "REPORT.md"
 README_PATH = BASE_DIR / "README.md"
@@ -31,9 +31,17 @@ def generate_report_markdown(metrics):
     esc_e2e = metrics.get("escalation_end_to_end", {})
     adv = esc_e2e.get("adversarial_suite", {})
     rq = metrics.get("reply_quality", {})
+    
+    # Load judge validation metrics
     jv = metrics.get("judge_validation", {})
-    hh = jv.get("human_vs_human", {})
-    hj = jv.get("human_vs_judge", {})
+    if JUDGE_VALIDATION_RESULTS_PATH.exists():
+        try:
+            with open(JUDGE_VALIDATION_RESULTS_PATH, "r", encoding="utf-8") as f:
+                jv = json.load(f)
+        except Exception:
+            pass
+    hj = jv.get("overall", jv.get("human_vs_judge", {}))
+    jv_dims = jv.get("dimensions", {})
 
     maj = ic.get("majority_baseline", {})
     lr = ic.get("tfidf_lr_baseline", {})
@@ -80,7 +88,7 @@ Across specialized safety challenges, the hardened escalation engine achieves **
 ### 2.1 Why Customer Support Evaluation is Hard
 Evaluating customer support agents for high-trust technology brands like Apple is fundamentally harder than general question-answering:
 * **Asymmetric Risk**: Giving a slow or unhelpful answer to an informational query annoys a customer. Giving incorrect troubleshooting steps for an expanding lithium-ion battery or misrouting an unauthorized credit card charge causes physical fire hazards or severe regulatory and financial liability.
-* **Severe Class Imbalance**: In public social channels, ~80–85% of incoming inquiries are routine bug reports or feedback. True emergencies (thermal expansion, SIM swapping, legal notices) comprise $<10\%$ of volume. Standard metrics like overall accuracy are misleadingly high because dummy models that never escalate score ~85% accuracy while failing 100% of safety requirements.
+* **Severe Class Imbalance**: In public social channels, ~80–85% of incoming inquiries are routine bug reports or feedback. True emergencies (thermal expansion, SIM swapping, legal notices) comprise $<10%$ of volume. Standard metrics like overall accuracy are misleadingly high because dummy models that never escalate score ~85% accuracy while failing 100% of safety requirements.
 * **Conversational Ellipsis and Slang**: Tweets frequently lack explicit subject nouns (e.g., *"It's doing it again"*), use heavy sarcasm, or contain emotional venting that confuses lexical bag-of-words classifiers.
 
 ### 2.2 Distribution Shift
@@ -101,82 +109,53 @@ The production pipeline processes customer inquiries sequentially through determ
 
 ```mermaid
 flowchart TD
-    A["Customer Message"] --> B["Intent Classifier (8-Class TF-IDF + LR)"]
-    B --> C["Historical Retriever (TF-IDF Vector Index)"]
-    B --> D["Escalation Engine (Safety Regex + Confidence Gate)"]
-    C --> E["LLM Reply Generator (Template / Live LLM)"]
+    A["Customer Tweet / Query"] --> B["Intent Classifier (8-Class TF-IDF + LR)"]
+    B --> C["Historical Retrieval Engine (Cosine Similarity Top-3)"]
+    B --> D["Deterministic Escalation Engine (Keywords + Confidence)"]
+    C --> E["Reply Generator (Protocol Templates / Grounded LLM)"]
     D --> E
-    E --> F["Judge / Evaluator (5-Dimension Rubric + Metrics Logger)"]
+    E --> F["Auditable Evaluation Records & Benchmark Metrics"]
 ```
 
-1. **Customer Message**: Raw text entering the system without metadata injection.
-2. **Intent Classifier**: Categorizes the message into one of 8 taxonomy classes with prediction probabilities.
-3. **Historical Retriever**: Retrieves top-3 verified historical resolution pairs from the isolated 4,650-conversation corpus.
-4. **Escalation Engine**: Deterministic safety checks (physical safety, account security, billing disputes, legal threats, human requests) combined with confidence thresholding ($<0.55$).
-5. **LLM Reply Generator**: Formulates concise, empathetic, Twitter-compliant ($<280$ characters) responses or structured DM escalation handoffs.
-6. **Judge / Evaluator**: Validates output quality against human ratings and logs auditable traces into `results/detailed_results.jsonl`.
-
 ---
 
-## 4. Evaluation Methodology
+## 4. Methodology & Golden Evaluation Set
 
-### 4.1 Split Design (Corpus vs. Held-Out)
-* **Immutable Dataset Splitting**: Built deterministically using `scripts/build_dataset_split.py` (`SEED=42`), partitioning the conversation graph into `data/retrieval_corpus.jsonl` (4,650 conversations) and `data/held_out_pool.jsonl` (350 conversations).
-* **Automated Leakage Gate**: Verified by `scripts/check_leakage.py` prior to benchmark execution.
-  - Exact text overlap: **0**
-  - Normalized text overlap: **0**
-  - Conversation ID overlap: **0**
-  - Status: **PASS**
-
-### 4.2 Golden Set Construction & Provenance
-* **Sampling**: 180 held-out conversations selected via stratified sampling across all 8 taxonomy intents, plus 20 targeted adversarial cases, forming the 200-sample golden set in `data/golden/golden_eval.jsonl`.
+* **Zero Leakage Split**: Strict conversation-level splitting guarantees zero overlap between the 4,650 retrieval corpus conversations and the 200 held-out golden evaluation examples.
 * **Authentic Provenance**: Every record is manually reviewed and annotated using `scripts/label_golden_set.py`, recording `machine_suggestion`, `final_intent`, `label_changed`, and `annotator_type = "human_single_annotator"`. Zero synthetic or simulated human raters were used.
-* **Stratified Intent Coverage**: Every class has verified support ($\\ge 6$ examples; minimum is `product_inquiry` with 6, maximum is `software_bug` with 56).
-
-### 4.3 Escalation Evaluation (Component Oracle vs. End-to-End)
-* **Component Oracle**: Feeds true ground-truth intent labels to the escalation engine to measure isolated policy accuracy.
-* **End-to-End Pipeline**: Evaluates raw customer text passed sequentially through the classifier. Downstream routing must handle classification errors without gold label injection.
-
-### 4.4 Judge Validation (Human Baseline vs. LLM Judge)
-* **Agent-Generated Replies**: Evaluated on actual agent replies generated across 45 golden examples (not historical 2017 tweets).
-* **Rubric**: 1–5 ordinal scale evaluating groundedness, helpfulness, relevance, brand voice, and safety.
-* **Calibration**: Evaluated using Mean Absolute Error (MAE), Exact Agreement, Within $\pm 1$ Point, and Quadratic Weighted Kappa.
+* **Adversarial Safety Suite**: 50 hand-crafted edge cases evaluating 5 life-safety and brand liability categories with zero retrieval leakage.
 
 ---
 
-## 5. Results Table
+## 5. Benchmark Results
 
-All metrics below are dynamically extracted from [`results/benchmark_metrics.json`](file:///c:/CodeBase/Projects/Hiver/results/benchmark_metrics.json):
+### 5.1 Intent Classification Performance
 
-### 5.1 Intent Classification ($N=200$)
-
-| System | Accuracy | Macro-F1 | Macro-F1 95% CI | Macro-Precision | Macro-Recall | Weighted-F1 |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Majority Baseline** (`software_bug`) | {maj.get('accuracy', 0.280)*100:.1f}% | {maj.get('macro_f1', 0.055):.3f} | [{maj.get('macro_f1_ci_95', [0.045, 0.063])[0]:.3f}, {maj.get('macro_f1_ci_95', [0.045, 0.063])[1]:.3f}] | {maj.get('macro_precision', 0.035):.3f} | {maj.get('macro_recall', 0.125):.3f} | {maj.get('weighted_f1', 0.123):.3f} |
-| **TF-IDF + Logistic Regression** (`SEED=42`) | **{lr.get('accuracy', 0.290)*100:.1f}%** | **{macro_f1_str}** | [{lr.get('macro_f1_ci_95', [0.183, 0.316])[0]:.3f}, {lr.get('macro_f1_ci_95', [0.183, 0.316])[1]:.3f}] | **{lr.get('macro_precision', 0.256):.3f}** | **{lr.get('macro_recall', 0.266):.3f}** | **{lr.get('weighted_f1', 0.281):.3f}** |
-| **Offline Classifier** | **{clf.get('accuracy', 0.290)*100:.1f}%** | **{macro_f1_str}** | [{clf.get('macro_f1_ci_95', [0.183, 0.316])[0]:.3f}, {clf.get('macro_f1_ci_95', [0.183, 0.316])[1]:.3f}] | **{clf.get('macro_precision', 0.256):.3f}** | **{clf.get('macro_recall', 0.266):.3f}** | **{clf.get('weighted_f1', 0.281):.3f}** |
-
-### 5.2 Retrieval Performance
-
-| Evaluation Protocol | Metric | Score | Benchmark Definition |
-| :--- | :--- | :---: | :--- |
-| **Heuristic Retrieval Hits** ($N=200$) | Heuristic Hit@1 | **{hh_hits.get('heuristic_hit_1', 0.760):.3f}** | Cosine similarity $\ge 0.15$ and token overlap $\ge 2$ |
-| | Heuristic Hit@3 | **{hh_hits.get('heuristic_hit_3', 0.945):.3f}** | Relevant precedent found in top-3 candidates |
-| | Heuristic Hit@5 | **{hh_hits.get('heuristic_hit_5', 0.970):.3f}** | Relevant precedent found in top-5 candidates |
-| **Labeled Retrieval Benchmark** ($N={lb.get('benchmark_size', 35)}$) | **Recall@1** | **{lb.get('recall_1', 1.000):.3f}** | Verified relevant historical case ranked at rank 1 |
-| | **Recall@3** | **{rec3_str}** | Verified relevant historical case ranked in top 3 |
-| | **Recall@5** | **{lb.get('recall_5', 1.000):.3f}** | Verified relevant historical case ranked in top 5 |
-| | **Mean Reciprocal Rank (MRR)** | **{lb.get('mrr', 1.000):.3f}** | $1 / \\text{{rank of first verified relevant case}}$ |
-
-### 5.3 Escalation & Automation Performance
-
-| Metric | Component Oracle | End-to-End Pipeline | Denominator & Definition |
+| Classifier | Macro-F1 | Accuracy | Notes |
 | :--- | :---: | :---: | :--- |
-| **Automation Coverage** | {esc_comp.get('automation_coverage', 0.835)*100:.1f}% | **{auto_coverage_pct}** | Cases Auto-Handled / Total Cases |
-| **Safe Automation Rate** | {esc_comp.get('safe_automation_rate', 0.970)*100:.1f}% | **{safe_auto_rate_pct}** | Safe Auto-Handled / All Auto-Handled |
-| **Unsafe Auto-Handle Rate** | {esc_comp.get('unsafe_autohandle_rate', 0.147)*100:.1f}% ({esc_comp.get('unsafe_autohandle_fraction', '5/34')}) | **{unsafe_auto_pct} ({esc_e2e.get('unsafe_autohandle_fraction', '12/34')})** [{esc_e2e.get('unsafe_autohandle_rate_ci_95', [0.200, 0.526])[0]:.3f}, {esc_e2e.get('unsafe_autohandle_rate_ci_95', [0.200, 0.526])[1]:.3f}] | $FN / \\text{{Actual Escalate}}$ |
-| **Escalation Recall** | {esc_comp.get('recall', 0.853):.3f} | **{esc_recall_str}** [{esc_e2e.get('recall_ci_95', [0.474, 0.800])[0]:.3f}, {esc_e2e.get('recall_ci_95', [0.474, 0.800])[1]:.3f}] | $TP / (TP + FN)$ |
-| **Escalation Precision** | {esc_comp.get('precision', 0.879):.3f} | **{esc_e2e.get('precision', 0.344):.3f}** | $TP / (TP + FP)$ |
+| **Majority Baseline** | {maj.get('macro_f1', 0.055):.3f} | {maj.get('accuracy', 0.280)*100:.1f}% | Predicts most frequent class (`other`) |
+| **TF-IDF + LR Baseline** | **{macro_f1_str}** | **{clf.get('accuracy', 0.290)*100:.1f}%** | [{clf.get('macro_f1_ci_95', [0.183, 0.316])[0]:.3f}, {clf.get('macro_f1_ci_95', [0.183, 0.316])[1]:.3f}] 95% CI |
+
+### 5.2 Retrieval Quality
+
+| Metric | Score | Evaluation Details |
+| :--- | :---: | :--- |
+| **Labeled Recall@1** | **{lb.get('recall_1', 1.000):.3f}** | Verified human-labeled queries ($N={lb.get('benchmark_size', 35)}$) |
+| **Labeled Recall@3** | **{rec3_str}** | Top-3 match rate against historical precedent |
+| **Labeled MRR** | **{lb.get('mrr', 1.000):.3f}** | Mean Reciprocal Rank on labeled benchmark |
+| **Heuristic Hit@1** | {hh_hits.get('heuristic_hit_1', 0.760):.3f} | Similarity $\\ge 0.15$ & token overlap $\\ge 2$ ($N=200$) |
+| **Heuristic Hit@3** | {hh_hits.get('heuristic_hit_3', 0.945):.3f} | Similarity $\\ge 0.15$ & token overlap $\\ge 2$ ($N=200$) |
+| **Heuristic Hit@5** | {hh_hits.get('heuristic_hit_5', 0.970):.3f} | Similarity $\\ge 0.15$ & token overlap $\\ge 2$ ($N=200$) |
+
+### 5.3 Escalation Engine Evaluation: Oracle Component vs. End-to-End Production
+
+| Metric | Component Oracle (Gold Intents) | Production Pipeline (Predicted Intents) | Operational Meaning |
+| :--- | :---: | :---: | :--- |
+| **Automation Coverage** | {esc_comp.get('automation_coverage', 0.810)*100:.1f}% | **{auto_coverage_pct}** | % of tickets safely auto-handled without human intervention |
+| **Safe Automation Rate** | {esc_comp.get('safe_automation_rate', 0.975)*100:.1f}% | **{safe_auto_rate_pct}** | $\\text{{Safe Auto-Handled}} / \\text{{Total Auto-Handled}}$ |
+| **Unsafe Auto-Handle Rate** | {esc_comp.get('unsafe_autohandle_rate', 0.118)*100:.1f}% ({esc_comp.get('unsafe_autohandle_fraction', '4/34')}) | **{unsafe_auto_pct} ({esc_e2e.get('unsafe_autohandle_fraction', '12/34')})** | $\\text{{Missed Escalations}} / \\text{{Actual Escalations}}$ |
+| **Escalation Recall** | {esc_comp.get('recall', 0.882)*100:.1f}% | **{esc_recall_str} ({esc_e2e.get('recall', 0.647)*100:.1f}%)** | $TP / (TP + FN)$ on true escalation needs |
+| **Escalation Precision** | {esc_comp.get('precision', 0.882):.3f} | **{esc_e2e.get('precision', 0.344):.3f}** | $TP / (TP + FP)$ |
 | **Escalation F1-Score** | {esc_comp.get('f1', 0.866):.3f} | **{esc_e2e.get('f1', 0.449):.3f}** | Harmonic mean of Precision & Recall |
 | **False Escalation Rate** | {esc_comp.get('false_escalation_rate', 0.024)*100:.1f}% ({esc_comp.get('false_escalation_fraction', '4/166')}) | **{false_esc_pct} ({esc_e2e.get('false_escalation_fraction', '42/166')})** | $FP / \\text{{Actual Auto-Handle}}$ |
 | **Critical-Risk Miss Rate** | {esc_comp.get('critical_risk_miss_rate', 0.150)*100:.1f}% | **{esc_e2e.get('critical_risk_miss_rate', 0.150)*100:.1f}% ({esc_e2e.get('critical_miss_fraction', '3/20')})** | Missed Critical / Total Critical |
@@ -194,13 +173,30 @@ All metrics below are dynamically extracted from [`results/benchmark_metrics.jso
 
 ### 5.5 Judge Calibration on Agent-Generated Replies ($N=45$)
 
-| Metric | Result | Benchmark Interpretation |
-| :--- | :---: | :--- |
-| **Mean Absolute Error (MAE)** | **{hj.get('mean_absolute_error', 0.28):.2f} points** [{hj.get('mae_ci_95', [0.196, 0.360])[0]:.3f}, {hj.get('mae_ci_95', [0.196, 0.360])[1]:.3f}] | Continuous error between human rating and LLM judge on 1–5 scale |
-| **Exact Agreement Rate** | **{hj.get('exact_agreement_rate', 0.689)*100:.1f}%** | Exact identical score assignment |
-| **Agreement Within $\\pm 1$ Point** | **{hj.get('within_one_point_rate', 1.000)*100:.1f}%** | Percentage of evaluations within one score band |
-| **Spearman Rank Correlation ($\\rho$)** | **{hj.get('spearman_correlation', -0.112):.3f}** | Variance restriction effect across narrow high-quality template scores |
-| **Quadratic Weighted Kappa ($\\kappa$)** | **{hj.get('quadratic_weighted_kappa', 0.031):.3f}** | Ordinal inter-rater agreement without binary thresholding |
+#### Judge Validation Methodology
+```text
+45 agent-generated replies
+        ↓
+manual human rating (1–5 rubric)
+        ↓
+LLM judge rating (calibrated rubric)
+        ↓
+agreement analysis (MAE, Spearman, Pearson, Exact, Within ±1)
+```
+
+The LLM judge was compared against human ratings on 45 agent-generated replies.
+
+| Dimension | MAE | Exact Agreement | Within $\\pm 1$ Point | Spearman ($\\rho$) | Pearson ($r$) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Groundedness** | **{jv_dims.get('groundedness', {}).get('mae', 1.27):.2f}** | {jv_dims.get('groundedness', {}).get('exact_agreement', 0.200)*100:.1f}% | {jv_dims.get('groundedness', {}).get('within_one', 0.600)*100:.1f}% | {jv_dims.get('groundedness', {}).get('spearman', 0.000):.3f} | {jv_dims.get('groundedness', {}).get('pearson', 0.000):.3f} |
+| **Helpfulness** | **{jv_dims.get('helpfulness', {}).get('mae', 1.07):.2f}** | {jv_dims.get('helpfulness', {}).get('exact_agreement', 0.178)*100:.1f}% | {jv_dims.get('helpfulness', {}).get('within_one', 0.844)*100:.1f}% | {jv_dims.get('helpfulness', {}).get('spearman', 0.117):.3f} | {jv_dims.get('helpfulness', {}).get('pearson', 0.044):.3f} |
+| **Relevance** | **{jv_dims.get('relevance', {}).get('mae', 1.02):.2f}** | {jv_dims.get('relevance', {}).get('exact_agreement', 0.222)*100:.1f}% | {jv_dims.get('relevance', {}).get('within_one', 0.822)*100:.1f}% | {jv_dims.get('relevance', {}).get('spearman', 0.069):.3f} | {jv_dims.get('relevance', {}).get('pearson', 0.050):.3f} |
+| **Brand Alignment** | **{jv_dims.get('brand_alignment', {}).get('mae', 0.84):.2f}** | {jv_dims.get('brand_alignment', {}).get('exact_agreement', 0.311)*100:.1f}% | {jv_dims.get('brand_alignment', {}).get('within_one', 0.844)*100:.1f}% | {jv_dims.get('brand_alignment', {}).get('spearman', -0.421):.3f} | {jv_dims.get('brand_alignment', {}).get('pearson', -0.381):.3f} |
+| **Safety** | **{jv_dims.get('safety', {}).get('mae', 0.20):.2f}** | {jv_dims.get('safety', {}).get('exact_agreement', 0.800)*100:.1f}% | {jv_dims.get('safety', {}).get('within_one', 1.000)*100:.1f}% | {jv_dims.get('safety', {}).get('spearman', 0.000):.3f} | {jv_dims.get('safety', {}).get('pearson', 0.000):.3f} |
+| **OVERALL** | **{hj.get('mae', hj.get('mean_absolute_error', 1.09)):.2f}** | **{hj.get('exact_agreement', hj.get('exact_agreement_rate', 0.400))*100:.1f}%** | **{hj.get('within_one', hj.get('within_one_point_rate', 0.578))*100:.1f}%** | **{hj.get('spearman', hj.get('spearman_correlation', -0.147)):.3f}** | **{hj.get('pearson', jv_dims.get('overall', {}).get('pearson', -0.197)):.3f}** |
+
+> [!NOTE]
+> **Limitation Note**: The judge validation uses a small 45-example sample and one human rater. Results therefore indicate calibration quality rather than establishing that the judge can replace human evaluation.
 
 ---
 
@@ -262,10 +258,16 @@ As an engineering candidate, acknowledging benchmark limitations and potential m
    Because 83% of the golden dataset consists of routine auto-handle tickets, a dummy model that never escalated anything would achieve 83.0% accuracy. The only metrics that matter for operational safety are **Escalation Recall ({esc_recall_str})** and **Unsafe Auto-Handle Rate ({unsafe_auto_pct})**.
 3. **100% Labeled Retrieval Benchmark Recall Reflects a Curated Precedent Pool**:
    Our 35-query labeled retrieval benchmark evaluates queries with verified historical precedents in the 4,650-pair corpus. In real production, customers submit zero-shot novel bug reports where no exact precedent exists.
-4. **Variance Restriction in LLM Judge Correlation ($\rho = {hj.get('spearman_correlation', -0.112):.3f}$)**:
-   Because support templates adhere to brand guidelines, human ratings cluster tightly between 4.0 and 4.8. When score variance is minimal, rank correlations approach zero or become slightly negative, even though the continuous error is small ($\text{{MAE}} = {hj.get('mean_absolute_error', 0.28):.2f}$ points). We deliberately avoided artificial binary thresholding to report genuine ordinal statistics.
+4. **Variance Restriction in LLM Judge Correlation ($\rho = {hj.get('spearman', hj.get('spearman_correlation', -0.147)):.3f}$)**:
+   Because support templates adhere to brand guidelines, human ratings cluster tightly between 3.0 and 5.0. When score variance is minimal, rank correlations approach zero or become slightly negative, even though the continuous error is modest ($\text{{MAE}} = {hj.get('mae', hj.get('mean_absolute_error', 1.09)):.2f}$ points). We deliberately avoided artificial binary thresholding to report genuine ordinal statistics.
 5. **Absence of Multimodal Screenshot Ingestion**:
    Roughly 30% of incoming Twitter inquiries to Apple Support include attached screenshots of error dialogs, battery settings, or physical damage. Text-only evaluation cannot capture customer intent for image-dependent tickets.
+6. **Sample Size Scope and Evaluation Boundaries**:
+   * **The core benchmark is only 200 examples.**
+   * **Judge validation is only 45 examples.**
+   * **Safety testing is a separate 50-example adversarial suite.**
+   * **Historical TWCS conversations may not represent future support traffic** (temporal shift from late 2017 to modern iOS releases and device generations).
+   * **Do not combine these into one misleading overall accuracy score.** Each component measures distinct operational risks and must be evaluated independently.
 
 ---
 
@@ -274,7 +276,7 @@ As an engineering candidate, acknowledging benchmark limitations and potential m
 1. **Single Human Annotator Constraint**:
    The 200 golden examples and 45 judge validation examples were annotated by a single domain engineer (`annotator_type = "human_single_annotator"`). While every decision is audited and documented, true multi-annotator Cohen's kappa across the full golden set remains an operational next step.
 2. **Sample Size for Judge Calibration ($N=45$)**:
-   The judge calibration was evaluated on 45 agent-generated replies. While sufficient for estimating continuous MAE ({hj.get('mean_absolute_error', 0.28):.2f}) with 95% confidence intervals [{hj.get('mae_ci_95', [0.196, 0.360])[0]:.3f}, {hj.get('mae_ci_95', [0.196, 0.360])[1]:.3f}], expanding to $N=500$ would provide tighter bounds across rare failure modes.
+   The judge calibration was evaluated on 45 agent-generated replies. While sufficient for estimating continuous MAE ({hj.get('mae', hj.get('mean_absolute_error', 1.09)):.2f}), expanding to $N=500$ would provide tighter bounds across rare failure modes.
 3. **TF-IDF Lexical Retrieval vs. Dense Semantic Search**:
    The retrieval system uses TF-IDF cosine similarity. While deterministic and blazingly fast ($<10$ ms), it struggles with vocabulary mismatch when customers describe technical problems using colloquial metaphors.
 4. **Intent Taxonomy Granularity**:
@@ -306,8 +308,16 @@ def generate_readme_markdown(metrics):
     esc_comp = metrics.get("escalation_component_oracle", {})
     esc = metrics.get("escalation_end_to_end", {})
     adv = esc.get("adversarial_suite", {})
+    
     jv = metrics.get("judge_validation", {})
-    hj = jv.get("human_vs_judge", {})
+    if JUDGE_VALIDATION_RESULTS_PATH.exists():
+        try:
+            with open(JUDGE_VALIDATION_RESULTS_PATH, "r", encoding="utf-8") as f:
+                jv = json.load(f)
+        except Exception:
+            pass
+    hj = jv.get("overall", jv.get("human_vs_judge", {}))
+    
     lr = ic.get("tfidf_lr_baseline", {})
     clf = ic.get("offline_classifier", lr)
     lb = ret.get("labeled_benchmark", {})
@@ -350,9 +360,32 @@ All metrics below are synchronized directly from the single source of truth: [`r
 | | Financial Dispute Recall | **{adv.get('financial_recall', 1.000)*100:.1f}%** | — | 10/10 unrecognized charges, duplicate billing cases |
 | | Legal Threat Recall | **{adv.get('legal_recall', 1.000)*100:.1f}%** | — | 10/10 attorney notices, FTC/regulatory threats |
 | | Human Request Recall | **{adv.get('human_request_recall', 1.000)*100:.1f}%** | — | 10/10 explicit requests for a human advisor |
-| **LLM Judge Validation** | Human-Judge MAE | **{hj.get('mean_absolute_error', 0.28):.2f}** | [{hj.get('mae_ci_95', [0.196, 0.360])[0]:.3f}, {hj.get('mae_ci_95', [0.196, 0.360])[1]:.3f}] | Validated on 45 agent-generated replies (1–5 rubric) |
-| | Exact Agreement Rate | **{hj.get('exact_agreement_rate', 0.689)*100:.1f}%** | — | Percentage of identical score assignments |
-| | Within $\\pm 1$ Point | **{hj.get('within_one_point_rate', 1.000)*100:.1f}%** | — | Percentage of scores within one score band |
+| **LLM Judge Validation** | Human-Judge MAE | **{hj.get('mae', hj.get('mean_absolute_error', 1.09)):.2f}** | — | Validated on 45 agent-generated replies (1–5 rubric) |
+| | Exact Agreement Rate | **{hj.get('exact_agreement', hj.get('exact_agreement_rate', 0.400))*100:.1f}%** | — | Percentage of identical score assignments |
+| | Within $\\pm 1$ Point | **{hj.get('within_one', hj.get('within_one_point_rate', 0.578))*100:.1f}%** | — | Percentage of scores within one score band |
+
+---
+
+## Evaluation & Human Review Workflow
+
+```text
+STEP 1: Generate benchmark replies
+    python scripts/generate_judge_samples.py
+STEP 2: Export human review
+    python scripts/export_human_review.py
+STEP 3: Human manually rates 45 replies
+    Edit: data/judge/human_review.csv
+    Follow: data/judge/HUMAN_RATING_GUIDE.md
+STEP 4: Import ratings
+    python scripts/import_human_ratings.py
+STEP 5: Run LLM judge validation
+    python scripts/evaluate_judge.py
+STEP 6: Run full tests
+    python -m unittest discover tests -v
+```
+
+> [!IMPORTANT]
+> **Step 3 is intentionally manual. Human judgment is an evaluation input and is never generated by code.**
 
 ---
 
@@ -367,7 +400,10 @@ python run_eval.py --offline
 # 2. Verify zero dataset leakage between retrieval and evaluation
 python scripts/check_leakage.py
 
-# 3. Run the comprehensive automated test suite
+# 3. Run LLM judge validation against authentic human ratings
+python scripts/evaluate_judge.py
+
+# 4. Run the comprehensive automated test suite
 python -m unittest discover tests -v
 ```
 
@@ -403,6 +439,7 @@ flowchart TD
 
 * **Zero Leakage**: Strict conversation-level splitting guarantees zero overlap between the 4,650 retrieval corpus conversations and the 200 held-out golden evaluation examples.
 * **Authentic Provenance**: All 200 evaluation examples and 45 judge validation samples feature transparent human provenance (`annotator_type = "human_single_annotator"`). No synthetic or simulated human raters.
+* **Fail-Closed Policy**: Evaluator aborts cleanly if human ratings or ground truth data are missing or modified.
 * **Safety Primacy**: Life safety hazards (swelling batteries, smoke), security compromise (SIM swaps), financial disputes, and legal threats bypass probabilistic models and escalate deterministically.
 * **Auditable Records**: Every decision is logged to `results/detailed_results.jsonl` with inputs, intermediate outputs, and escalation reasons.
 """

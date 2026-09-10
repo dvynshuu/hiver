@@ -144,12 +144,17 @@ def format_terminal_report(results: Dict[str, Any]):
     h_vs_j = jv.get("human_vs_judge", {})
     print("Judge Validation (Evaluated on Generated Agent Replies)")
     print("------------------------------------------------------")
-    print(f"Human Annotator Setup   {h_vs_h.get('primary_annotator', 'Single human annotator (zero simulated raters)')}")
-    print(f"Human-Judge MAE         {h_vs_j.get('mean_absolute_error', 0.0):.2f} [95% CI: {h_vs_j.get('mae_ci_95', [0.0, 0.0])}]")
-    print(f"Exact agreement rate    {h_vs_j.get('exact_agreement_rate', 0.0)*100:.1f}%")
-    print(f"Within +-1 point        {h_vs_j.get('within_one_point_rate', 1.0)*100:.1f}%")
-    print(f"Spearman rank corr (ρ)  {h_vs_j.get('spearman_correlation', 0.0):.3f}")
-    print(f"Quadratic Weighted κ    {h_vs_j.get('quadratic_weighted_kappa', 0.0):.3f} (No binary thresholding)")
+    if jv.get("status") == "unavailable" or not jv.get("success", False):
+        print("Human judge validation unavailable:")
+        print("human ratings have not been supplied.")
+        print("(To enable: run scripts/export_human_review.py -> annotate human_review.csv -> scripts/import_human_ratings.py)")
+    else:
+        print(f"Human Annotator Setup   {jv.get('primary_annotator', 'Single human annotator (zero simulated raters)')}")
+        print(f"Human-Judge MAE         {h_vs_j.get('mean_absolute_error', 0.0):.2f}" + (f" [95% CI: {h_vs_j.get('mae_ci_95', [0.0, 0.0])}]" if h_vs_j.get('mae_ci_95') else ""))
+        print(f"Exact agreement rate    {h_vs_j.get('exact_agreement_rate', 0.0)*100:.1f}%")
+        print(f"Within +-1 point        {h_vs_j.get('within_one_point_rate', 1.0)*100:.1f}%")
+        print(f"Spearman rank corr (ρ)  {h_vs_j.get('spearman_correlation', 0.0):.3f}")
+        print(f"Quadratic Weighted κ    {h_vs_j.get('quadratic_weighted_kappa', 0.0):.3f} (No binary thresholding)")
     print()
     print("=" * 50)
 

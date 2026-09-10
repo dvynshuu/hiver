@@ -34,7 +34,7 @@ from config import (
     GOLDEN_EVAL_PATH,
     BENCHMARK_RESULTS_PATH,
     RETRIEVAL_CORPUS_JSONL_PATH,
-    HUMAN_EVAL_RATINGS_PATH,
+    HUMAN_RATINGS_JSON_PATH,
     RESULTS_DIR,
     TARGET_BRAND,
     SEED,
@@ -611,17 +611,50 @@ class BenchmarkEvaluator:
         reply_quality, e2e_records = self.evaluate_reply_quality(use_predicted_intents=True)
 
         logger.info("Validating LLM-as-Judge against authentic Human Annotations...")
-        judge_validation = self.judge.validate_against_human_ratings(offline=self.offline)
-
-        # Calculate bootstrap CI for Judge MAE
-        h_scores = [item["rater_1"]["overall"] for item in json.load(open(HUMAN_EVAL_RATINGS_PATH, encoding="utf-8"))]
-        j_scores = [self.judge.evaluate_reply(item["customer_text"], item.get("agent_reply", ""), offline=self.offline)["overall_score"] for item in json.load(open(HUMAN_EVAL_RATINGS_PATH, encoding="utf-8"))]
-        def _mae_boot(indices):
-            s1 = np.array([h_scores[i] for i in indices])
-            s2 = np.array([j_scores[i] for i in indices])
-            return float(np.mean(np.abs(s1 - s2)))
-        mae_ci = calculate_bootstrap_ci(_mae_boot, len(h_scores))
-        judge_validation["human_vs_judge"]["mae_ci_95"] = mae_ci
+        if HUMAN_RATINGS_JSON_PATH.exists():
+            judge_validation = self.judge.validate_against_human_ratings(offline=self.offline)
+            if judge_validation.get("success", False):
+                with open(HUMAN_RATINGS_JSON_PATH, "r", encoding="utf-8") as f:
+                    h_items = json.load(f)
+                h_scores = [float(item["overall"]) for item in h_items]
+                from config import GENERATED_REPLIES_PATH
+                gen_by_id = {}
+                if GENERATED_REPLIES_PATH.exists():
+                    with open(GENERATED_REPLIES_PATH, "r", encoding="utf-8") as f:
+                        for line in f:
+                            if line.strip():
+                                rec = json.loads(line)
+                                gen_by_id[rec["example_id"]] = rec
+                j_scores = [
+                    self.judge.evaluate_reply(
+                        gen_by_id.get(item["example_id"], {}).get("customer_text", item.get("customer_text", "")),
+                        gen_by_id.get(item["example_id"], {}).get("agent_reply", item.get("agent_reply", "")),
+                        offline=self.offline
+                    )["overall_score"]
+                    for item in h_items
+                ]
+                def _mae_boot(indices):
+                    s1 = np.array([h_scores[i] for i in indices])
+                    s2 = np.array([j_scores[i] for i in indices])
+                    return float(np.mean(np.abs(s1 - s2)))
+                mae_ci = calculate_bootstrap_ci(_mae_boot, len(h_scores))
+                if "human_vs_judge" in judge_validation:
+                    judge_validation["human_vs_judge"]["mae_ci_95"] = mae_ci
+        else:
+            print("Human judge validation unavailable:\nhuman ratings have not been supplied.", file=sys.stderr)
+            judge_validation = {
+                "status": "unavailable",
+                "success": False,
+                "sample_size": 0,
+                "message": "Human judge validation unavailable: human ratings have not been supplied.",
+                "human_vs_judge": {
+                    "mean_absolute_error": 0.0,
+                    "exact_agreement_rate": 0.0,
+                    "within_one_point_rate": 0.0,
+                    "spearman_correlation": 0.0,
+                    "quadratic_weighted_kappa": 0.0
+                }
+            }
 
         full_benchmark = {
             "validation_report": validation_report,

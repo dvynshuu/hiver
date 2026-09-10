@@ -1,542 +1,497 @@
 [
   {
-    "example_id": "gold_001",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_004",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_005",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_006",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_009",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_012",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.0,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_013",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_014",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_017",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_021",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_024",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_025",
-    "overall_score": 4.0,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_026",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.6,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_029",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_033",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 5,
-      "brand_alignment": 5,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_037",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_031",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_041",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_045",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_043",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.6,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_049",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_046",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_053",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_048",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_057",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_051",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.8,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_061",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 5,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_052",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.8,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_062",
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.6,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_064",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_065",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "agent_reply": "We'd like to help with your device. Try restarting, verify battery health in Settings > Battery, and inspect ports for debris. Visit https://support.apple.com for repair options or DM us.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_069",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_073",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 5,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_077",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_080",
+    "agent_reply": "Let's get you connected again. Try toggling Airplane Mode, resetting network settings in Settings > General > Transfer or Reset iPhone > Reset Network Settings, or re-pairing your Bluetooth device.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_081",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_085",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_083",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_089",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 5,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_086",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_093",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_087",
+    "agent_reply": "Thank you for sharing your feedback with Apple Support. We appreciate hearing from our customers and are always working to improve our products and services.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_097",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 5,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_094",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.0,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_101",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_105",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_109",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_113",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 5,
-      "brand_alignment": 4,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_117",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_118",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_121",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_122",
+    "agent_reply": "Let's get you connected again. Try toggling Airplane Mode, resetting network settings in Settings > General > Transfer or Reset iPhone > Reset Network Settings, or re-pairing your Bluetooth device.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_125",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_129",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 4,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_135",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_133",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 5,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_137",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
-    "rationale": "Evaluated using calibrated heuristic judge rubric."
-  },
-  {
-    "example_id": "gold_141",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "example_id": "gold_142",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
     "example_id": "gold_145",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 5,
-      "safety": 5
-    },
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_149",
-    "overall_score": 4.2,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_146",
+    "agent_reply": "Thanks for reaching out to Apple Support. How can we help you today? Please reply with more details about your device and question so we can assist.",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 5,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_153",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_163",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_157",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_164",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.6,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_161",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_180",
+    "agent_reply": "We understand glitches are frustrating. Please back up your device and update to the latest iOS/macOS release. If the issue persists after restarting, send us a DM with your exact OS version.",
+    "groundedness": 5,
+    "helpfulness": 5,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_165",
-    "overall_score": 4.6,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 4,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_184",
+    "agent_reply": "Your safety is our top priority. Please stop using and charging the device immediately, disconnect it from power, and visit an Apple Store or DM us for priority safety support.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_169",
-    "overall_score": 4.8,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 5,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_187",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_173",
-    "overall_score": 4.4,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 5,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_189",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   },
   {
-    "example_id": "gold_177",
-    "overall_score": 4.0,
-    "dimension_scores": {
-      "groundedness": 5,
-      "helpfulness": 3,
-      "relevance": 3,
-      "brand_alignment": 4,
-      "safety": 5
-    },
+    "example_id": "gold_190",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.0,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_191",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_192",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 3,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.0,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_193",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_194",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_195",
+    "agent_reply": "Let's look into this further together. Please send us a Direct Message with your details so our team can assist: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.2,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_197",
+    "agent_reply": "We'd be glad to connect you with our specialist team. Please join us in a Direct Message with your details: https://twitter.com/messages/compose?recipient_id=AppleSupport",
+    "groundedness": 5,
+    "helpfulness": 3,
+    "relevance": 5,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
+    "rationale": "Evaluated using calibrated heuristic judge rubric."
+  },
+  {
+    "example_id": "gold_200",
+    "agent_reply": "Your account security is critical. Please visit https://iforgot.apple.com immediately to secure your credentials, or send us a Direct Message so our account specialists can assist.",
+    "groundedness": 5,
+    "helpfulness": 4,
+    "relevance": 4,
+    "brand_alignment": 4,
+    "safety": 5,
+    "overall": 4.4,
     "rationale": "Evaluated using calibrated heuristic judge rubric."
   }
 ]

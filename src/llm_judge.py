@@ -15,7 +15,8 @@ from config import (
     JUDGE_MODEL_NAME,
     FALLBACK_JUDGE_MODEL,
     RUBRIC_DIMENSIONS,
-    HUMAN_EVAL_RATINGS_PATH
+    HUMAN_RATINGS_JSON_PATH,
+    GENERATED_REPLIES_PATH
 )
 
 logger = logging.getLogger(__name__)
@@ -197,52 +198,72 @@ class LLMJudge:
 
     def validate_against_human_ratings(
         self,
-        human_ratings_path: Path = HUMAN_EVAL_RATINGS_PATH,
+        human_ratings_path: Path = HUMAN_RATINGS_JSON_PATH,
         offline: bool = False
     ) -> Dict[str, Any]:
         """
-        Calculates agreement statistics between:
-        1. Human Rater 1 vs Human Rater 2 (inter-annotator reliability)
-        2. Human Consensus vs Automated Judge (judge validation)
+        Validates LLM judge against authentic single-annotator human ratings.
+        Fails closed if human ratings have not been provided.
         """
         if not human_ratings_path.exists():
-            return {"error": f"Human ratings file not found at {human_ratings_path}"}
+            print("Human judge validation unavailable:\nhuman ratings have not been supplied.", file=sys.stderr)
+            return {
+                "status": "unavailable",
+                "success": False,
+                "sample_size": 0,
+                "message": "Human judge validation unavailable: human ratings have not been supplied.",
+                "human_vs_judge": {
+                    "mean_absolute_error": 0.0,
+                    "exact_agreement_rate": 0.0,
+                    "within_one_point_rate": 0.0,
+                    "spearman_correlation": 0.0,
+                    "quadratic_weighted_kappa": 0.0
+                }
+            }
 
         with open(human_ratings_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        r1_scores = []
-        r2_scores = []
-        human_avgs = []
+        # Load generated replies to pair with human ratings
+        gen_replies_by_id = {}
+        if GENERATED_REPLIES_PATH.exists():
+            with open(GENERATED_REPLIES_PATH, "r", encoding="utf-8") as f:
+                for line in f:
+                    if line.strip():
+                        rec = json.loads(line)
+                        gen_replies_by_id[rec["example_id"]] = rec
+
+        human_scores = []
         judge_scores = []
 
         for item in data:
-            r1 = item["rater_1"]["overall"]
-            r2 = item["rater_2"]["overall"]
-            h_avg = round((r1 + r2) / 2.0, 2)
+            eid = item["example_id"]
+            h_overall = float(item["overall"])
+            human_scores.append(h_overall)
 
-            r1_scores.append(r1)
-            r2_scores.append(r2)
-            human_avgs.append(h_avg)
+            gen_rec = gen_replies_by_id.get(eid, {})
+            customer_text = gen_rec.get("customer_text", item.get("customer_text", ""))
+            agent_reply = gen_rec.get("agent_reply", item.get("agent_reply", ""))
+            pred_intent = gen_rec.get("predicted_intent", item.get("predicted_intent", "other"))
+            context = gen_rec.get("context", "Inbound tweet to @AppleSupport")
 
-            # Evaluate with judge on the actual agent reply
-            reply_to_judge = item.get("agent_reply", item.get("reference_reply", ""))
             eval_res = self.evaluate_reply(
-                customer_text=item["customer_text"],
-                agent_reply=reply_to_judge,
-                intent=item.get("predicted_intent", "other"),
-                context=item.get("context", "Inbound tweet to @AppleSupport"),
+                customer_text=customer_text,
+                agent_reply=agent_reply,
+                intent=pred_intent,
+                context=context,
                 offline=offline
             )
-            judge_scores.append(eval_res["overall_score"])
+            judge_scores.append(float(eval_res["overall_score"]))
 
-        # Calculate statistics
-        h_vs_h = self._compute_agreement_metrics(r1_scores, r2_scores)
-        h_vs_j = self._compute_agreement_metrics(human_avgs, judge_scores)
+        h_vs_j = self._compute_agreement_metrics(human_scores, judge_scores)
 
         return {
+            "status": "completed",
+            "success": True,
             "sample_size": len(data),
-            "human_vs_human": h_vs_h,
+            "primary_annotator": "human_single_annotator",
+            "inter_rater_reliability": "not_measured",
             "human_vs_judge": h_vs_j
         }
 

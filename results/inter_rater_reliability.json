@@ -1,0 +1,9 @@
+{
+  "status": "single_annotator",
+  "annotator_count": 1,
+  "primary_annotator": "human_single_annotator",
+  "second_annotator": null,
+  "inter_rater_reliability": "not_measured",
+  "statement": "Judge validation uses ratings from one human annotator; inter-rater reliability was not measured.",
+  "simulated_data": false
+}

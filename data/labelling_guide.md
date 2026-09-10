@@ -61,7 +61,7 @@ All other routine troubleshooting (reboots, network resets, setting adjustments,
 
 To assess judge reliability on actual agent-generated replies:
 - 45 agent-generated replies across held-out golden cases were evaluated on the 5 dimensions on a 1–5 integer scale.
-- Scores are stored in `data/judge/human_ratings.csv` and `data/judge/human_ratings.json`.
+- Scores are recorded in `data/judge/human_review.csv` and imported to `data/judge/human_ratings.json`.
 - Provenance is explicitly single human engineer (`human_single_annotator`), avoiding fabricated second raters.
-- Judge calibration is evaluated via **Mean Absolute Error (MAE)**, **exact agreement rate**, **agreement within $\pm 1$ point**, **Spearman rank correlation ($\rho$)**, and **Quadratic Weighted Kappa ($\kappa$)**.
+- Judge calibration is evaluated via **Mean Absolute Error (MAE)**, **exact agreement rate**, **agreement within $\pm 1$ point**, **Spearman rank correlation ($\rho$)**, and **Pearson correlation ($r$)**.
 - Full results are reported transparently in `results/benchmark_metrics.json` and `REPORT.md`.

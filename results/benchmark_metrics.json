@@ -659,27 +659,22 @@
     }
   },
   "judge_validation": {
+    "status": "completed",
+    "success": true,
     "sample_size": 45,
-    "human_vs_human": {
-      "mean_absolute_error": 0.0,
-      "exact_agreement_rate": 1.0,
-      "within_one_point_rate": 1.0,
-      "spearman_correlation": 1.0,
-      "pearson_correlation": 1.0,
-      "quadratic_weighted_kappa": 1.0,
-      "cohens_kappa": 1.0
-    },
+    "primary_annotator": "human_single_annotator",
+    "inter_rater_reliability": "not_measured",
     "human_vs_judge": {
-      "mean_absolute_error": 0.28,
-      "exact_agreement_rate": 0.689,
-      "within_one_point_rate": 1.0,
-      "spearman_correlation": -0.112,
-      "pearson_correlation": -0.141,
-      "quadratic_weighted_kappa": 0.031,
-      "cohens_kappa": 0.031,
+      "mean_absolute_error": 1.09,
+      "exact_agreement_rate": 0.4,
+      "within_one_point_rate": 0.578,
+      "spearman_correlation": -0.147,
+      "pearson_correlation": -0.197,
+      "quadratic_weighted_kappa": -0.067,
+      "cohens_kappa": -0.067,
       "mae_ci_95": [
-        0.196,
-        0.36
+        0.818,
+        1.378
       ]
     }
   }
