@@ -37,7 +37,7 @@ data/retrieval_corpus.pkl
 *.csv.zip
 
 # Keep cleaned conversation sample and golden evaluation set
-!data/golden_eval_set.jsonl
+!data/golden/golden_eval.jsonl
 !data/apple_conversations.jsonl
 
 # IDE

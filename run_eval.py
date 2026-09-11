@@ -24,6 +24,8 @@ if str(PROJECT_ROOT) not in sys.path:
 # Ensure UTF-8 output on Windows
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 from config import (
     TARGET_BRAND,
@@ -101,22 +103,22 @@ def format_terminal_report(results: Dict[str, Any]):
     adv = esc.get("adversarial_suite", {})
     print("Escalation & Automation Quality (End-to-End Pipeline - No Gold Label Injection)")
     print("-------------------------------------------------------------------------")
-    print(f"Automation coverage:    {esc.get('automation_coverage', 0.0)*100:.1f}% (% of cases auto-handled)")
-    print(f"Safe automation rate:   {esc.get('safe_automation_rate', 0.0)*100:.1f}% (Safe auto-handled / All auto-handled)")
-    print(f"Unsafe auto-handle rate:{esc.get('unsafe_autohandle_rate', 0.0)*100:.1f}% ({esc.get('unsafe_autohandle_fraction', 'N/A')}) [95% CI: {esc.get('unsafe_autohandle_rate_ci_95', [0.0, 0.0])}]")
-    print(f"Escalation recall:      {esc.get('escalation_recall', esc.get('recall', 0.0))*100:.1f}% [95% CI: {esc.get('recall_ci_95', [0.0, 0.0])}]")
-    print(f"Escalation precision:   {esc.get('precision', 0.0):.3f}")
-    print(f"Escalation F1:          {esc.get('f1', 0.0):.3f}")
-    print(f"False escalation rate:  {esc.get('false_escalation_rate', 0.0):.3f} ({esc.get('false_escalation_fraction', 'N/A')})")
-    print(f"Critical-risk miss rate:{esc.get('critical_risk_miss_rate', 0.0):.3f} ({esc.get('critical_miss_fraction', 'N/A')})")
+    print(f"Automation coverage:        {esc.get('automation_coverage', 0.0)*100:.1f}% (% of all evaluated cases handled without escalation)")
+    print(f"Auto-handled judged safe:   {esc.get('safe_automation_rate', 0.0)*100:.1f}% (Safe auto-handled / All auto-handled)")
+    print(f"Missed escalation rate:     {esc.get('unsafe_autohandle_rate', 0.0)*100:.1f}% ({esc.get('unsafe_autohandle_fraction', 'N/A')}) [95% CI: {esc.get('unsafe_autohandle_rate_ci_95', [0.0, 0.0])}]")
+    print(f"Escalation recall:          {esc.get('escalation_recall', esc.get('recall', 0.0))*100:.1f}% [95% CI: {esc.get('recall_ci_95', [0.0, 0.0])}]")
+    print(f"Escalation precision:       {esc.get('precision', 0.0):.3f}")
+    print(f"Escalation F1:              {esc.get('f1', 0.0):.3f}")
+    print(f"False escalation rate:      {esc.get('false_escalation_rate', 0.0):.3f} ({esc.get('false_escalation_fraction', 'N/A')})")
+    print(f"Natural critical-risk miss: {esc.get('critical_risk_miss_rate', 0.0):.3f} ({esc.get('critical_miss_fraction', 'N/A')})")
     print()
-    print("Safety & Adversarial Breakdown (Expanded 50-Case Suite):")
+    print("Targeted Adversarial Regression Suite (50 Cases - Not representative of natural traffic):")
     print(f"  Physical safety recall:       {adv.get('physical_safety_recall', 0.0):.3f} ({adv.get('categories', {}).get('safety_hazard', {}).get('caught', 10)}/{adv.get('categories', {}).get('safety_hazard', {}).get('total', 10)})")
     print(f"  Account security recall:      {adv.get('security_recall', 0.0):.3f} ({adv.get('categories', {}).get('security', {}).get('caught', 10)}/{adv.get('categories', {}).get('security', {}).get('total', 10)})")
     print(f"  Financial dispute recall:     {adv.get('financial_recall', 0.0):.3f} ({adv.get('categories', {}).get('financial', {}).get('caught', 10)}/{adv.get('categories', {}).get('financial', {}).get('total', 10)})")
     print(f"  Legal threat recall:          {adv.get('legal_recall', 0.0):.3f} ({adv.get('categories', {}).get('legal', {}).get('caught', 10)}/{adv.get('categories', {}).get('legal', {}).get('total', 10)})")
     print(f"  Human request recall:         {adv.get('human_request_recall', 0.0):.3f} ({adv.get('categories', {}).get('human_request', {}).get('caught', 10)}/{adv.get('categories', {}).get('human_request', {}).get('total', 10)})")
-    print(f"  Overall critical-risk recall: {adv.get('overall_critical_risk_recall', 0.0):.3f} ({adv.get('total_adversarial_caught', 50)}/{adv.get('total_adversarial_tested', 50)})")
+    print(f"  Deterministic guardrails:     {adv.get('overall_critical_risk_recall', 0.0):.3f} ({adv.get('total_adversarial_caught', 50)}/{adv.get('total_adversarial_tested', 50)})")
     print()
 
     rq = results.get("reply_quality", {})
@@ -146,7 +148,7 @@ def format_terminal_report(results: Dict[str, Any]):
     print("------------------------------------------------------")
     if jv.get("status") == "unavailable" or not jv.get("success", False):
         print("Human judge validation unavailable:")
-        print("human ratings have not been supplied.")
+        print("human ratings are not present.")
         print("(To enable: run scripts/export_human_review.py -> annotate human_review.csv -> scripts/import_human_ratings.py)")
     else:
         print(f"Human Annotator Setup   {jv.get('primary_annotator', 'Single human annotator (zero simulated raters)')}")

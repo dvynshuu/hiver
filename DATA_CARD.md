@@ -36,19 +36,18 @@
                                          20 Targeted Adversarial Cases
                                                     │
                                                     ▼
-                                         data/golden/candidates_pool.jsonl
-                                                    │
-                                         Human Annotation Tool
-                                         (scripts/label_golden_set.py)
-                                                    │
-                                                    ▼
-                                         data/golden/manual_annotations.jsonl
-                                                    │
-                                         Compile & Verify (0 Leakage)
-                                                    │
-                                                    ▼
-                                         Golden Evaluation Set
-                                         (data/golden_eval_set.jsonl, N=200)
+                                          data/golden/candidates.jsonl
+                                                     │
+                                          Human Annotation Tool
+                                          (scripts/label_golden_set.py)
+                                                     │
+                                          data/golden/manual_annotations.jsonl
+                                                     │
+                                          Compile & Verify (0 Leakage)
+                                                     │
+                                                     ▼
+                                          Golden Evaluation Set
+                                          (data/golden/golden_eval.jsonl, N=200)
 ```
 
 ### 2.1 Partition Sizes
@@ -80,7 +79,7 @@ To ensure robust evaluation integrity across the entire 8-class taxonomy:
 
 ## 4. Annotation Protocol & Explicit Provenance
 
-Every golden evaluation example in `data/golden_eval_set.jsonl` is backed by raw manual annotations in `data/golden/manual_annotations.jsonl`:
+Every golden evaluation example in `data/golden/golden_eval.jsonl` is backed by raw manual annotations in `data/golden/manual_annotations.jsonl`:
 
 ```json
 {
@@ -122,6 +121,7 @@ To measure true retrieval precision beyond automated cosine-similarity threshold
 * **Benchmark Size**: 35 golden queries.
 * **Methodology**: For each query, historical cases in the retrieval corpus were manually inspected to identify genuinely relevant precedents that share the same defect and verified Apple troubleshooting path.
 * **Metrics Evaluated**: Authentic `Recall@1` (1.000), `Recall@3` (1.000), `Recall@5` (1.000), and `Mean Reciprocal Rank (MRR)` (1.000).
+* **Limitation Disclaimer**: Retrieval evaluation is based on a small manually labeled benchmark and should not be interpreted as production-scale retrieval performance.
 
 ---
 

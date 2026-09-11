@@ -3,7 +3,7 @@ Deterministic Stratified Candidate Sampling for Golden Evaluation Set.
 Selects 180 real held-out customer conversations from TWCS + 20 adversarial cases.
 Guarantees coverage across all 8 intent taxonomy classes (at least 5 per class).
 Uses SEED = 42 for absolute reproducibility.
-Outputs to data/golden/candidates_pool.jsonl.
+Outputs to data/golden/candidates.jsonl.
 """
 import sys
 import json
@@ -18,18 +18,18 @@ if str(PROJECT_ROOT) not in sys.path:
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-from config import HELD_OUT_EVAL_POOL_PATH, DATA_DIR, SEED, INTENT_NAMES
+from config import HELD_OUT_POOL_PATH, DATA_DIR, SEED, INTENT_NAMES
 
 GOLDEN_DIR = DATA_DIR / "golden"
 GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
-CANDIDATES_POOL_PATH = GOLDEN_DIR / "candidates_pool.jsonl"
+CANDIDATES_PATH = GOLDEN_DIR / "candidates.jsonl"
 
 from scripts.build_golden_eval_set import ADVERSARIAL_CASES, classify_text_heuristically, determine_escalation_heuristically
 
 def sample_candidates():
-    print(f"Loading held-out pool from {HELD_OUT_EVAL_POOL_PATH}...")
+    print(f"Loading held-out pool from {HELD_OUT_POOL_PATH}...")
     pool_items = []
-    with open(HELD_OUT_EVAL_POOL_PATH, "r", encoding="utf-8") as f:
+    with open(HELD_OUT_POOL_PATH, "r", encoding="utf-8") as f:
         for line in f:
             if line.strip():
                 pool_items.append(json.loads(line))
@@ -177,11 +177,11 @@ def sample_candidates():
 
     assert len(candidate_records) == 200, f"Expected 200 total candidates, got {len(candidate_records)}"
 
-    with open(CANDIDATES_POOL_PATH, "w", encoding="utf-8") as f:
+    with open(CANDIDATES_PATH, "w", encoding="utf-8") as f:
         for rec in candidate_records:
             f.write(json.dumps(rec) + "\n")
 
-    print(f"Successfully generated {len(candidate_records)} candidates in {CANDIDATES_POOL_PATH}")
+    print(f"Successfully generated {len(candidate_records)} candidates in {CANDIDATES_PATH}")
 
 if __name__ == "__main__":
     sample_candidates()

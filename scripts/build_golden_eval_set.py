@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 GOLDEN_DIR = DATA_DIR / "golden"
 MANUAL_ANNOTATIONS_PATH = GOLDEN_DIR / "manual_annotations.jsonl"
-CANDIDATES_POOL_PATH = GOLDEN_DIR / "candidates_pool.jsonl"
+CANDIDATES_PATH = GOLDEN_DIR / "candidates.jsonl"
 
 ADVERSARIAL_CASES = [
     {

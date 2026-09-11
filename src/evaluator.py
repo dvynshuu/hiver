@@ -568,7 +568,7 @@ class BenchmarkEvaluator:
                         "retrieved_case_ids": retrieved_ids,
                         "reply": reply,
                         "judge_scores": dims,
-                        "gold_intent_injected": False,
+                        "gold_intent_injected": not use_predicted_intents,
                         "ground_truth": {
                             "intent": gold_intent,
                             "escalation": gold_esc
@@ -703,10 +703,11 @@ class BenchmarkEvaluator:
                 pass
 
             metadata = {
-                "seed": SEED,
                 "brand": TARGET_BRAND,
+                "seed": SEED,
                 "golden_size": len(self.eval_data),
                 "judge_validation_size": judge_validation.get("sample_size", 0),
+                "retrieval_validation_size": retrieval_metrics.get("labeled_benchmark", {}).get("benchmark_size", 35),
                 "retrieval_queries": retrieval_metrics.get("labeled_benchmark", {}).get("benchmark_size", 35),
                 "model": "offline_deterministic_agent" if self.offline else AGENT_MODEL_NAME,
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),

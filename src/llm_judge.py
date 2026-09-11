@@ -206,12 +206,12 @@ class LLMJudge:
         Fails closed if human ratings have not been provided.
         """
         if not human_ratings_path.exists():
-            print("Human judge validation unavailable:\nhuman ratings have not been supplied.", file=sys.stderr)
+            print("Human judge validation unavailable:\nhuman ratings are not present.", file=sys.stderr)
             return {
                 "status": "unavailable",
                 "success": False,
                 "sample_size": 0,
-                "message": "Human judge validation unavailable: human ratings have not been supplied.",
+                "message": "Human judge validation unavailable: human ratings are not present.",
                 "human_vs_judge": {
                     "mean_absolute_error": 0.0,
                     "exact_agreement_rate": 0.0,

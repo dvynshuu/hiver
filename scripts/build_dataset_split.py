@@ -24,7 +24,6 @@ from config import DATA_DIR, SEED, TARGET_BRAND
 CLEANED_CONVERSATIONS_PATH = DATA_DIR / "apple_conversations.jsonl"
 RETRIEVAL_CORPUS_PATH = DATA_DIR / "retrieval_corpus.jsonl"
 HELD_OUT_POOL_PATH = DATA_DIR / "held_out_pool.jsonl"
-HELD_OUT_POOL_LEGACY_PATH = DATA_DIR / "held_out_eval_pool.jsonl"
 SPLIT_MANIFEST_PATH = DATA_DIR / "split_manifest.json"
 CORPUS_INDEX_PATH = DATA_DIR / "retrieval_corpus.pkl"
 
@@ -73,12 +72,8 @@ def build_split(seed: int = SEED, held_out_count: int = 350):
         for p in retrieval_pairs:
             f.write(json.dumps(p) + "\n")
 
-    # Save held-out pool (canonical & legacy alias)
+    # Save held-out pool (canonical)
     with open(HELD_OUT_POOL_PATH, "w", encoding="utf-8") as f:
-        for p in held_out_pairs:
-            f.write(json.dumps(p) + "\n")
-
-    with open(HELD_OUT_POOL_LEGACY_PATH, "w", encoding="utf-8") as f:
         for p in held_out_pairs:
             f.write(json.dumps(p) + "\n")
 

@@ -1,10 +1,11 @@
 {
-  "seed": 42,
   "brand": "AppleSupport",
+  "seed": 42,
   "golden_size": 200,
   "judge_validation_size": 45,
+  "retrieval_validation_size": 35,
   "retrieval_queries": 35,
   "model": "offline_deterministic_agent",
-  "timestamp": "2026-09-10T11:24:11.692063+00:00",
-  "git_commit": "e5fbea46cc5f18a92c15aed0680725f4f2c5ee75"
+  "timestamp": "2026-09-11T12:08:05.469926+00:00",
+  "git_commit": "f069eff4fefd64e85141103560f793d0c0b29b6d"
 }

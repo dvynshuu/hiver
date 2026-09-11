@@ -10,7 +10,7 @@ The goal of this evaluation set is to provide a reliable, leak-free benchmark fo
 1. **Intent Classification**: 8-class classification (`device_issue`, `software_bug`, `account_security`, `connectivity`, `billing_purchase`, `product_inquiry`, `general_feedback`, `other`).
 2. **Reply Quality**: Evaluating generated replies against real customer support standards on a 5-dimension rubric (Groundedness, Helpfulness, Relevance, Brand Alignment, Safety).
 3. **Escalation Decision**: Testing whether the agent correctly auto-handles resolvable issues and escalates sensitive, high-risk, or high-frustration issues.
-4. **LLM-as-Judge Validation**: Ground truth human ratings across 50 calibration examples evaluated by two independent raters (`rater_1`, `rater_2`) to measure human-human and human-judge inter-rater agreement.
+4. **LLM-as-Judge Validation**: Ground truth human ratings across 45 agent-generated replies evaluated by a single human annotator (`human_single_annotator`) to measure human-judge calibration (MAE, exact agreement, Spearman rank correlation) without simulated data.
 
 ---
 

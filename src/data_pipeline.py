@@ -20,7 +20,6 @@ from config import (
     RETRIEVAL_CORPUS_JSONL_PATH,
     CORPUS_INDEX_PATH,
     HELD_OUT_POOL_PATH,
-    HELD_OUT_EVAL_POOL_PATH,
     SPLIT_MANIFEST_PATH,
     GOLDEN_EVAL_PATH,
     TARGET_BRAND,
@@ -241,7 +240,7 @@ def build_conversation_splits(
             f.write(json.dumps(p) + "\n")
 
     # Save held-out eval pool JSONL
-    with open(HELD_OUT_EVAL_POOL_PATH, "w", encoding="utf-8") as f:
+    with open(HELD_OUT_POOL_PATH, "w", encoding="utf-8") as f:
         for p in held_out_pool:
             f.write(json.dumps(p) + "\n")
 

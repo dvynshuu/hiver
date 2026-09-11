@@ -29,19 +29,19 @@ from config import DATA_DIR, INTENT_TAXONOMY, INTENT_NAMES
 
 GOLDEN_DIR = DATA_DIR / "golden"
 GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
-CANDIDATES_POOL_PATH = GOLDEN_DIR / "candidates_pool.jsonl"
+CANDIDATES_PATH = GOLDEN_DIR / "candidates.jsonl"
 MANUAL_ANNOTATIONS_PATH = GOLDEN_DIR / "manual_annotations.jsonl"
 SECOND_ANNOTATOR_PATH = GOLDEN_DIR / "second_annotator_sample.jsonl"
 
 ANNOTATOR_ID = "human_single_annotator"
 
 def load_candidates() -> List[Dict[str, Any]]:
-    if not CANDIDATES_POOL_PATH.exists():
+    if not CANDIDATES_PATH.exists():
         from scripts.sample_candidates import sample_candidates
         sample_candidates()
     
     candidates = []
-    with open(CANDIDATES_POOL_PATH, "r", encoding="utf-8") as f:
+    with open(CANDIDATES_PATH, "r", encoding="utf-8") as f:
         for line in f:
             if line.strip():
                 candidates.append(json.loads(line))

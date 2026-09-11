@@ -28,10 +28,7 @@ from config import DATA_DIR, SEED, INTENT_NAMES
 GOLDEN_DIR = DATA_DIR / "golden"
 GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
 CANDIDATES_PATH = GOLDEN_DIR / "candidates.jsonl"
-CANDIDATES_LEGACY_PATH = GOLDEN_DIR / "candidates_pool.jsonl"
 HELD_OUT_PATH = DATA_DIR / "held_out_pool.jsonl"
-if not HELD_OUT_PATH.exists():
-    HELD_OUT_PATH = DATA_DIR / "held_out_eval_pool.jsonl"
 
 from scripts.build_golden_eval_set import ADVERSARIAL_CASES, classify_text_heuristically, determine_escalation_heuristically
 
